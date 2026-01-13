@@ -122,11 +122,11 @@ export default function Users() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8"
+        className="flex flex-row items-center justify-between gap-4 mb-6 sm:mb-8"
       >
         <div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">User Management</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-1 sm:mb-2">User Management</h1>
+          <p className="text-muted-foreground hidden sm:block">
             Manage admin access and permissions
           </p>
         </div>
@@ -134,8 +134,8 @@ export default function Users() {
         <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
           <DialogTrigger asChild>
             <Button className="gap-2 bg-gradient-gold text-primary-foreground hover:opacity-90 shadow-lg hover:shadow-primary/20">
-              <Plus className="w-4 h-4" />
-              Add User
+              <Plus className="w-5 h-5 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Add User</span>
             </Button>
           </DialogTrigger>
           <DialogContent className="premium-card border-white/10 text-foreground">

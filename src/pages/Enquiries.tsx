@@ -87,32 +87,33 @@ export default function Enquiries() {
   return (
     <DashboardLayout>
       {/* Header */}
+      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8"
+        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8"
       >
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Enquiries</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Enquiries</h1>
+          <p className="text-muted-foreground hidden sm:block">
             Manage customer inquiries and follow-ups
           </p>
         </div>
         <div className="flex gap-2">
-          <Badge variant="outline" className="gap-2 py-2 px-4">
+          <Badge variant="outline" className="gap-2 py-2 px-4 whitespace-nowrap">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            3 New Today
+            3 New
           </Badge>
         </div>
       </motion.div>
 
-      {/* Stats */}
+      {/* Stats - Swipeable on mobile */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6"
+        className="flex overflow-x-auto pb-6 -mx-6 px-6 gap-4 snap-x snap-mandatory sm:grid sm:grid-cols-2 md:grid-cols-4 sm:overflow-visible sm:pb-0 sm:mx-0 sm:px-0 sm:gap-4 mb-6 scrollbar-none"
       >
         {[
           { label: "Total", value: 156, color: "text-foreground" },
@@ -120,7 +121,7 @@ export default function Enquiries() {
           { label: "Converted", value: 89, color: "text-success" },
           { label: "Pending", value: 39, color: "text-accent" },
         ].map((stat, index) => (
-          <div key={stat.label} className="glass-card rounded-xl p-4 text-center">
+          <div key={stat.label} className="glass-card rounded-xl p-4 text-center min-w-[140px] snap-center">
             <p className={`text-2xl font-bold ${stat.color}`}>{stat.value}</p>
             <p className="text-sm text-muted-foreground">{stat.label}</p>
           </div>
@@ -138,28 +139,68 @@ export default function Enquiries() {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input
-              placeholder="Search by name, email, or package..."
+              placeholder="Search..."
               className="pl-10 input-dark"
             />
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm" className="gap-2">
+          <div className="flex gap-2 w-full sm:w-auto">
+            <Button variant="outline" size="sm" className="gap-2 flex-1 sm:flex-initial">
               <Filter className="w-4 h-4" />
               Filters
             </Button>
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" className="flex-1 sm:flex-initial">
               Export
             </Button>
           </div>
         </div>
       </motion.div>
 
-      {/* Table */}
+      {/* Mobile Card View */}
+      <div className="md:hidden space-y-4">
+        {enquiries.map((enquiry) => {
+          const config = statusConfig[enquiry.status as keyof typeof statusConfig];
+          return (
+            <div key={enquiry.id} className="glass-card p-4 rounded-xl space-y-3">
+              <div className="flex justify-between items-start">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
+                    {enquiry.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground">{enquiry.name}</p>
+                    <p className="text-xs text-muted-foreground">{enquiry.package}</p>
+                  </div>
+                </div>
+                <Badge className={config.color}>{config.label}</Badge>
+              </div>
+
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Clock className="w-4 h-4" />
+                {enquiry.date}
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2 border-t border-white/5">
+                <Button variant="ghost" size="sm" className="h-8 w-8">
+                  <Phone className="w-4 h-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-8 w-8">
+                  <Mail className="w-4 h-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-8 w-8 text-[#25D366] hover:text-[#25D366] hover:bg-[#25D366]/10">
+                  <WhatsAppIcon className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Desktop Table View */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
-        className="glass-card rounded-xl overflow-hidden overflow-x-auto"
+        className="glass-card rounded-xl overflow-hidden hidden md:block"
       >
         <Table>
           <TableHeader>

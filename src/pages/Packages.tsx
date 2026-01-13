@@ -45,15 +45,16 @@ export default function Packages() {
   return (
     <DashboardLayout>
       {/* Header */}
+      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8"
+        className="flex flex-row items-center justify-between gap-4 mb-6 sm:mb-8"
       >
         <div>
-          <h1 className="text-3xl font-bold text-gradient-gold mb-2">Tour Packages</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gradient-gold mb-1 sm:mb-2">Tour Packages</h1>
+          <p className="text-muted-foreground hidden sm:block">
             Manage your tour packages and offerings
           </p>
         </div>
@@ -61,8 +62,8 @@ export default function Packages() {
           className="gap-2 bg-gradient-gold text-primary-foreground hover:opacity-90 shadow-lg hover:shadow-primary/20 transition-all duration-300"
           onClick={() => navigate("/packages/new")}
         >
-          <Plus className="w-4 h-4" />
-          Add Package
+          <Plus className="w-5 h-5 sm:w-4 sm:h-4" />
+          <span className="hidden sm:inline">Add Package</span>
         </Button>
       </motion.div>
 

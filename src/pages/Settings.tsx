@@ -246,30 +246,30 @@ export default function Settings() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-8"
+        className="mb-6 sm:mb-8"
       >
-        <h1 className="text-3xl font-bold text-foreground">Settings</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-1 sm:mb-2">Settings</h1>
+        <p className="text-muted-foreground hidden sm:block">
           Manage your account and application preferences
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Sidebar */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+        {/* Sidebar / Tabs */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
           className="lg:col-span-3"
         >
-          <nav className="premium-card p-2 space-y-1">
+          <nav className="premium-card p-2 flex lg:flex-col overflow-x-auto space-x-2 lg:space-x-0 lg:space-y-1 scrollbar-none snap-x">
             {tabs.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${activeTab === item.id
-                    ? "bg-primary/10 text-primary shadow-[0_0_10px_-5px_hsl(var(--primary)/0.3)] font-medium"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                className={`flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 whitespace-nowrap snap-start ${activeTab === item.id
+                  ? "bg-primary/10 text-primary shadow-[0_0_10px_-5px_hsl(var(--primary)/0.3)] font-medium"
+                  : "text-muted-foreground hover:text-foreground hover:bg-white/5"
                   }`}
               >
                 <item.icon className={`w-5 h-5 ${activeTab === item.id ? "text-primary" : ""}`} />
