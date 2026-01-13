@@ -9,6 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useTheme } from "@/components/theme-provider";
 
 const data = [
   { month: "Jan", revenue: 45000, bookings: 12 },
@@ -23,6 +24,28 @@ const data = [
 export function RevenueChart() {
   const [isMobile, setIsMobile] = useState(false);
   const [activeSeries, setActiveSeries] = useState<string[]>(["revenue", "bookings"]);
+  const { theme } = useTheme();
+  const [resolvedTheme, setResolvedTheme] = useState(theme);
+
+  useEffect(() => {
+    const updateResolvedTheme = () => {
+      if (theme === 'system') {
+        setResolvedTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light');
+      } else {
+        setResolvedTheme(theme);
+      }
+    };
+
+    updateResolvedTheme();
+
+    if (theme === 'system') {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      mediaQuery.addEventListener("change", updateResolvedTheme);
+      return () => mediaQuery.removeEventListener("change", updateResolvedTheme);
+    }
+  }, [theme]);
+
+  const bookingColor = resolvedTheme === 'dark' ? "hsl(0 0% 100%)" : "hsl(0 0% 20%)";
 
   useEffect(() => {
     const checkMobile = () => {
@@ -57,8 +80,8 @@ export function RevenueChart() {
           <button
             onClick={() => toggleSeries("revenue")}
             className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm transition-all border ${activeSeries.includes("revenue")
-                ? "bg-primary/10 border-primary/20 text-primary"
-                : "bg-transparent border-transparent text-muted-foreground hover:bg-white/5"
+              ? "bg-primary/10 border-primary/20 text-primary"
+              : "bg-transparent border-transparent text-muted-foreground hover:bg-foreground/5"
               }`}
           >
             <div className={`w-2.5 h-2.5 rounded-full ${activeSeries.includes("revenue") ? "bg-primary" : "bg-primary/50"}`} />
@@ -67,11 +90,13 @@ export function RevenueChart() {
           <button
             onClick={() => toggleSeries("bookings")}
             className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm transition-all border ${activeSeries.includes("bookings")
+              ? resolvedTheme === 'dark'
                 ? "bg-white/10 border-white/10 text-white"
-                : "bg-transparent border-transparent text-muted-foreground hover:bg-white/5"
+                : "bg-black/5 border-black/10 text-black"
+              : "bg-transparent border-transparent text-muted-foreground hover:bg-foreground/5"
               }`}
           >
-            <div className={`w-2.5 h-2.5 rounded-full ${activeSeries.includes("bookings") ? "bg-white" : "bg-slate-500"}`} />
+            <div className={`w-2.5 h-2.5 rounded-full`} style={{ backgroundColor: activeSeries.includes("bookings") ? bookingColor : "rgb(100, 116, 139)" }} />
             <span>Bookings</span>
           </button>
         </div>
@@ -85,11 +110,11 @@ export function RevenueChart() {
                 <stop offset="95%" stopColor="hsl(41 52% 60%)" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorBookings" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="hsl(0 0% 100%)" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="hsl(0 0% 100%)" stopOpacity={0} />
+                <stop offset="5%" stopColor={bookingColor} stopOpacity={0.3} />
+                <stop offset="95%" stopColor={bookingColor} stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(0 0% 20%)" vertical={!isMobile} horizontal={true} />
+            <CartesianGrid strokeDasharray="3 3" stroke={resolvedTheme === 'dark' ? "hsl(0 0% 20%)" : "hsl(0 0% 90%)"} vertical={!isMobile} horizontal={true} />
             <XAxis
               dataKey="month"
               axisLine={false}
@@ -115,12 +140,13 @@ export function RevenueChart() {
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: "hsl(0 0% 8%)",
-                border: "1px solid hsl(0 0% 16%)",
+                backgroundColor: resolvedTheme === 'dark' ? "hsl(0 0% 8%)" : "hsl(0 0% 100%)",
+                borderColor: resolvedTheme === 'dark' ? "hsl(0 0% 16%)" : "hsl(0 0% 90%)",
                 borderRadius: "8px",
                 boxShadow: "0 10px 40px -10px rgba(0,0,0,0.5)",
+                color: resolvedTheme === 'dark' ? "hsl(0 0% 96%)" : "hsl(0 0% 10%)",
               }}
-              labelStyle={{ color: "hsl(0 0% 96%)" }}
+              labelStyle={{ color: resolvedTheme === 'dark' ? "hsl(0 0% 96%)" : "hsl(0 0% 10%)" }}
               formatter={(value: number, name: string) => [
                 name === "revenue" ? `₹${value.toLocaleString()}` : value,
                 name === "revenue" ? "Revenue" : "Bookings",
@@ -142,7 +168,7 @@ export function RevenueChart() {
                 yAxisId="right"
                 type="monotone"
                 dataKey="bookings"
-                stroke="hsl(0 0% 100%)"
+                stroke={bookingColor}
                 strokeWidth={2}
                 fillOpacity={1}
                 fill="url(#colorBookings)"

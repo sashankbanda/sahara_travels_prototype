@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard,
@@ -33,8 +33,35 @@ interface SidebarProps {
   isMobile: boolean;
 }
 
+import { useTheme } from "@/components/theme-provider";
+import { useAuth } from "@/context/AuthContext";
+
+// ... existing imports ...
+
 export function Sidebar({ isMobileOpen, onMobileClose, collapsed, setCollapsed, isMobile }: SidebarProps) {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { theme } = useTheme();
+  const { logout } = useAuth();
+  const [logoSrc, setLogoSrc] = useState(logo);
+
+  useEffect(() => {
+    const getSystemTheme = () => window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+    const updateLogo = () => {
+      const resolvedTheme = theme === "system" ? getSystemTheme() : theme;
+      setLogoSrc(resolvedTheme === "light" ? "/logo-light.png" : logo);
+    };
+
+    updateLogo();
+
+    if (theme === "system") {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      const handler = () => updateLogo();
+      mediaQuery.addEventListener("change", handler);
+      return () => mediaQuery.removeEventListener("change", handler);
+    }
+  }, [theme]);
 
   const sidebarWidth = isMobile ? 280 : (collapsed ? 80 : 280);
 
@@ -52,7 +79,7 @@ export function Sidebar({ isMobileOpen, onMobileClose, collapsed, setCollapsed, 
       <div className={`p-4 flex items-center ${collapsed && !isMobile ? 'justify-center' : 'justify-between'} border-b border-sidebar-border`}>
         <Link to="/dashboard" className="flex items-center gap-3" onClick={isMobile ? onMobileClose : undefined}>
           <img
-            src={logo}
+            src={logoSrc}
             alt="Sahara Journeys"
             className="w-10 h-10 rounded-lg object-cover"
           />
@@ -114,7 +141,13 @@ export function Sidebar({ isMobileOpen, onMobileClose, collapsed, setCollapsed, 
 
       {/* Footer */}
       <div className="p-3 border-t border-sidebar-border space-y-1">
-        <button className={`nav-link w-full text-left text-destructive hover:text-destructive hover:bg-destructive/10 ${collapsed && !isMobile ? 'justify-center px-2' : ''}`}>
+        <button
+          onClick={() => {
+            logout();
+            navigate('/login');
+          }}
+          className={`nav-link w-full text-left text-destructive hover:text-destructive hover:bg-destructive/10 ${collapsed && !isMobile ? 'justify-center px-2' : ''}`}
+        >
           <LogOut className="w-5 h-5 flex-shrink-0" />
           <AnimatePresence>
             {(!collapsed || isMobile) && (
