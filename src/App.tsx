@@ -17,6 +17,8 @@ import Users from "./pages/Users";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
+import Home from "./pages/Home";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -28,9 +30,9 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Home />} />
 
             <Route element={<ProtectedRoute />}>
-              <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/packages" element={<Packages />} />
               <Route path="/packages/new" element={<AddPackage />} />
