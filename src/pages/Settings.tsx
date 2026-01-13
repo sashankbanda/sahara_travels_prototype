@@ -15,9 +15,12 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 
+import { useTheme } from "@/components/theme-provider";
+
 export default function Settings() {
   const [activeTab, setActiveTab] = useState("profile");
   const [isLoading, setIsLoading] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   const handleSave = () => {
     setIsLoading(true);
@@ -194,22 +197,38 @@ export default function Settings() {
               <div className="space-y-4">
                 <Label>Theme Preference</Label>
                 <div className="grid grid-cols-3 gap-4">
-                  <button className="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-primary bg-primary/10 transition-all hover:bg-primary/20">
-                    <Moon className="w-6 h-6 text-primary" />
+                  <button
+                    onClick={() => setTheme("dark")}
+                    className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${theme === "dark"
+                        ? "border-primary bg-primary/10"
+                        : "border-transparent bg-muted/50 hover:bg-muted"
+                      }`}
+                  >
+                    <Moon className={`w-6 h-6 ${theme === "dark" ? "text-primary" : "text-muted-foreground"}`} />
                     <span className="text-sm font-medium">Dark</span>
                   </button>
-                  <button className="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-transparent bg-white/5 opacity-50 cursor-not-allowed">
-                    <Sun className="w-6 h-6" />
+                  <button
+                    onClick={() => setTheme("light")}
+                    className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${theme === "light"
+                        ? "border-primary bg-primary/10"
+                        : "border-transparent bg-muted/50 hover:bg-muted"
+                      }`}
+                  >
+                    <Sun className={`w-6 h-6 ${theme === "light" ? "text-primary" : "text-muted-foreground"}`} />
                     <span className="text-sm font-medium">Light</span>
                   </button>
-                  <button className="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-transparent bg-white/5 opacity-50 cursor-not-allowed">
-                    <Smartphone className="w-6 h-6" />
+                  <button
+                    onClick={() => setTheme("system")}
+                    className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${theme === "system"
+                        ? "border-primary bg-primary/10"
+                        : "border-transparent bg-muted/50 hover:bg-muted"
+                      }`}
+                  >
+                    <Smartphone className={`w-6 h-6 ${theme === "system" ? "text-primary" : "text-muted-foreground"}`} />
                     <span className="text-sm font-medium">System</span>
                   </button>
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  * Light mode is currently disabled to maintain brand aesthetic.
-                </p>
+                {/* Removed the 'Light mode is disabled' text */}
               </div>
 
               <div className="space-y-4 pt-4 border-t border-white/10">
