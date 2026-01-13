@@ -138,7 +138,7 @@ export default function Users() {
               <span className="hidden sm:inline">Add User</span>
             </Button>
           </DialogTrigger>
-          <DialogContent className="premium-card border-white/10 text-foreground">
+          <DialogContent className="premium-panel border-white/10 text-foreground">
             <DialogHeader>
               <DialogTitle>Add New User</DialogTitle>
             </DialogHeader>

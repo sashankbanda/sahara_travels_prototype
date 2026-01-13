@@ -119,6 +119,10 @@
     @apply border-primary/30 shadow-[0_0_30px_-10px_hsl(var(--primary)/0.3)] transform -translate-y-1;
   }
 
+  .premium-panel {
+    @apply relative overflow-hidden rounded-xl border border-white/10 bg-black/40 backdrop-blur-xl;
+  }
+
   .stat-card {
     @apply premium-card p-6;
   }

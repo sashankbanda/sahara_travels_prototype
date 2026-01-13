@@ -154,7 +154,7 @@ export default function Payments() {
               Record Payment
             </Button>
           </DialogTrigger>
-          <DialogContent className="premium-card border-white/10 text-foreground">
+          <DialogContent className="premium-panel border-white/10 text-foreground">
             <DialogHeader>
               <DialogTitle>Record New Payment</DialogTitle>
             </DialogHeader>
