@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { motion } from "framer-motion";
 import { Search, Filter, Plus, IndianRupee, CheckCircle, Clock, XCircle } from "lucide-react";
@@ -12,6 +13,23 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { toast } from "sonner";
 
 const payments = [
   {
@@ -77,6 +95,16 @@ const statusConfig = {
 };
 
 export default function Payments() {
+  const [isRecordOpen, setIsRecordOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    customer: "",
+    package: "",
+    amount: "",
+    method: "UPI",
+    status: "completed",
+    date: new Date().toISOString().split('T')[0],
+  });
+
   const totalRevenue = payments
     .filter((p) => p.status === "completed")
     .reduce((acc, p) => acc + p.amount, 0);
@@ -84,9 +112,27 @@ export default function Payments() {
     .filter((p) => p.status === "pending")
     .reduce((acc, p) => acc + p.amount, 0);
 
+  const handleRecordPayment = () => {
+    if (!formData.customer || !formData.package || !formData.amount) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    // In a real app, this would add to the store/backend
+    toast.success("Payment recorded successfully");
+    setIsRecordOpen(false);
+    setFormData({
+      customer: "",
+      package: "",
+      amount: "",
+      method: "UPI",
+      status: "completed",
+      date: new Date().toISOString().split('T')[0],
+    });
+  };
+
   return (
     <DashboardLayout>
-      {/* Header */}
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -100,10 +146,103 @@ export default function Payments() {
             Track and manage all payment transactions
           </p>
         </div>
-        <Button className="gap-2 bg-gradient-gold text-primary-foreground hover:opacity-90 w-full sm:w-auto">
-          <Plus className="w-4 h-4" />
-          Record Payment
-        </Button>
+
+        <Dialog open={isRecordOpen} onOpenChange={setIsRecordOpen}>
+          <DialogTrigger asChild>
+            <Button className="gap-2 bg-gradient-gold text-primary-foreground hover:opacity-90 w-full sm:w-auto">
+              <Plus className="w-4 h-4" />
+              Record Payment
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="premium-card border-white/10 text-foreground">
+            <DialogHeader>
+              <DialogTitle>Record New Payment</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div className="space-y-2">
+                <Label>Customer Name</Label>
+                <Input
+                  placeholder="Enter customer name"
+                  className="input-dark"
+                  value={formData.customer}
+                  onChange={(e) => setFormData({ ...formData, customer: e.target.value })}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Package Name</Label>
+                <Input
+                  placeholder="Enter package name"
+                  className="input-dark"
+                  value={formData.package}
+                  onChange={(e) => setFormData({ ...formData, package: e.target.value })}
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label>Amount (₹)</Label>
+                  <Input
+                    type="number"
+                    placeholder="0.00"
+                    className="input-dark"
+                    value={formData.amount}
+                    onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>Date</Label>
+                  <Input
+                    type="date"
+                    className="input-dark"
+                    value={formData.date}
+                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label>Payment Method</Label>
+                  <Select
+                    value={formData.method}
+                    onValueChange={(v) => setFormData({ ...formData, method: v })}
+                  >
+                    <SelectTrigger className="input-dark">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="UPI">UPI</SelectItem>
+                      <SelectItem value="Credit Card">Credit Card</SelectItem>
+                      <SelectItem value="Bank Transfer">Bank Transfer</SelectItem>
+                      <SelectItem value="PayPal">PayPal</SelectItem>
+                      <SelectItem value="Cash">Cash</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label>Status</Label>
+                  <Select
+                    value={formData.status}
+                    onValueChange={(v) => setFormData({ ...formData, status: v })}
+                  >
+                    <SelectTrigger className="input-dark">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="completed">Completed</SelectItem>
+                      <SelectItem value="pending">Pending</SelectItem>
+                      <SelectItem value="failed">Failed</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setIsRecordOpen(false)}>Cancel</Button>
+              <Button onClick={handleRecordPayment} className="bg-gradient-gold text-primary-foreground">
+                Record Payment
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </motion.div>
 
       {/* Stats - Swipeable on mobile */}
