@@ -120,6 +120,51 @@
     font-family: 'Inter', sans-serif;
   }
 
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  @keyframes fog-flow {
+    0% {
+      transform: translateX(-10%);
+    }
+
+    50% {
+      transform: translateX(10%);
+    }
+
+    100% {
+      transform: translateX(-10%);
+    }
+  }
+
+  @keyframes fog-flow-reverse {
+    0% {
+      transform: translateX(10%);
+    }
+
+    50% {
+      transform: translateX(-10%);
+    }
+
+    100% {
+      transform: translateX(10%);
+    }
+  }
+
+  .animate-fog-1 {
+    animation: fog-flow 40s ease-in-out infinite;
+  }
+
+  .animate-fog-2 {
+    animation: fog-flow-reverse 55s ease-in-out infinite;
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;

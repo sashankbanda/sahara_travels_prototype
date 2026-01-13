@@ -2,41 +2,35 @@ import { Link } from "react-router-dom";
 
 export const Footer = () => {
     return (
-        <footer className="bg-black text-white pt-24 pb-12 border-t border-white/5">
-            <div className="container mx-auto px-6">
-                <div className="flex flex-col md:flex-row justify-between items-start mb-24 gap-12">
+        <footer className="relative bg-black text-white pt-40 pb-12 border-t border-white/5 overflow-hidden">
+            {/* Background Texture/Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] to-black pointer-events-none" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
 
-                    {/* CTA */}
-                    <div className="max-w-xl">
-                        <h2 className="font-serif text-5xl md:text-6xl text-white mb-8">
-                            Ready to begin your journey?
-                        </h2>
-                        <button className="bg-white text-black px-8 py-3 rounded-full uppercase tracking-widest hover:bg-primary transition-colors">
-                            Start Enquiry
-                        </button>
-                    </div>
+            <div className="container mx-auto px-6 max-w-5xl text-center relative z-10">
 
-                    {/* Links */}
-                    <div className="flex gap-16">
-                        <div className="space-y-6">
-                            <h4 className="text-xs uppercase tracking-widest text-white/40 mb-6">Explore</h4>
-                            <Link to="/tours" className="block text-white/70 hover:text-white transition-colors">Tours</Link>
-                            <Link to="/sightseeing" className="block text-white/70 hover:text-white transition-colors">Sightseeing</Link>
-                            <Link to="/transfers" className="block text-white/70 hover:text-white transition-colors">Transfers</Link>
-                        </div>
-                        <div className="space-y-6">
-                            <h4 className="text-xs uppercase tracking-widest text-white/40 mb-6">Company</h4>
-                            <Link to="/about" className="block text-white/70 hover:text-white transition-colors">About Us</Link>
-                            <Link to="/contact" className="block text-white/70 hover:text-white transition-colors">Contact</Link>
-                            <Link to="/privacy" className="block text-white/70 hover:text-white transition-colors">Privacy</Link>
-                        </div>
-                    </div>
+                {/* Main CTA */}
+                <div className="mb-40">
+                    <h2 className="font-serif text-5xl md:text-7xl text-white mb-6 tracking-tight">
+                        Ready to begin?
+                    </h2>
+                    <p className="text-white/40 text-sm font-light tracking-wide mb-12">
+                        Your journey into the extraordinary awaits.
+                    </p>
+
+                    <button className="bg-white text-black px-12 py-4 rounded-full uppercase tracking-[0.2em] text-[10px] font-medium hover:bg-neutral-200 transition-colors duration-500">
+                        Start Enquiry
+                    </button>
                 </div>
 
-                {/* Bottom */}
-                <div className="flex flex-col md:flex-row justify-between items-center text-xs text-white/30 pt-12 border-t border-white/5">
-                    <p>&copy; {new Date().getFullYear()} Sahara Journeys. All rights reserved.</p>
-                    <p className="mt-4 md:mt-0">Designed for excellence.</p>
+                {/* Minimal Bottom */}
+                <div className="flex flex-col md:flex-row justify-between items-center text-[9px] uppercase tracking-[0.2em] text-white/20 pt-12 border-t border-white/5 gap-6">
+                    <p>&copy; 2026 Sahara Journeys</p>
+                    <div className="flex gap-12">
+                        <Link to="#" className="hover:text-white transition-colors">Instagram</Link>
+                        <Link to="#" className="hover:text-white transition-colors">Email</Link>
+                    </div>
+                    <p>Arunachal Pradesh</p>
                 </div>
             </div>
         </footer>

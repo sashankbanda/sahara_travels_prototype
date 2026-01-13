@@ -3,7 +3,6 @@ import { Hero } from "@/components/home/Hero";
 import { BrandLegacy } from "@/components/home/BrandLegacy";
 import { Services } from "@/components/home/Services";
 import { HighlightedJourneys } from "@/components/home/HighlightedJourneys";
-import { TrustSignals } from "@/components/home/TrustSignals";
 import { Footer } from "@/components/home/Footer";
 import { motion } from "framer-motion";
 
@@ -25,7 +24,6 @@ const Home = () => {
                 <BrandLegacy />
                 <Services />
                 <HighlightedJourneys />
-                <TrustSignals />
             </main>
 
             <Footer />

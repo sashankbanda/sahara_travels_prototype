@@ -9,51 +9,52 @@ export const HighlightedJourneys = () => {
         offset: ["start end", "end start"],
     });
 
-    // Heavier, slower parallax
-    const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+    // Reduced parallax
+    const y = useTransform(scrollYProgress, [0, 1], [0, -30]);
 
     return (
-        <section ref={ref} className="py-32 lg:py-48 bg-[#0e0e0e] text-white overflow-hidden">
+        <section ref={ref} className="py-24 md:py-32 bg-[#0a0a0a] text-white overflow-hidden border-t border-white/5">
             <div className="container mx-auto px-6">
-                <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
+                <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
-                    {/* Image Side - Larger domination */}
-                    <div className="w-full lg:w-[55%] relative h-[600px] lg:h-[900px] overflow-hidden rounded-[4px]">
+                    {/* Image Side - Reduced Height (~60% of viewport) */}
+                    <div className="w-full lg:w-[55%] relative h-[50vh] md:h-[60vh] overflow-hidden rounded-[2px]">
                         <motion.div style={{ y }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
                             <img
-                                src="/images/home/hero.png" // Reusing hero for refined look
+                                src="/images/home/hero.png"
                                 alt="Signature Journey"
-                                className="w-full h-full object-cover filter grayscale-[20%] contrast-110"
+                                className="w-full h-full object-cover filter grayscale-[10%] opacity-80"
                             />
-                            <div className="absolute inset-0 bg-black/10" />
+                            <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
                         </motion.div>
                     </div>
 
-                    {/* Text Side - More white space */}
-                    <div className="w-full lg:w-[45%] px-4">
+                    {/* Text Side */}
+                    <div className="w-full lg:w-[45%] px-4 lg:pl-12">
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
                             viewport={{ once: true, margin: "-10%" }}
-                            transition={{ duration: 1, ease: "easeOut" }}
+                            transition={{ duration: 1 }}
                         >
-                            <span className="text-primary text-xs uppercase tracking-[0.3em] block mb-10">
+                            <h2 className="text-primary/70 text-[10px] uppercase tracking-[0.4em] mb-8">
                                 Signature Experience
-                            </span>
-
-                            <h2 className="font-serif text-5xl lg:text-7xl text-white mb-10 leading-[1.1]">
-                                The Mist <br /> & The Monastery
                             </h2>
 
-                            <p className="text-white/60 text-lg lg:text-xl leading-relaxed mb-16 max-w-md font-light">
+                            <h3 className="font-serif text-4xl lg:text-5xl text-white mb-8 leading-[1.1]">
+                                The Mist <br /> & The Monastery
+                            </h3>
+
+                            <div className="w-8 h-px bg-white/20 mb-8" />
+
+                            <p className="text-white/50 text-base leading-loose mb-12 max-w-sm font-light">
                                 A 7-day immersive journey through the sacred valleys of Tawang.
-                                Witness the morning prayers, walk the ancient paths, and find
-                                solace in the clouds.
+                                Where the clouds descend to meet the prayers.
                             </p>
 
-                            <button className="group flex items-center gap-4 text-white hover:text-primary transition-colors uppercase tracking-[0.2em] text-xs font-medium">
-                                View Itinerary
-                                <ArrowRight className="w-4 h-4 transition-transform duration-500 ease-out group-hover:translate-x-2" />
+                            <button className="group relative flex items-center gap-6 text-white uppercase tracking-[0.2em] text-[10px] font-medium opacity-80 hover:opacity-100 transition-opacity">
+                                <span>View Itinerary</span>
+                                <ArrowRight className="w-4 h-4 text-white/50 transition-transform duration-500 group-hover:translate-x-2" />
                             </button>
                         </motion.div>
                     </div>
