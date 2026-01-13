@@ -155,8 +155,8 @@ export default function Enquiries() {
         </div>
       </motion.div>
 
-      {/* Mobile Card View */}
-      <div className="md:hidden space-y-4">
+      {/* Mobile & Tablet Card View */}
+      <div className="lg:hidden space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-4">
         {enquiries.map((enquiry) => {
           const config = statusConfig[enquiry.status as keyof typeof statusConfig];
           return (
@@ -200,7 +200,7 @@ export default function Enquiries() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
-        className="premium-card rounded-xl overflow-hidden hidden md:block"
+        className="premium-card rounded-xl overflow-hidden hidden lg:block"
       >
         <Table>
           <TableHeader>
@@ -208,8 +208,8 @@ export default function Enquiries() {
               <TableHead className="text-muted-foreground">Customer</TableHead>
               <TableHead className="text-muted-foreground">Package</TableHead>
               <TableHead className="text-muted-foreground">Status</TableHead>
-              <TableHead className="text-muted-foreground hidden md:table-cell">Date</TableHead>
-              <TableHead className="text-muted-foreground hidden lg:table-cell">Notes</TableHead>
+              <TableHead className="text-muted-foreground">Date</TableHead>
+              <TableHead className="text-muted-foreground max-w-[200px]">Notes</TableHead>
               <TableHead className="text-muted-foreground text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -239,13 +239,13 @@ export default function Enquiries() {
                   <TableCell>
                     <Badge className={config.color}>{config.label}</Badge>
                   </TableCell>
-                  <TableCell className="text-muted-foreground hidden md:table-cell">
+                  <TableCell className="text-muted-foreground">
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4" />
                       {enquiry.date}
                     </div>
                   </TableCell>
-                  <TableCell className="text-muted-foreground hidden lg:table-cell max-w-[200px] truncate">
+                  <TableCell className="text-muted-foreground truncate max-w-[200px]">
                     {enquiry.notes}
                   </TableCell>
                   <TableCell className="text-right">

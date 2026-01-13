@@ -163,8 +163,8 @@ export default function Payments() {
         </div>
       </motion.div>
 
-      {/* Mobile Card View */}
-      <div className="md:hidden space-y-4">
+      {/* Mobile & Tablet Card View */}
+      <div className="lg:hidden space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-4">
         {payments.map((payment) => {
           const config = statusConfig[payment.status as keyof typeof statusConfig];
           const StatusIcon = config.icon;
@@ -198,18 +198,18 @@ export default function Payments() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
-        className="premium-card rounded-xl overflow-hidden hidden md:block"
+        className="premium-card rounded-xl overflow-hidden hidden lg:block"
       >
         <Table>
           <TableHeader>
             <TableRow className="border-border/50 hover:bg-transparent">
               <TableHead className="text-muted-foreground">Payment ID</TableHead>
               <TableHead className="text-muted-foreground">Customer</TableHead>
-              <TableHead className="text-muted-foreground hidden md:table-cell">Package</TableHead>
+              <TableHead className="text-muted-foreground">Package</TableHead>
               <TableHead className="text-muted-foreground">Amount</TableHead>
-              <TableHead className="text-muted-foreground hidden lg:table-cell">Method</TableHead>
+              <TableHead className="text-muted-foreground">Method</TableHead>
               <TableHead className="text-muted-foreground">Status</TableHead>
-              <TableHead className="text-muted-foreground hidden md:table-cell">Date</TableHead>
+              <TableHead className="text-muted-foreground">Date</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -228,7 +228,7 @@ export default function Payments() {
                     {payment.id}
                   </TableCell>
                   <TableCell className="text-foreground">{payment.customer}</TableCell>
-                  <TableCell className="text-muted-foreground hidden md:table-cell">
+                  <TableCell className="text-muted-foreground">
                     {payment.package}
                   </TableCell>
                   <TableCell>
@@ -237,7 +237,7 @@ export default function Payments() {
                       {payment.amount.toLocaleString()}
                     </div>
                   </TableCell>
-                  <TableCell className="text-muted-foreground hidden lg:table-cell">
+                  <TableCell className="text-muted-foreground">
                     {payment.method}
                   </TableCell>
                   <TableCell>
@@ -246,7 +246,7 @@ export default function Payments() {
                       {config.label}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-muted-foreground hidden md:table-cell">
+                  <TableCell className="text-muted-foreground">
                     {payment.date}
                   </TableCell>
                 </motion.tr>

@@ -28,21 +28,13 @@ const navItems = [
 interface SidebarProps {
   isMobileOpen?: boolean;
   onMobileClose?: () => void;
+  collapsed: boolean;
+  setCollapsed: (collapsed: boolean) => void;
+  isMobile: boolean;
 }
 
-export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
-  const [collapsed, setCollapsed] = useState(false);
+export function Sidebar({ isMobileOpen, onMobileClose, collapsed, setCollapsed, isMobile }: SidebarProps) {
   const location = useLocation();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   const sidebarWidth = isMobile ? 280 : (collapsed ? 80 : 280);
 
@@ -54,11 +46,11 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
         x: isMobile ? (isMobileOpen ? 0 : -280) : 0
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className={`fixed left-0 top-0 h-screen bg-sidebar border-r border-sidebar-border flex flex-col z-50 shadow-2xl lg:shadow-none`}
+      className={`fixed left-0 top-0 h-screen bg-sidebar border-r border-sidebar-border flex flex-col z-50 shadow-2xl md:shadow-none`}
     >
       {/* Logo */}
-      <div className="p-4 flex items-center justify-between border-b border-sidebar-border">
-        <Link to="/dashboard" className="flex items-center gap-3" onClick={onMobileClose}>
+      <div className={`p-4 flex items-center ${collapsed && !isMobile ? 'justify-center' : 'justify-between'} border-b border-sidebar-border`}>
+        <Link to="/dashboard" className="flex items-center gap-3" onClick={isMobile ? onMobileClose : undefined}>
           <img
             src={logo}
             alt="Sahara Journeys"
@@ -98,8 +90,8 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
             <Link
               key={item.href}
               to={item.href}
-              onClick={onMobileClose}
-              className={`nav-link ${isActive ? "active" : ""}`}
+              onClick={isMobile ? onMobileClose : undefined}
+              className={`nav-link ${isActive ? "active" : ""} ${collapsed && !isMobile ? 'justify-center px-2' : ''}`}
             >
               <item.icon className="w-5 h-5 flex-shrink-0" />
               <AnimatePresence>
@@ -122,7 +114,7 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
 
       {/* Footer */}
       <div className="p-3 border-t border-sidebar-border space-y-1">
-        <button className="nav-link w-full text-left text-destructive hover:text-destructive hover:bg-destructive/10">
+        <button className={`nav-link w-full text-left text-destructive hover:text-destructive hover:bg-destructive/10 ${collapsed && !isMobile ? 'justify-center px-2' : ''}`}>
           <LogOut className="w-5 h-5 flex-shrink-0" />
           <AnimatePresence>
             {(!collapsed || isMobile) && (

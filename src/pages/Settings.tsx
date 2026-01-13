@@ -254,20 +254,20 @@ export default function Settings() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8">
         {/* Sidebar / Tabs */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="lg:col-span-3"
+          className="md:col-span-4 lg:col-span-3"
         >
-          <nav className="premium-card p-2 flex lg:flex-col overflow-x-auto space-x-2 lg:space-x-0 lg:space-y-1 scrollbar-none snap-x">
+          <nav className="premium-card p-2 flex md:flex-col overflow-x-auto md:overflow-visible space-x-2 md:space-x-0 md:space-y-1 scrollbar-none snap-x h-full md:h-auto">
             {tabs.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 whitespace-nowrap snap-start ${activeTab === item.id
+                className={`flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 whitespace-nowrap snap-start text-left ${activeTab === item.id
                   ? "bg-primary/10 text-primary shadow-[0_0_10px_-5px_hsl(var(--primary)/0.3)] font-medium"
                   : "text-muted-foreground hover:text-foreground hover:bg-white/5"
                   }`}
@@ -280,7 +280,7 @@ export default function Settings() {
         </motion.div>
 
         {/* Content */}
-        <div className="lg:col-span-9">
+        <div className="md:col-span-8 lg:col-span-9">
           <AnimatePresence mode="wait">
             {renderContent()}
           </AnimatePresence>

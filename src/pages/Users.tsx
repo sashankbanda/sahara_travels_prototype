@@ -284,75 +284,78 @@ export default function Users() {
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredUsers.map((user, index) => (
           <motion.div
             key={user.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className="premium-card p-4 flex flex-col md:flex-row items-center gap-6 group hover:border-primary/30"
+            className="premium-card p-4 flex flex-col gap-4 group hover:border-primary/30"
           >
             {/* Avatar & Info */}
-            <div className="flex items-center gap-4 flex-1 w-full">
-              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-primary/50 transition-colors">
+            <div className="flex items-center gap-4 w-full">
+              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-primary/50 transition-colors shrink-0">
                 <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
               </div>
-              <div>
-                <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors">{user.name}</h3>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Mail className="w-3 h-3" />
-                  {user.email}
+              <div className="min-w-0">
+                <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors truncate">{user.name}</h3>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground truncate">
+                  <Mail className="w-3 h-3 shrink-0" />
+                  <span className="truncate">{user.email}</span>
                 </div>
               </div>
             </div>
 
             {/* Use Details */}
-            <div className="flex flex-wrap items-center gap-6 w-full md:w-auto mt-4 md:mt-0 justify-between md:justify-end">
-              <div className="flex items-center gap-2 min-w-[100px]">
-                <Shield className="w-4 h-4 text-muted-foreground" />
-                <Badge variant="outline" className={`capitalize ${roleColors[user.role]}`}>
-                  {user.role}
-                </Badge>
+            <div className="flex flex-col gap-3 w-full border-t border-white/5 pt-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-muted-foreground" />
+                  <Badge variant="outline" className={`capitalize ${roleColors[user.role]}`}>
+                    {user.role}
+                  </Badge>
+                </div>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon" className="hover:bg-primary/10 hover:text-primary h-8 w-8">
+                      <MoreVertical className="w-4 h-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="premium-card border-white/10">
+                    <DropdownMenuItem onClick={() => openEditModal(user)} className="gap-2">
+                      <Edit className="w-4 h-4" /> Edit User
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleDelete(user.id)} className="gap-2 text-destructive">
+                      <Trash2 className="w-4 h-4" /> Delete User
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
 
-              <div className="flex items-center gap-2 min-w-[100px]">
-                {user.status === 'active' ? (
-                  <CheckCircle2 className="w-4 h-4 text-success" />
-                ) : (
-                  <XCircle className="w-4 h-4 text-muted-foreground" />
-                )}
-                <span className={`text-sm capitalize ${user.status === 'active' ? 'text-success' : 'text-muted-foreground'}`}>
-                  {user.status}
-                </span>
-              </div>
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center gap-2">
+                  {user.status === 'active' ? (
+                    <CheckCircle2 className="w-4 h-4 text-success" />
+                  ) : (
+                    <XCircle className="w-4 h-4 text-muted-foreground" />
+                  )}
+                  <span className={`capitalize ${user.status === 'active' ? 'text-success' : 'text-muted-foreground'}`}>
+                    {user.status}
+                  </span>
+                </div>
 
-              <div className="flex items-center gap-2 min-w-[120px] text-sm text-muted-foreground">
-                <Clock className="w-4 h-4" />
-                {user.lastActive}
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Clock className="w-4 h-4" />
+                  {user.lastActive}
+                </div>
               </div>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="hover:bg-primary/10 hover:text-primary">
-                    <MoreVertical className="w-4 h-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="premium-card border-white/10">
-                  <DropdownMenuItem onClick={() => openEditModal(user)} className="gap-2">
-                    <Edit className="w-4 h-4" /> Edit User
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleDelete(user.id)} className="gap-2 text-destructive">
-                    <Trash2 className="w-4 h-4" /> Delete User
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
             </div>
           </motion.div>
         ))}
 
         {filteredUsers.length === 0 && (
-          <div className="text-center py-12 text-muted-foreground">
+          <div className="col-span-full text-center py-12 text-muted-foreground">
             No users found matching "{searchTerm}"
           </div>
         )}
