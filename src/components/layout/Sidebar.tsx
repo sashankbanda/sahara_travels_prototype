@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -11,8 +11,10 @@ import {
   ChevronLeft,
   ChevronRight,
   LogOut,
+  X
 } from "lucide-react";
 import logo from "@/assets/logo.jpeg";
+import { Button } from "@/components/ui/button";
 
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
@@ -23,27 +25,47 @@ const navItems = [
   { icon: Settings, label: "Settings", href: "/settings" },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  isMobileOpen?: boolean;
+  onMobileClose?: () => void;
+}
+
+export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const sidebarWidth = isMobile ? 280 : (collapsed ? 80 : 280);
 
   return (
     <motion.aside
       initial={false}
-      animate={{ width: collapsed ? 80 : 280 }}
+      animate={{
+        width: sidebarWidth,
+        x: isMobile ? (isMobileOpen ? 0 : -280) : 0
+      }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed left-0 top-0 h-screen bg-sidebar border-r border-sidebar-border flex flex-col z-50"
+      className={`fixed left-0 top-0 h-screen bg-sidebar border-r border-sidebar-border flex flex-col z-50 shadow-2xl lg:shadow-none`}
     >
       {/* Logo */}
       <div className="p-4 flex items-center justify-between border-b border-sidebar-border">
-        <Link to="/dashboard" className="flex items-center gap-3">
+        <Link to="/dashboard" className="flex items-center gap-3" onClick={onMobileClose}>
           <img
             src={logo}
             alt="Sahara Journeys"
             className="w-10 h-10 rounded-lg object-cover"
           />
           <AnimatePresence>
-            {!collapsed && (
+            {(!collapsed || isMobile) && (
               <motion.div
                 initial={{ opacity: 0, width: 0 }}
                 animate={{ opacity: 1, width: "auto" }}
@@ -61,21 +83,27 @@ export function Sidebar() {
             )}
           </AnimatePresence>
         </Link>
+        {isMobile && (
+          <Button variant="ghost" size="icon" onClick={onMobileClose}>
+            <X className="w-5 h-5" />
+          </Button>
+        )}
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-3 space-y-1">
+      <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
           const isActive = location.pathname === item.href;
           return (
             <Link
               key={item.href}
               to={item.href}
+              onClick={onMobileClose}
               className={`nav-link ${isActive ? "active" : ""}`}
             >
               <item.icon className="w-5 h-5 flex-shrink-0" />
               <AnimatePresence>
-                {!collapsed && (
+                {(!collapsed || isMobile) && (
                   <motion.span
                     initial={{ opacity: 0, width: 0 }}
                     animate={{ opacity: 1, width: "auto" }}
@@ -97,7 +125,7 @@ export function Sidebar() {
         <button className="nav-link w-full text-left text-destructive hover:text-destructive hover:bg-destructive/10">
           <LogOut className="w-5 h-5 flex-shrink-0" />
           <AnimatePresence>
-            {!collapsed && (
+            {(!collapsed || isMobile) && (
               <motion.span
                 initial={{ opacity: 0, width: 0 }}
                 animate={{ opacity: 1, width: "auto" }}
@@ -111,16 +139,18 @@ export function Sidebar() {
           </AnimatePresence>
         </button>
 
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className="nav-link w-full justify-center"
-        >
-          {collapsed ? (
-            <ChevronRight className="w-5 h-5" />
-          ) : (
-            <ChevronLeft className="w-5 h-5" />
-          )}
-        </button>
+        {!isMobile && (
+          <button
+            onClick={() => setCollapsed(!collapsed)}
+            className="nav-link w-full justify-center"
+          >
+            {collapsed ? (
+              <ChevronRight className="w-5 h-5" />
+            ) : (
+              <ChevronLeft className="w-5 h-5" />
+            )}
+          </button>
+        )}
       </div>
     </motion.aside>
   );

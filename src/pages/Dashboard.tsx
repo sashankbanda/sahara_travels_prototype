@@ -12,7 +12,11 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import { useNavigate } from "react-router-dom";
+
 export default function Dashboard() {
+  const navigate = useNavigate();
+
   return (
     <DashboardLayout>
       {/* Header */}
@@ -29,11 +33,18 @@ export default function Dashboard() {
           </p>
         </div>
         <div className="flex gap-3">
-          <Button variant="outline" className="gap-2 hover:bg-white/5 hover:text-primary transition-colors">
+          <Button
+            variant="outline"
+            className="gap-2 hover:bg-white/5 hover:text-primary transition-colors"
+            onClick={() => navigate('/enquiries')}
+          >
             <MessageSquare className="w-4 h-4" />
             View Enquiries
           </Button>
-          <Button className="gap-2 bg-gradient-gold text-primary-foreground hover:opacity-90 shadow-lg hover:shadow-primary/20 transition-all duration-300">
+          <Button
+            className="gap-2 bg-gradient-gold text-primary-foreground hover:opacity-90 shadow-lg hover:shadow-primary/20 transition-all duration-300"
+            onClick={() => navigate('/packages/new')}
+          >
             <Plus className="w-4 h-4" />
             New Package
           </Button>

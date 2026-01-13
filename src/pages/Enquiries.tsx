@@ -159,7 +159,7 @@ export default function Enquiries() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
-        className="glass-card rounded-xl overflow-hidden"
+        className="glass-card rounded-xl overflow-hidden overflow-x-auto"
       >
         <Table>
           <TableHeader>
