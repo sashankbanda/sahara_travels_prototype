@@ -72,64 +72,108 @@ const ServicesDesktop = () => {
         offset: ["start start", "end end"],
     });
 
-    // Short deliberate scroll range
-    const x = useTransform(scrollYProgress, [0, 1], ["25%", "-75%"]);
-    const smoothX = useSpring(x, { stiffness: 40, damping: 20, mass: 0.8 });
+    // Map scroll progress (0..1) to index (0..total-1)
+    const total = serviceItems.length;
+    const rawIndex = useTransform(scrollYProgress, [0, 1], [0, total - 1]);
+
+    // Spring physics for smooth scroll
+    const currentIndex = useSpring(rawIndex, {
+        stiffness: 40,
+        damping: 15,
+        mass: 1.2
+    });
 
     return (
-        <section ref={targetRef} className="relative h-[200vh] bg-[#050505] text-white perspective-[1000px]">
-            <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+        <section ref={targetRef} className="relative h-[300vh] bg-[#050505] text-white">
+            <div className="sticky top-0 h-screen flex flex-col justify-center items-center overflow-hidden perspective-[1000px]">
 
                 {/* Header */}
-                <div className="container mx-auto px-20 absolute top-24 left-0 right-0 z-10 pointer-events-none">
-                    <div className="flex items-end justify-between">
-                        <div>
-                            <span className="text-primary text-[10px] uppercase tracking-[0.4em] block mb-4 opacity-60">Services</span>
-                            <h2 className="font-serif text-4xl text-white/90">Curated for You</h2>
-                        </div>
-                    </div>
+                <div className="absolute top-24 z-10 text-center pointer-events-none">
+                    <span className="text-primary text-[10px] uppercase tracking-[0.4em] block mb-4 opacity-60">Services</span>
+                    <h2 className="font-serif text-4xl text-white/90">Curated for You</h2>
                 </div>
 
-                {/* 3D Carousel Track */}
-                <div className="w-full pl-[50vw] flex items-center perspective-[2000px]">
-                    <motion.div style={{ x: smoothX }} className="flex gap-24 items-center preserve-3d">
-                        {serviceItems.map((item, index) => (
-                            <ServiceCard3D key={item.id} item={item} />
-                        ))}
-                    </motion.div>
+                {/* 3D Carousel Container */}
+                <div className="relative w-full h-[600px] flex justify-center items-center perspective-[1500px] transform-style-3d">
+                    {serviceItems.map((item, i) => (
+                        <CoverflowCard
+                            key={item.id}
+                            item={item}
+                            index={i}
+                            currentIndex={currentIndex}
+                            total={total}
+                        />
+                    ))}
                 </div>
             </div>
         </section>
     );
 };
 
-const ServiceCard3D = ({ item }: { item: any }) => {
+const CoverflowCard = ({ item, index, currentIndex, total }: { item: any, index: number, currentIndex: MotionValue<number>, total: number }) => {
+
+    // 3D Rotation: Subtle rotation for depth, but clean
+    const rotateY = useTransform(currentIndex, (v) => {
+        const diff = index - v;
+        if (Math.abs(diff) < 0.1) return 0;
+        if (diff < 0) return 30; // Reduce excessive rotation
+        return -30;
+    });
+
+    // Spacing: NO OVERLAP constraint
+    // Card width is 500px.
+    // To avoid overlap, we need at least 500px spacing + margin.
+    // Let's use 550px stride.
+    const x = useTransform(currentIndex, (v) => {
+        const diff = index - v;
+        return diff * 550;
+    });
+
+    // Depth: reduced pushback
+    const z = useTransform(currentIndex, (v) => {
+        const diff = Math.abs(index - v);
+        return -diff * 100; // Minimal Z depth to keep them sized similarly
+    });
+
+    // Scale: "Make bigger ... dont compress ... fix shrinking"
+    // We keep scale almost constant, just a tiny bit smaller for side focus
+    const scale = useTransform(currentIndex, (v) => {
+        const diff = Math.abs(index - v);
+        return 1 - Math.min(diff * 0.05, 0.05); // Min scale 0.95 (barely shrinks)
+    });
+
+    const opacity = useTransform(currentIndex, (v) => {
+        const diff = Math.abs(index - v);
+        if (diff < 0.5) return 1;
+        return 1 - Math.min(diff * 0.5, 0.8); // Fast fade for distant cards to focus attention
+    });
+
     return (
-        <div className="relative group w-[340px] md:w-[400px] shrink-0 transition-transform duration-500">
-            <Link to={item.link} className="block relative w-full aspect-[9/13] overflow-hidden bg-zinc-900 rounded-[4px] shadow-2xl">
-                {/* Image */}
-                <div className="absolute inset-0 transition-all duration-700 ease-out group-hover:scale-105">
-                    <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-700 grayscale-[0.2] group-hover:grayscale-0"
-                    />
-                </div>
+        <motion.div
+            style={{
+                x,
+                z,
+                rotateY,
+                scale,
+                opacity,
+                zIndex: useTransform(currentIndex, v => 100 - Math.round(Math.abs(index - v)))
+            }}
+            // Aspect ratio changed to [16/10] (Landscape) for "shorter" images
+            className="absolute w-[500px] aspect-[16/10] bg-zinc-900 rounded-[32px] shadow-2xl origin-center border border-white/5"
+        >
+            <Link to={item.link} className="block w-full h-full relative overflow-hidden group rounded-[32px]">
+                <div className="absolute inset-0 bg-black/20 transition-colors duration-500 group-hover:bg-black/0" />
+                <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                />
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-60" />
-
-                {/* Content */}
-                <div className="absolute inset-0 flex flex-col justify-end p-8 text-center items-center">
-                    <h3 className="font-serif text-3xl text-white mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        {item.title}
-                    </h3>
-                    <div className="w-8 h-[1px] bg-white/30 mb-4 group-hover:w-16 transition-all duration-500" />
-                    <span className="text-[9px] uppercase tracking-[0.3em] text-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                        Explore
-                    </span>
+                <div className="absolute inset-0 flex flex-col justify-end p-8 text-center items-center backdrop-blur-[0px]">
+                    <h3 className="font-serif text-3xl text-white mb-3 drop-shadow-md tracking-tight">{item.title}</h3>
+                    <span className="text-[9px] uppercase tracking-[0.3em] text-white/90 font-medium">Explore</span>
                 </div>
             </Link>
-        </div>
+        </motion.div>
     );
 };
