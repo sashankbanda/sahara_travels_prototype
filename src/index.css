@@ -141,11 +141,11 @@
 
 @layer components {
   .glass-card {
-    @apply bg-card/40 backdrop-blur-md border border-border shadow-xl;
+    @apply bg-card/60 backdrop-blur-md border border-border/50 shadow-sm dark:bg-card/40 dark:border-white/10 dark:shadow-xl;
   }
 
   .premium-card {
-    @apply relative overflow-hidden rounded-xl border border-border bg-card/40 backdrop-blur-xl transition-all duration-500;
+    @apply relative overflow-hidden rounded-xl border border-border/50 bg-card/70 backdrop-blur-xl transition-all duration-500 dark:border-white/10 dark:bg-black/40;
   }
 
   .premium-card::before {
@@ -158,11 +158,11 @@
   }
 
   .premium-card:hover {
-    @apply border-primary/30 shadow-[0_0_30px_-10px_hsl(var(--primary)/0.3)] transform -translate-y-1;
+    @apply border-primary/20 shadow-lg shadow-primary/5 transform -translate-y-1 dark:border-primary/30 dark:shadow-[0_0_30px_-10px_hsl(var(--primary)/0.3)];
   }
 
   .premium-panel {
-    @apply relative overflow-hidden rounded-xl border border-border bg-card/40 backdrop-blur-xl;
+    @apply relative overflow-hidden rounded-xl border border-border/50 bg-card/80 backdrop-blur-xl dark:border-white/10 dark:bg-black/40;
   }
 
   .stat-card {
@@ -170,31 +170,31 @@
   }
 
   .gold-glow {
-    box-shadow: 0 0 40px -10px hsl(41 52% 60% / 0.3);
+    @apply shadow-[0_0_20px_-5px_hsl(var(--primary)/0.2)] dark:shadow-[0_0_40px_-10px_hsl(var(--primary)/0.3)];
   }
 
   .blue-glow {
-    box-shadow: 0 0 40px -10px hsl(207 70% 53% / 0.3);
+    @apply shadow-[0_0_20px_-5px_hsl(var(--chart-1)/0.2)] dark:shadow-[0_0_40px_-10px_hsl(var(--chart-1)/0.3)];
   }
 
   .nav-link {
-    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-muted-foreground transition-all duration-300 hover:text-foreground hover:bg-muted hover:shadow-sm;
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-muted-foreground transition-all duration-300 hover:text-foreground hover:bg-muted/50 hover:shadow-sm dark:hover:bg-white/5 dark:hover:shadow-[0_0_20px_-10px_hsl(var(--primary)/0.2)];
   }
 
   .nav-link.active {
-    @apply text-primary bg-primary/10 shadow-sm border border-primary/20;
+    @apply text-primary bg-primary/10 border border-primary/20 shadow-sm dark:shadow-[0_0_20px_-10px_hsl(var(--primary)/0.3)];
   }
 
   .table-row {
-    @apply border-b border-border transition-all duration-300 hover:bg-muted/50 hover:shadow-inner;
+    @apply border-b border-border/50 transition-all duration-300 hover:bg-muted/50 hover:shadow-inner dark:border-white/5 dark:hover:bg-white/5;
   }
 
   .input-dark {
-    @apply bg-background/50 border-input focus:border-primary/50 focus:ring-1 focus:ring-primary/50 focus:shadow-[0_0_15px_-5px_hsl(var(--primary)/0.3)] transition-all duration-300;
+    @apply bg-background/50 border-input focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all duration-300 dark:bg-black/20 dark:border-white/10 dark:focus:shadow-[0_0_15px_-5px_hsl(var(--primary)/0.3)];
   }
 
   .badge-premium {
-    @apply backdrop-blur-md shadow-[0_0_10px_-5px_currentColor];
+    @apply backdrop-blur-md shadow-sm dark:shadow-[0_0_10px_-5px_currentColor];
   }
 }
 
