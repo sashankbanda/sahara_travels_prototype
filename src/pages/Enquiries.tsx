@@ -121,7 +121,7 @@ export default function Enquiries() {
           { label: "Converted", value: 89, color: "text-success" },
           { label: "Pending", value: 39, color: "text-accent" },
         ].map((stat, index) => (
-          <div key={stat.label} className="glass-card rounded-xl p-4 text-center min-w-[140px] snap-center">
+          <div key={stat.label} className="premium-card rounded-xl p-4 text-center min-w-[140px] snap-center">
             <p className={`text-2xl font-bold ${stat.color}`}>{stat.value}</p>
             <p className="text-sm text-muted-foreground">{stat.label}</p>
           </div>
@@ -133,7 +133,7 @@ export default function Enquiries() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
-        className="glass-card rounded-xl p-4 mb-6"
+        className="premium-card rounded-xl p-4 mb-6"
       >
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
@@ -160,7 +160,7 @@ export default function Enquiries() {
         {enquiries.map((enquiry) => {
           const config = statusConfig[enquiry.status as keyof typeof statusConfig];
           return (
-            <div key={enquiry.id} className="glass-card p-4 rounded-xl space-y-3">
+            <div key={enquiry.id} className="premium-card p-4 rounded-xl space-y-3">
               <div className="flex justify-between items-start">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
@@ -200,7 +200,7 @@ export default function Enquiries() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
-        className="glass-card rounded-xl overflow-hidden hidden md:block"
+        className="premium-card rounded-xl overflow-hidden hidden md:block"
       >
         <Table>
           <TableHeader>

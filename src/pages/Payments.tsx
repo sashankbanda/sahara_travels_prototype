@@ -113,7 +113,7 @@ export default function Payments() {
         transition={{ duration: 0.4, delay: 0.1 }}
         className="flex overflow-x-auto pb-6 -mx-6 px-6 gap-6 snap-x snap-mandatory sm:grid sm:grid-cols-3 sm:overflow-visible sm:pb-0 sm:mx-0 sm:px-0 mb-6 scrollbar-none"
       >
-        <div className="glass-card rounded-xl p-6 min-w-[260px] snap-center">
+        <div className="premium-card rounded-xl p-6 min-w-[260px] snap-center">
           <p className="text-sm text-muted-foreground mb-2">Total Revenue</p>
           <p className="text-3xl font-bold text-success flex items-center gap-1">
             <IndianRupee className="w-6 h-6" />
@@ -121,7 +121,7 @@ export default function Payments() {
           </p>
           <p className="text-sm text-muted-foreground mt-2">This month</p>
         </div>
-        <div className="glass-card rounded-xl p-6 min-w-[260px] snap-center">
+        <div className="premium-card rounded-xl p-6 min-w-[260px] snap-center">
           <p className="text-sm text-muted-foreground mb-2">Pending Payments</p>
           <p className="text-3xl font-bold text-warning flex items-center gap-1">
             <IndianRupee className="w-6 h-6" />
@@ -129,7 +129,7 @@ export default function Payments() {
           </p>
           <p className="text-sm text-muted-foreground mt-2">2 transactions</p>
         </div>
-        <div className="glass-card rounded-xl p-6 min-w-[260px] snap-center">
+        <div className="premium-card rounded-xl p-6 min-w-[260px] snap-center">
           <p className="text-sm text-muted-foreground mb-2">Success Rate</p>
           <p className="text-3xl font-bold text-foreground">83%</p>
           <p className="text-sm text-muted-foreground mt-2">5 of 6 completed</p>
@@ -141,7 +141,7 @@ export default function Payments() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
-        className="glass-card rounded-xl p-4 mb-6"
+        className="premium-card rounded-xl p-4 mb-6"
       >
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
@@ -169,7 +169,7 @@ export default function Payments() {
           const config = statusConfig[payment.status as keyof typeof statusConfig];
           const StatusIcon = config.icon;
           return (
-            <div key={payment.id} className="glass-card p-4 rounded-xl space-y-3">
+            <div key={payment.id} className="premium-card p-4 rounded-xl space-y-3">
               <div className="flex justify-between items-start">
                 <div>
                   <p className="font-medium text-foreground">{payment.customer}</p>
@@ -198,7 +198,7 @@ export default function Payments() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
-        className="glass-card rounded-xl overflow-hidden hidden md:block"
+        className="premium-card rounded-xl overflow-hidden hidden md:block"
       >
         <Table>
           <TableHeader>
