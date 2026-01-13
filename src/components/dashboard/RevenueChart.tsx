@@ -22,6 +22,7 @@ const data = [
 
 export function RevenueChart() {
   const [isMobile, setIsMobile] = useState(false);
+  const [activeSeries, setActiveSeries] = useState<string[]>(["revenue", "bookings"]);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -31,6 +32,14 @@ export function RevenueChart() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  const toggleSeries = (series: string) => {
+    setActiveSeries(prev =>
+      prev.includes(series)
+        ? prev.filter(s => s !== series)
+        : [...prev, series]
+    );
+  };
 
   return (
     <motion.div
@@ -44,15 +53,27 @@ export function RevenueChart() {
           <h3 className="text-lg font-semibold text-foreground">Revenue Overview</h3>
           <p className="text-sm text-muted-foreground">Monthly revenue and bookings</p>
         </div>
-        <div className="flex gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-primary" />
-            <span className="text-sm text-muted-foreground">Revenue</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-accent" />
-            <span className="text-sm text-muted-foreground hidden sm:inline">Bookings</span>
-          </div>
+        <div className="flex gap-2">
+          <button
+            onClick={() => toggleSeries("revenue")}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm transition-all border ${activeSeries.includes("revenue")
+                ? "bg-primary/10 border-primary/20 text-primary"
+                : "bg-transparent border-transparent text-muted-foreground hover:bg-white/5"
+              }`}
+          >
+            <div className={`w-2.5 h-2.5 rounded-full ${activeSeries.includes("revenue") ? "bg-primary" : "bg-primary/50"}`} />
+            <span>Revenue</span>
+          </button>
+          <button
+            onClick={() => toggleSeries("bookings")}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm transition-all border ${activeSeries.includes("bookings")
+                ? "bg-white/10 border-white/10 text-white"
+                : "bg-transparent border-transparent text-muted-foreground hover:bg-white/5"
+              }`}
+          >
+            <div className={`w-2.5 h-2.5 rounded-full ${activeSeries.includes("bookings") ? "bg-white" : "bg-slate-500"}`} />
+            <span>Bookings</span>
+          </button>
         </div>
       </div>
       <div className="h-[300px] -ml-4 sm:ml-0">
@@ -64,8 +85,8 @@ export function RevenueChart() {
                 <stop offset="95%" stopColor="hsl(41 52% 60%)" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorBookings" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="hsl(207 70% 53%)" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="hsl(207 70% 53%)" stopOpacity={0} />
+                <stop offset="5%" stopColor="hsl(0 0% 100%)" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="hsl(0 0% 100%)" stopOpacity={0} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(0 0% 20%)" vertical={!isMobile} horizontal={true} />
@@ -77,11 +98,20 @@ export function RevenueChart() {
               interval={isMobile ? "preserveStartEnd" : 0}
             />
             <YAxis
+              yAxisId="left"
               axisLine={false}
               tickLine={false}
               tick={{ fill: "hsl(0 0% 53%)", fontSize: isMobile ? 10 : 12 }}
               tickFormatter={(value) => `₹${value / 1000}k`}
               width={isMobile ? 40 : 60}
+            />
+            <YAxis
+              yAxisId="right"
+              orientation="right"
+              axisLine={false}
+              tickLine={false}
+              tick={{ fill: "hsl(0 0% 53%)", fontSize: isMobile ? 10 : 12 }}
+              width={isMobile ? 30 : 40}
             />
             <Tooltip
               contentStyle={{
@@ -96,14 +126,28 @@ export function RevenueChart() {
                 name === "revenue" ? "Revenue" : "Bookings",
               ]}
             />
-            <Area
-              type="monotone"
-              dataKey="revenue"
-              stroke="hsl(41 52% 60%)"
-              strokeWidth={2}
-              fillOpacity={1}
-              fill="url(#colorRevenue)"
-            />
+            {activeSeries.includes("revenue") && (
+              <Area
+                yAxisId="left"
+                type="monotone"
+                dataKey="revenue"
+                stroke="hsl(41 52% 60%)"
+                strokeWidth={2}
+                fillOpacity={1}
+                fill="url(#colorRevenue)"
+              />
+            )}
+            {activeSeries.includes("bookings") && (
+              <Area
+                yAxisId="right"
+                type="monotone"
+                dataKey="bookings"
+                stroke="hsl(0 0% 100%)"
+                strokeWidth={2}
+                fillOpacity={1}
+                fill="url(#colorBookings)"
+              />
+            )}
           </AreaChart>
         </ResponsiveContainer>
       </div>
