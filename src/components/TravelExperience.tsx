@@ -42,38 +42,69 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
 
 
             {/* --- PHASE 1: HERO / DISCOVER --- */}
+            {/* --- PHASE 1: HERO / DISCOVER --- */}
             <motion.div
                 style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
-                className="absolute inset-0 flex items-center justify-center text-center"
+                className="absolute inset-0 flex items-center justify-center text-center perspective-1000"
             >
-                <div className="max-w-4xl space-y-6">
+                {/* Atmospheric Overlay behind text */}
+                <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-black/20 to-transparent pointer-events-none" />
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative z-10 max-w-5xl mx-auto p-12 space-y-8"
+                >
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                        className="inline-block px-5 py-2 rounded-full border border-white/10 bg-black/20 backdrop-blur-md text-[10px] font-bold tracking-[0.2em] text-primary uppercase shadow-[0_0_15px_rgba(255,165,0,0.2)]"
+                    >
+                        Immersive Expedition
+                    </motion.div>
+
+                    <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold font-serif tracking-tighter text-white drop-shadow-2xl leading-[0.9]">
+                        <motion.span
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                            className="block text-white/90"
+                        >
+                            Explore the
+                        </motion.span>
+                        <motion.span
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                            className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] bg-[length:200%_auto] animate-gradient-x pb-4"
+                        >
+                            Unseen
+                        </motion.span>
+                    </h2>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                        className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-light leading-relaxed tracking-wide"
+                    >
+                        Journey beyond the ordinary. Experience the world's most breathtaking landscapes in 8K resolution.
+                    </motion.p>
+
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-black/20 backdrop-blur-sm text-xs font-medium tracking-wider text-primary mb-4"
+                        transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+                        className="pt-4 pointer-events-auto"
                     >
-                        IMMERSIVE EXPEDITION
-                    </motion.div>
-
-                    <h2 className="text-5xl md:text-7xl lg:text-9xl font-bold font-serif tracking-tight text-white drop-shadow-2xl">
-                        Explore the <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDB931] to-[#FFD700] animate-shimmer">
-                            Unseen
-                        </span>
-                    </h2>
-
-                    <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-light leading-relaxed">
-                        Journey beyond the ordinary. Experience the world's most breathtaking landscapes in 8K resolution.
-                    </p>
-
-                    <div className="pt-8 pointer-events-auto">
-                        <Button size="lg" className="rounded-full px-8 py-6 text-lg bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white gap-3 group transition-all duration-300">
+                        <Button size="lg" className="rounded-full px-10 py-7 text-lg bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white gap-3 group transition-all duration-500 ease-out shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] hover:scale-105">
                             Start Journey
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform text-primary" />
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 text-primary" />
                         </Button>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             </motion.div>
 
 
