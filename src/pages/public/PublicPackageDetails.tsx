@@ -7,6 +7,7 @@ import { MapPin, Clock, IndianRupee, Check, ArrowLeft, MessageCircle, Mail } fro
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { toast } from "sonner";
+import { InquiryDialog } from "@/components/shared/InquiryDialog";
 
 export default function PublicPackageDetails() {
     const { id } = useParams();
@@ -181,13 +182,13 @@ export default function PublicPackageDetails() {
                                     <div className="relative flex justify-center text-xs uppercase"><span className="bg-zinc-900 px-2 text-white/40">Or Enquire</span></div>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-4">
-                                    <a href={whatsappLink} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 p-3 border border-white/10 hover:bg-white/5 rounded-sm transition-colors text-sm">
-                                        <MessageCircle className="w-4 h-4 text-green-500" /> WhatsApp
-                                    </a>
-                                    <a href="mailto:info@saharajourneys.com" className="flex items-center justify-center gap-2 p-3 border border-white/10 hover:bg-white/5 rounded-sm transition-colors text-sm">
-                                        <Mail className="w-4 h-4" /> Email
-                                    </a>
+                                <div className="grid grid-cols-1 gap-4">
+                                    <InquiryDialog>
+                                        <Button variant="outline" className="w-full border-white/10 hover:bg-white/5 gap-2">
+                                            <MessageCircle className="w-4 h-4 text-green-500" />
+                                            Customize / Enquire
+                                        </Button>
+                                    </InquiryDialog>
                                 </div>
                             </div>
                         </div>

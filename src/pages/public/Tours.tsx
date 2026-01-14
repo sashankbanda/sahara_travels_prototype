@@ -34,9 +34,9 @@ export default function Tours() {
                         <span className="text-primary text-xs uppercase tracking-[0.4em] mb-4 block">
                             Our Experiences
                         </span>
-                        <h1 className="font-serif text-5xl md:text-7xl mb-6">Curated Tours</h1>
+                        <h1 className="font-serif text-5xl md:text-7xl mb-6">Best Tour Packages</h1>
                         <p className="text-white/70 max-w-xl mx-auto font-light text-lg">
-                            Immersive multi-day journeys through the hidden valleys of Arunachal Pradesh.
+                            Enjoy amazing trips to the beautiful valleys of Arunachal Pradesh.
                         </p>
                     </motion.div>
                 </div>

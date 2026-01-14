@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { MobileMenu } from "./MobileMenu";
+import { InquiryDialog } from "@/components/shared/InquiryDialog";
 
 export const Navbar = () => {
     const { scrollY } = useScroll();
@@ -49,15 +50,15 @@ export const Navbar = () => {
                     {/* Brand */}
                     <Link
                         to="/"
-                        className="text-2xl font-serif text-white tracking-[0.1em] uppercase font-bold relative z-10 flex items-center gap-3"
+                        className="text-lg md:text-xl font-serif text-white tracking-widest uppercase relative z-10 flex items-center gap-3"
                     >
                         <img
                             src="/images/home/header_logo.png"
                             alt="Sahara Logo"
-                            className="h-8 w-auto object-contain"
+                            className="h-7 w-auto object-contain"
                         />
                         <span>
-                            Sahara<span className="text-primary opacity-80 group-hover:opacity-100 transition-opacity">.</span>
+                            <span className="font-bold">Sahara</span> <span className="font-light opacity-90">Journeys</span><span className="text-primary opacity-80 group-hover:opacity-100 transition-opacity">.</span>
                         </span>
                     </Link>
 
@@ -88,9 +89,11 @@ export const Navbar = () => {
                         </button>
 
                         {/* CTA */}
-                        <button className="hidden lg:block text-white hover:text-black hover:bg-white px-7 py-2.5 rounded-full border border-white/20 transition-all duration-500 text-[10px] uppercase tracking-[0.25em] font-semibold hover:border-white shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
-                            Enquire
-                        </button>
+                        <InquiryDialog>
+                            <button className="hidden lg:block text-white hover:text-black hover:bg-white px-7 py-2.5 rounded-full border border-white/20 transition-all duration-500 text-[10px] uppercase tracking-[0.25em] font-semibold hover:border-white shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+                                Enquire
+                            </button>
+                        </InquiryDialog>
                     </div>
                 </motion.div>
             </motion.header>
