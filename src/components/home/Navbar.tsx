@@ -49,9 +49,16 @@ export const Navbar = () => {
                     {/* Brand */}
                     <Link
                         to="/"
-                        className="text-2xl font-serif text-white tracking-[0.1em] uppercase font-bold relative z-10 flex items-center gap-1"
+                        className="text-2xl font-serif text-white tracking-[0.1em] uppercase font-bold relative z-10 flex items-center gap-3"
                     >
-                        Sahara<span className="text-primary opacity-80 group-hover:opacity-100 transition-opacity">.</span>
+                        <img
+                            src="/images/home/header_logo.png"
+                            alt="Sahara Logo"
+                            className="h-8 w-auto object-contain"
+                        />
+                        <span>
+                            Sahara<span className="text-primary opacity-80 group-hover:opacity-100 transition-opacity">.</span>
+                        </span>
                     </Link>
 
                     {/* Desktop Navigation */}
