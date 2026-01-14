@@ -11,13 +11,12 @@ export const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const isMobile = useMediaQuery("(max-width: 768px)");
+    const isTablet = useMediaQuery("(min-width: 769px) and (max-width: 1024px)");
+    const isLaptop = useMediaQuery("(min-width: 1025px) and (max-width: 1440px)");
 
     // Premium cinematic scroll effects
-    const width = useTransform(
-        scrollY,
-        [0, 150],
-        ["100%", isMobile ? "92%" : "60%"]
-    );
+    const targetWidth = isMobile ? "92%" : (isTablet ? "85%" : (isLaptop ? "75%" : "60%"));
+    const width = useTransform(scrollY, [0, 150], ["100%", targetWidth]);
     const y = useTransform(scrollY, [0, 150], [0, 24]);
     const borderRadius = useTransform(scrollY, [0, 150], ["0px", "9999px"]);
     const backgroundColor = useTransform(scrollY, [0, 150], ["rgba(0, 0, 0, 0)", "rgba(255, 255, 255, 0.05)"]);
@@ -56,7 +55,7 @@ export const Navbar = () => {
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-10">
+                    <nav className="hidden lg:flex items-center gap-10">
                         {["Home", "Tours", "Sightseeing", "Transfers"].map((item) => (
                             <Link
                                 key={item}
@@ -73,16 +72,16 @@ export const Navbar = () => {
 
                     {/* Actions */}
                     <div className="flex items-center gap-4">
-                        {/* Mobile Menu Toggle */}
+                        {/* Mobile/Tablet Menu Toggle */}
                         <button
                             onClick={() => setIsMobileMenuOpen(true)}
-                            className="md:hidden text-white hover:text-primary transition-colors p-1"
+                            className="lg:hidden text-white hover:text-primary transition-colors p-1"
                         >
                             <Menu className="w-6 h-6" />
                         </button>
 
                         {/* CTA */}
-                        <button className="hidden md:block text-white hover:text-black hover:bg-white px-7 py-2.5 rounded-full border border-white/20 transition-all duration-500 text-[10px] uppercase tracking-[0.25em] font-semibold hover:border-white shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+                        <button className="hidden lg:block text-white hover:text-black hover:bg-white px-7 py-2.5 rounded-full border border-white/20 transition-all duration-500 text-[10px] uppercase tracking-[0.25em] font-semibold hover:border-white shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
                             Enquire
                         </button>
                     </div>
