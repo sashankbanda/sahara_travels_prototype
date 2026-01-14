@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { FogScene } from "./FogScene";
 
 export const Hero = () => {
     return (
@@ -20,11 +22,10 @@ export const Hero = () => {
                 <div className="absolute inset-0 bg-black/40" />
             </motion.div>
 
-            {/* Atmospheric Fog Layers - MOVE SLIGHTLY FASTER */}
-            <div className="absolute inset-0 z-[1] opacity-60 pointer-events-none mix-blend-screen">
-                <div className="absolute -bottom-1/2 -left-1/4 w-[150%] h-full bg-gradient-to-t from-zinc-800/30 via-zinc-600/10 to-transparent blur-3xl animate-fog-1" />
-                <div className="absolute -bottom-1/3 -right-1/4 w-[150%] h-full bg-gradient-to-t from-zinc-800/30 via-zinc-600/10 to-transparent blur-3xl animate-fog-2" />
-            </div>
+            {/* 3D Fog Environment - React Three Fiber */}
+            <Suspense fallback={null}>
+                <FogScene />
+            </Suspense>
 
             {/* Content - NO PARALLAX on Text, Pure Fade + Rise */}
             <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">

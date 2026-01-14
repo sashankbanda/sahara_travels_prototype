@@ -129,40 +129,20 @@
     scrollbar-width: none;
   }
 
-  @keyframes fog-flow {
+  @keyframes fog-continuous {
     0% {
-      transform: translateX(-10%);
-    }
-
-    50% {
-      transform: translateX(10%);
+      transform: translateX(0);
     }
 
     100% {
-      transform: translateX(-10%);
+      transform: translateX(-50%);
     }
   }
 
-  @keyframes fog-flow-reverse {
-    0% {
-      transform: translateX(10%);
-    }
-
-    50% {
-      transform: translateX(-10%);
-    }
-
-    100% {
-      transform: translateX(10%);
-    }
-  }
-
-  .animate-fog-1 {
-    animation: fog-flow 40s ease-in-out infinite;
-  }
-
-  .animate-fog-2 {
-    animation: fog-flow-reverse 55s ease-in-out infinite;
+  .animate-fog-continuous {
+    animation: fog-continuous 120s linear infinite;
+    width: 200%;
+    display: flex;
   }
 
   /* Custom scrollbar */
