@@ -3,6 +3,7 @@ import { create } from 'zustand';
 export interface Package {
   id: number;
   title: string;
+  category: 'tours' | 'sightseeing' | 'transfers' | 'private';
   destination: string;
   duration: string;
   price: number;
@@ -69,6 +70,7 @@ export const useStore = create<AppState>((set) => ({
     {
       id: 1,
       title: "Desert Safari Adventure",
+      category: "tours",
       destination: "Jaisalmer, Rajasthan",
       duration: "4 Days / 3 Nights",
       price: 45000,
@@ -80,6 +82,7 @@ export const useStore = create<AppState>((set) => ({
     {
       id: 2,
       title: "Oasis Retreat Tour",
+      category: "tours",
       destination: "Udaipur, Rajasthan",
       duration: "5 Days / 4 Nights",
       price: 62000,
@@ -91,6 +94,7 @@ export const useStore = create<AppState>((set) => ({
     {
       id: 3,
       title: "Night Sky Experience",
+      category: "sightseeing",
       destination: "Sam Sand Dunes",
       duration: "2 Days / 1 Night",
       price: 18000,
@@ -102,6 +106,7 @@ export const useStore = create<AppState>((set) => ({
     {
       id: 4,
       title: "Cultural Heritage Tour",
+      category: "tours",
       destination: "Jodhpur & Jaipur",
       duration: "7 Days / 6 Nights",
       price: 85000,
@@ -113,6 +118,7 @@ export const useStore = create<AppState>((set) => ({
     {
       id: 5,
       title: "Camel Trek Expedition",
+      category: "sightseeing",
       destination: "Pushkar, Rajasthan",
       duration: "3 Days / 2 Nights",
       price: 28000,
@@ -121,6 +127,7 @@ export const useStore = create<AppState>((set) => ({
       image: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400&h=300&fit=crop",
       description: "Traditional camel trek through the rustic landscapes of Pushkar.",
     }
+
   ],
   enquiries: [
     {

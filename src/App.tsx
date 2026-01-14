@@ -19,6 +19,9 @@ import NotFound from "./pages/NotFound";
 
 import Home from "./pages/Home";
 import TravelShowcase from "./pages/TravelShowcase";
+import Tours from "./pages/public/Tours";
+import Sightseeing from "./pages/public/Sightseeing";
+import PublicPackageDetails from "./pages/public/PublicPackageDetails";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +35,9 @@ const App = () => (
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
+            <Route path="/tours" element={<Tours />} />
+            <Route path="/sightseeing" element={<Sightseeing />} />
+            <Route path="/packages/:id" element={<PublicPackageDetails />} />
             <Route path="/showcase" element={<TravelShowcase />} />
 
             <Route element={<ProtectedRoute />}>
