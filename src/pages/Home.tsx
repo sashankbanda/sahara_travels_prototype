@@ -1,12 +1,20 @@
+import { useRef } from "react";
 import { Navbar } from "@/components/home/Navbar";
-import { Hero } from "@/components/home/Hero";
 import { BrandLegacy } from "@/components/home/BrandLegacy";
 import { Services } from "@/components/home/Services";
 import { HighlightedJourneys } from "@/components/home/HighlightedJourneys";
 import { Footer } from "@/components/home/Footer";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
+import TravelScrollCanvas from "@/components/TravelScrollCanvas";
+import TravelExperience from "@/components/TravelExperience";
 
 const Home = () => {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
+    });
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -20,7 +28,20 @@ const Home = () => {
             <Navbar />
 
             <main>
-                <Hero />
+                {/* Scrollytelling Hero Section */}
+                <section ref={containerRef} className="h-[600vh] relative">
+                    <div className="sticky top-0 h-screen w-full overflow-hidden">
+                        <div className="absolute inset-0 z-0">
+                            <TravelScrollCanvas scrollYProgress={scrollYProgress} />
+                        </div>
+                        <div className="absolute inset-0 z-10 pointer-events-none">
+                            <TravelExperience scrollYProgress={scrollYProgress} />
+                        </div>
+                        {/* Vignette Overlay */}
+                        <div className="absolute inset-0 z-[5] pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
+                    </div>
+                </section>
+
                 <BrandLegacy />
                 <Services />
                 <HighlightedJourneys />
