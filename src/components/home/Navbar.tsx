@@ -44,7 +44,7 @@ export const Navbar = () => {
                         borderColor,
                         boxShadow: shadow,
                     }}
-                    className="pointer-events-auto px-6 md:px-10 py-4 flex items-center justify-between border transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group hover:bg-white/10"
+                    className="pointer-events-auto px-6 md:px-10 py-2 flex items-center justify-between border transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group hover:bg-white/10"
                 >
                     {/* Brand */}
                     <Link
