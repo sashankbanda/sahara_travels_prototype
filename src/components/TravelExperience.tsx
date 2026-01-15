@@ -84,14 +84,36 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                         </motion.span>
                     </h2>
 
+                    {/* Service Clarifier */}
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
+                        className="text-white/80 text-lg md:text-xl font-medium tracking-wide"
+                    >
+                        Guided Tours & Long-Distance Taxi Services across Arunachal & Northeast India
+                    </motion.p>
+
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                        className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-light leading-relaxed tracking-wide"
+                        className="text-base md:text-lg text-white/60 max-w-2xl mx-auto font-light leading-relaxed tracking-wide"
                     >
-                        Journey beyond the ordinary. Experience the world's most breathtaking landscapes in 8K resolution.
+                        Journey beyond the ordinary. Experience verified premium travel with local experts.
                     </motion.p>
+
+                    {/* Trust Strip */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.65, ease: "easeOut" }}
+                        className="flex flex-wrap justify-center gap-4 text-xs md:text-sm text-white/50 font-mono uppercase tracking-wider"
+                    >
+                        <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary/70" /> 25+ Years Local Expertise</span>
+                        <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary/70" /> Trusted by Northeast Travelers</span>
+                        <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary/70" /> Driver-Verified Journeys</span>
+                    </motion.div>
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -100,7 +122,7 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                         className="pt-4 pointer-events-auto"
                     >
                         <Button size="lg" className="rounded-full px-10 py-7 text-lg bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white gap-3 group transition-all duration-500 ease-out shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] hover:scale-105">
-                            Start Journey
+                            Start Your Journey
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 text-primary" />
                         </Button>
                     </motion.div>
@@ -125,18 +147,29 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                     </div>
 
                     <div className="space-y-6 text-white/80 font-light leading-relaxed">
-                        <p>
-                            From the golden dunes of the Sahara to the icy peaks of the Alps, our destinations are hand-picked for the discerning traveler.
-                        </p>
+                        <ul className="space-y-3 list-none">
+                            <li className="flex items-start gap-3">
+                                <span className="text-primary mt-1.5 text-xs">●</span>
+                                <span>Expertly crafted itineraries for every traveler.</span>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <span className="text-primary mt-1.5 text-xs">●</span>
+                                <span>Premium local support & verified stays.</span>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <span className="text-primary mt-1.5 text-xs">●</span>
+                                <span>Seamless transfers & 24/7 assistance.</span>
+                            </li>
+                        </ul>
 
                         <div className="grid grid-cols-2 gap-6 pt-4">
                             <div className="space-y-1">
                                 <h4 className="text-2xl font-bold text-white">50+</h4>
-                                <p className="text-xs text-white/60 uppercase tracking-wider">Countries</p>
+                                <p className="text-xs text-white/60 uppercase tracking-wider">Destinations</p>
                             </div>
                             <div className="space-y-1">
                                 <h4 className="text-2xl font-bold text-white">5★</h4>
-                                <p className="text-xs text-white/60 uppercase tracking-wider">Luxury Rating</p>
+                                <p className="text-xs text-white/60 uppercase tracking-wider">Service Rating</p>
                             </div>
                         </div>
                     </div>

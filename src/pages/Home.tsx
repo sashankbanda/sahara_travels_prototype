@@ -4,6 +4,7 @@ import { BrandLegacy } from "@/components/home/BrandLegacy";
 import { Services } from "@/components/home/Services";
 import { HighlightedJourneys } from "@/components/home/HighlightedJourneys";
 import { Footer } from "@/components/home/Footer";
+import { ProcessSteps } from "@/components/home/ProcessSteps";
 import { motion, useScroll } from "framer-motion";
 import TravelScrollCanvas from "@/components/TravelScrollCanvas";
 import TravelExperience from "@/components/TravelExperience";
@@ -44,6 +45,7 @@ const Home = () => {
                 </section>
 
                 <BrandLegacy />
+                <ProcessSteps />
                 <Services />
                 <HighlightedJourneys />
             </main>

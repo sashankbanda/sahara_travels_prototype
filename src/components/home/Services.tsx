@@ -114,20 +114,40 @@ export const Services = () => {
                                     ))}
                                 </div>
 
-                                <div className="mt-12 flex flex-col md:flex-row justify-center gap-6 items-center text-white/60 text-sm font-light">
-                                    <span className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
-                                        <UserCheck className="w-4 h-4 text-primary" />
-                                        Driver Mandatory
-                                    </span>
-                                    <span className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
-                                        <ShieldCheck className="w-4 h-4 text-primary" />
-                                        No Self-Drive Rentals
-                                    </span>
+                                <div className="mt-12 flex flex-col items-center gap-6 text-white/60 text-sm font-light">
+                                    <div className="flex flex-col md:flex-row justify-center gap-6">
+                                        <span className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
+                                            <UserCheck className="w-4 h-4 text-primary" />
+                                            Driver Mandatory
+                                        </span>
+                                        <span className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
+                                            <ShieldCheck className="w-4 h-4 text-primary" />
+                                            No Self-Drive Rentals
+                                        </span>
+                                    </div>
+                                    <p className="text-white/40 text-xs text-center border-t border-white/10 pt-4 mt-2 max-w-lg">
+                                        Please note: We do not provide local point-to-point city rides within a single town. Our services are dedicated to inter-city transfers and multi-day packages.
+                                    </p>
                                 </div>
                             </motion.div>
                         )}
                     </AnimatePresence>
                 </Tabs>
+
+                {/* Inclusive / Foreign Traveler Reassurance Block */}
+                <div className="mt-24 max-w-4xl mx-auto text-center border-t border-white/5 pt-12">
+                    <h3 className="text-white/80 font-serif text-2xl mb-4">First time in Northeast India?</h3>
+                    <p className="text-white/50 mb-8 font-light leading-relaxed">
+                        We understand that traveling to a new region can be daunting. We are here to make it safe and simple.
+                        Our drivers are verified locals who speak English, Hindi, and local dialects.
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-4 text-xs md:text-sm text-white/60 font-mono uppercase tracking-wider">
+                        <span className="px-4 py-2 bg-white/5 rounded-sm border border-white/10">Pay 30% Advance</span>
+                        <span className="px-4 py-2 bg-white/5 rounded-sm border border-white/10">English Support</span>
+                        <span className="px-4 py-2 bg-white/5 rounded-sm border border-white/10">Local Drivers</span>
+                    </div>
+                </div>
+
             </div>
         </section>
     );

@@ -63,14 +63,19 @@ export const Navbar = () => {
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center gap-10">
-                        {["Home", "Tours", "Sightseeing", "Transfers"].map((item) => (
+                    <nav className="hidden lg:flex items-center gap-8">
+                        {[
+                            { label: "Home", path: "/" },
+                            { label: "Tours", path: "/tours" },
+                            { label: "Sightseeing", path: "/sightseeing" },
+                            { label: "Taxi", path: "/transfers" }
+                        ].map((item) => (
                             <Link
-                                key={item}
-                                to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                                className="text-[11px] uppercase tracking-[0.2em] text-white/70 hover:text-white transition-all duration-500 font-medium relative overflow-hidden group/link"
+                                key={item.label}
+                                to={item.path}
+                                className="text-[10px] uppercase tracking-[0.2em] text-white/70 hover:text-white transition-all duration-500 font-medium relative overflow-hidden group/link"
                             >
-                                <span className="relative z-10">{item}</span>
+                                <span className="relative z-10">{item.label}</span>
                                 <motion.span
                                     className="absolute bottom-0 left-0 w-full h-[1px] bg-primary origin-left scale-x-0 group-hover/link:scale-x-100 transition-transform duration-500 ease-out"
                                 />
@@ -88,15 +93,34 @@ export const Navbar = () => {
                             <Menu className="w-6 h-6" />
                         </button>
 
+                        {/* Desktop Call Icon */}
+                        <a href="tel:+910000000000" className="hidden lg:flex items-center justify-center w-8 h-8 rounded-full border border-white/20 hover:bg-white hover:text-black transition-all duration-300 group/phone">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-70 group-hover/phone:opacity-100"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </a>
+
                         {/* CTA */}
                         <InquiryDialog>
-                            <button className="hidden lg:block text-white hover:text-black hover:bg-white px-7 py-2.5 rounded-full border border-white/20 transition-all duration-500 text-[10px] uppercase tracking-[0.25em] font-semibold hover:border-white shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
-                                Enquire
+                            <button className="hidden lg:block text-white hover:text-black hover:bg-white px-6 py-2 rounded-full border border-white/20 transition-all duration-500 text-[10px] uppercase tracking-[0.25em] font-semibold hover:border-white shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+                                Plan Trip
                             </button>
                         </InquiryDialog>
                     </div>
                 </motion.div>
             </motion.header>
+
+            {/* Fixed Mobile WhatsApp Text/Button if needed, though usually handled by floating widget or similar. 
+                For now, we'll keep the design clean and rely on the Mobile Menu or a separate floating FAB if requested. 
+                The user asked for "Add fixed WhatsApp button on mobile", which suggests a FAB. */}
+            {isMobile && (
+                <a
+                    href="https://wa.me/910000000000"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="fixed bottom-6 right-6 z-[60] bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20bd5a] transition-colors"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                </a>
+            )}
 
             <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
         </>
