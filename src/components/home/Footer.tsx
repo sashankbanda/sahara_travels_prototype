@@ -1,19 +1,23 @@
 import { Link } from "react-router-dom";
+import { TextReveal } from "@/components/animate-ui/TextReveal";
+import { MagneticButton } from "@/components/animate-ui/MagneticButton";
 
 export const Footer = () => {
     return (
-        <footer className="relative bg-black text-white pt-40 pb-12 border-t border-white/5 overflow-hidden">
+        <footer className="relative text-white pt-40 pb-12 overflow-hidden">
             {/* Background Texture/Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black to-black pointer-events-none" />
-            <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none z-0" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] opacity-[0.03] pointer-events-none z-0" />
 
             <div className="container mx-auto px-6 max-w-5xl text-center relative z-10">
 
                 {/* Main CTA */}
                 <div className="mb-40">
-                    <h2 className="font-serif text-5xl md:text-7xl text-white mb-6 tracking-tight">
-                        Ready to begin?
-                    </h2>
+                    <TextReveal
+                        text="Ready to begin?"
+                        className="font-serif text-5xl md:text-7xl text-white mb-6 tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] block"
+                        staggerDelay={0.05}
+                    />
                     <p className="text-white/40 text-sm font-light tracking-wide mb-8">
                         Your journey into the extraordinary awaits.
                     </p>
@@ -21,10 +25,12 @@ export const Footer = () => {
                         Replies usually within 15–30 minutes
                     </p>
 
-                    <button className="group bg-white text-black px-12 py-4 rounded-full uppercase tracking-[0.2em] text-[10px] font-medium hover:bg-[#25D366] hover:text-white transition-all duration-500 flex items-center gap-3 mx-auto">
-                        <span>Chat on WhatsApp</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-white transition-colors"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                    </button>
+                    <MagneticButton>
+                        <button className="group bg-primary text-black px-12 py-4 rounded-full uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-white hover:text-black transition-all duration-500 flex items-center gap-3 mx-auto shadow-[0_0_20px_-5px_hsl(41_52%_60%/_0.5)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                            <span>Chat on WhatsApp</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-black transition-colors"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </button>
+                    </MagneticButton>
 
                     {/* Address / Trust */}
                     <div className="mt-16 text-white/30 text-[10px] font-light tracking-wide max-w-md mx-auto">

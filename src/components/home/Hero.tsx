@@ -31,25 +31,25 @@ export const Hero = () => {
             <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
                 <div className="max-w-4xl space-y-12">
 
+                    import {TextReveal} from "@/components/animate-ui/TextReveal";
+
+                    // ...
                     {/* 1. Headline (First) */}
-                    <motion.h1
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                        className="font-serif text-5xl md:text-7xl lg:text-9xl tracking-tight leading-[1.1] text-white/90 drop-shadow-2xl"
-                    >
-                        Journey Beyond <br /> the <span className="italic font-light text-white/80">Ordinary</span>
-                    </motion.h1>
+                    <TextReveal
+                        text="Journey Beyond the Ordinary"
+                        className="font-serif text-5xl md:text-7xl lg:text-9xl tracking-tight leading-[1.1] text-white/90 drop-shadow-2xl max-w-5xl mx-auto"
+                        tag="h1"
+                        staggerDelay={0.06}
+                        duration={0.8}
+                    />
 
                     {/* 2. Subtext (Second) */}
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.5, delay: 1.0, ease: "easeOut" }}
+                    <TextReveal
+                        text="Discover the Undiscovered in the heart of Arunachal Pradesh"
                         className="max-w-md mx-auto text-white/70 text-sm md:text-base uppercase tracking-[0.3em] font-medium leading-loose"
-                    >
-                        Discover the Undiscovered in <br /> the heart of Arunachal Pradesh
-                    </motion.p>
+                        tag="p"
+                        staggerDelay={0.03}
+                    />
 
                     {/* 3. CTA (Last) */}
                     <motion.div

@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
+import { TextReveal } from "@/components/animate-ui/TextReveal";
 
 export const BrandLegacy = () => {
     return (
-        <section className="py-40 bg-black text-white overflow-hidden">
+        <section className="py-40 text-white overflow-hidden relative">
             <div className="container mx-auto px-6 max-w-6xl relative">
 
                 <div className="flex flex-col md:flex-row gap-16 md:gap-32 items-start">
@@ -22,15 +23,11 @@ export const BrandLegacy = () => {
 
                     {/* Asymmetric Right: Content */}
                     <div className="md:w-3/4">
-                        <motion.h2
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.5, delay: 0.2 }}
-                            className="font-serif text-4xl md:text-5xl lg:text-6xl text-white/90 leading-[1.2] mb-12"
-                        >
-                            "We don't just guide you; <br /> we welcome you home."
-                        </motion.h2>
+                        <TextReveal
+                            text="&quot;We don't just guide you; we welcome you home.&quot;"
+                            className="font-serif text-4xl md:text-5xl lg:text-6xl text-white/90 leading-[1.2] mb-12 block"
+                            staggerDelay={0.04}
+                        />
 
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -39,10 +36,10 @@ export const BrandLegacy = () => {
                             transition={{ duration: 1.5, delay: 0.4 }}
                             className="grid grid-cols-1 md:grid-cols-2 gap-12"
                         >
-                            <p className="text-white/60 text-sm leading-loose font-light">
+                            <p className="text-white/60 text-sm leading-[2.5] font-light tracking-wide">
                                 For over two decades, we have walked the paths of Arunachal Pradesh not as guides, but as neighbors, friends, and custodians of a timeless heritage.
                             </p>
-                            <p className="text-white/60 text-sm leading-loose font-light">
+                            <p className="text-white/60 text-sm leading-[2.5] font-light tracking-wide">
                                 Every journey with Sahara is verified by locals and touched by silence. It is an invitation to slow down and listen to the mountains.
                             </p>
                         </motion.div>

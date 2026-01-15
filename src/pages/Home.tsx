@@ -27,6 +27,8 @@ const Home = () => {
             {/* Global Grain Overlay */}
             <div className="grain-overlay" />
 
+
+
             <Navbar />
 
             <main>

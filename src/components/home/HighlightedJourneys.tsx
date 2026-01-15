@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
+import { TextReveal } from "@/components/animate-ui/TextReveal";
 
 export const HighlightedJourneys = () => {
     const ref = useRef(null);
@@ -13,7 +14,7 @@ export const HighlightedJourneys = () => {
     const y = useTransform(scrollYProgress, [0, 1], [0, -30]);
 
     return (
-        <section ref={ref} className="py-24 md:py-32 bg-black text-white overflow-hidden border-t border-white/5">
+        <section ref={ref} className="py-24 md:py-32 text-white overflow-hidden">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
@@ -37,13 +38,20 @@ export const HighlightedJourneys = () => {
                             viewport={{ once: true, margin: "-10%" }}
                             transition={{ duration: 1 }}
                         >
-                            <h2 className="text-primary/70 text-[10px] uppercase tracking-[0.4em] mb-8">
-                                Signature Experience
-                            </h2>
 
-                            <h3 className="font-serif text-4xl lg:text-5xl text-white mb-8 leading-[1.1]">
-                                The Mist <br /> & The Monastery
-                            </h3>
+                            <TextReveal
+                                text="Signature Experience"
+                                className="text-primary/70 text-[10px] uppercase tracking-[0.4em] mb-8 block"
+                                tag="h2"
+                                staggerDelay={0.03}
+                            />
+
+                            <TextReveal
+                                text="The Mist & The Monastery"
+                                className="font-serif text-4xl lg:text-5xl text-white mb-8 leading-[1.1] block"
+                                tag="h3"
+                                staggerDelay={0.05}
+                            />
 
                             <div className="w-8 h-px bg-white/20 mb-8" />
 

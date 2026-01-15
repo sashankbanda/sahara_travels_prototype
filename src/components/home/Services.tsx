@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowRight, MapPin, ShieldCheck, UserCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { StarsBackground } from "@/components/animate-ui/components/backgrounds/stars";
 
 const tourServices = [
     {
@@ -46,9 +47,7 @@ const taxiServices = [
 export const Services = () => {
     const [activeTab, setActiveTab] = useState("tours");
     return (
-        <section className="py-24 bg-black text-white relative overflow-hidden">
-            {/* Background Texture */}
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10" />
+        <section className="py-24 relative overflow-hidden">
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
@@ -154,28 +153,47 @@ export const Services = () => {
 };
 
 const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        const { left, top } = e.currentTarget.getBoundingClientRect();
+        setMousePosition({ x: e.clientX - left, y: e.clientY - top });
+    };
+
     return (
         <Link
             to={item.link}
-            className="group relative block aspect-[16/10] overflow-hidden rounded-[2px] bg-zinc-900 border border-white/10 hover:border-primary/30 transition-colors duration-500"
+            onMouseMove={handleMouseMove}
+            className="group relative block aspect-[16/10] overflow-hidden bg-white/5 border border-white/10 transition-all duration-700"
         >
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500 z-10" />
-
+            {/* Spotlight Effect */}
+            {/* Image Layer (z-0) */}
             <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale-[20%] group-hover:grayscale-0"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter grayscale-[30%] group-hover:grayscale-0 z-0"
+            />
+
+            {/* Gradient Overlay (z-10) */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700 z-10" />
+
+            {/* Spotlight Effect (z-20) - Needs to be ON TOP of image/gradient to be seen as a sheen */}
+            <div
+                className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 mix-blend-overlay"
+                style={{
+                    background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.15), transparent 40%)`,
+                }}
             />
 
             {item.badge && (
-                <div className="absolute top-4 right-4 z-20">
+                <div className="absolute top-4 right-4 z-30">
                     <span className="bg-primary/90 text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-sm">
                         {item.badge}
                     </span>
                 </div>
             )}
 
-            <div className="absolute inset-0 flex flex-col justify-end p-8 z-20">
+            <div className="absolute inset-0 flex flex-col justify-end p-8 z-30">
                 <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                     <h3 className="font-serif text-3xl text-white mb-3 group-hover:text-primary transition-colors">
                         {item.title}

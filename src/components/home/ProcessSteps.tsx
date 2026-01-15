@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { MessageCircle, CheckCircle2, Map } from "lucide-react";
+import { TextReveal } from "@/components/animate-ui/TextReveal";
 
 const steps = [
     {
@@ -27,12 +28,18 @@ export const ProcessSteps = () => {
         <section className="py-24 bg-black text-white relative border-t border-white/5">
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
-                    <span className="text-primary text-[10px] uppercase tracking-[0.4em] block mb-4 opacity-70">
-                        How it Works
-                    </span>
-                    <h2 className="font-serif text-3xl md:text-5xl text-white/90">
-                        Your Journey, Simplified
-                    </h2>
+                    <TextReveal
+                        text="How it Works"
+                        className="text-primary text-[10px] uppercase tracking-[0.4em] block mb-4 opacity-70"
+                        tag="span"
+                        staggerDelay={0.03}
+                    />
+                    <TextReveal
+                        text="Your Journey, Simplified"
+                        className="font-serif text-3xl md:text-5xl text-white/90"
+                        tag="h2"
+                        staggerDelay={0.05}
+                    />
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto relative">
