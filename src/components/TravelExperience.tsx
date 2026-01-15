@@ -46,7 +46,7 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                 className="absolute inset-0 flex items-center justify-center text-center perspective-1000"
             >
                 {/* Atmospheric Overlay behind text */}
-                <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-black/20 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,rgba(41,41,41,0.4)_0%,rgba(0,0,0,0.8)_100%)] pointer-events-none" />
 
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -76,7 +76,7 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                             initial={{ opacity: 0, y: 40 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-                            className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] bg-[length:200%_auto] animate-gradient-x pb-4"
+                            className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] bg-[length:200%_auto] animate-gradient-x pb-4 drop-shadow-[0_0_15px_rgba(253,186,49,0.3)]"
                         >
                             Northeast India
                         </motion.span>
@@ -106,7 +106,7 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.65, ease: "easeOut" }}
-                        className="flex flex-wrap justify-center gap-4 text-xs md:text-sm text-white/50 font-mono uppercase tracking-wider"
+                        className="flex flex-wrap justify-center gap-4 text-xs md:text-sm text-white/70 font-mono uppercase tracking-wider"
                     >
                         <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary/70" /> 25+ Years Legacy</span>
                         <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary/70" /> 10k+ Happy Travelers</span>
@@ -120,9 +120,9 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                         className="pt-4 pointer-events-auto"
                     >
                         <InquiryDialog>
-                            <Button size="lg" className="rounded-full px-10 py-7 text-lg bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white gap-3 group transition-all duration-500 ease-out shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] hover:scale-105">
+                            <Button size="lg" className="rounded-full px-10 py-7 text-lg bg-primary hover:bg-primary/90 text-black font-bold tracking-wide gap-3 group transition-all duration-500 ease-out shadow-[0_0_20px_-5px_hsl(41_52%_60%/_0.5)] hover:shadow-[0_0_40px_-10px_hsl(41_52%_60%/_0.7)] hover:scale-105">
                                 Plan Your Trip
-                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 text-primary" />
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 text-black/70" />
                             </Button>
                         </InquiryDialog>
                     </motion.div>

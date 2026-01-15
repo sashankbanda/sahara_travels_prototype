@@ -73,7 +73,7 @@ export const Navbar = () => {
                             <Link
                                 key={item.label}
                                 to={item.path}
-                                className="text-[10px] uppercase tracking-[0.2em] text-white/70 hover:text-white transition-all duration-500 font-medium relative overflow-hidden group/link"
+                                className="text-[10px] uppercase tracking-[0.2em] text-white/90 hover:text-white transition-all duration-500 font-medium relative overflow-hidden group/link"
                             >
                                 <span className="relative z-10">{item.label}</span>
                                 <motion.span
@@ -100,7 +100,7 @@ export const Navbar = () => {
 
                         {/* CTA */}
                         <InquiryDialog>
-                            <button className="hidden lg:block text-white hover:text-black hover:bg-white px-6 py-2 rounded-full border border-white/20 transition-all duration-500 text-[10px] uppercase tracking-[0.25em] font-semibold hover:border-white shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+                            <button className="hidden lg:block bg-white text-black hover:bg-primary transition-all duration-500 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.25em] font-bold shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(253,186,49,0.4)]">
                                 Plan Trip
                             </button>
                         </InquiryDialog>
