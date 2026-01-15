@@ -27,6 +27,8 @@ export const Footer = () => {
                 <div className="flex flex-col md:flex-row justify-between items-center text-[9px] uppercase tracking-[0.2em] text-white/20 pt-12 border-t border-white/5 gap-6">
                     <p>&copy; 2026 Sahara Journeys</p>
                     <div className="flex gap-12">
+                        <Link to="#" className="hover:text-white transition-colors">WhatsApp</Link>
+                        <Link to="#" className="hover:text-white transition-colors">Phone</Link>
                         <Link to="#" className="hover:text-white transition-colors">Instagram</Link>
                         <Link to="#" className="hover:text-white transition-colors">Email</Link>
                     </div>
