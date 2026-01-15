@@ -44,6 +44,7 @@ const taxiServices = [
 ];
 
 export const Services = () => {
+    const [activeTab, setActiveTab] = useState("tours");
     return (
         <section className="py-24 bg-[#050505] text-white relative overflow-hidden">
             {/* Background Texture */}
@@ -62,7 +63,7 @@ export const Services = () => {
                     </p>
                 </div>
 
-                <Tabs defaultValue="tours" className="w-full max-w-5xl mx-auto">
+                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-5xl mx-auto">
                     <div className="flex justify-center mb-12">
                         <TabsList className="bg-white/5 border border-white/10 p-1 rounded-full">
                             <TabsTrigger
@@ -81,44 +82,50 @@ export const Services = () => {
                     </div>
 
                     <AnimatePresence mode="wait">
-                        <TabsContent value="tours" className="mt-0">
+                        {activeTab === "tours" ? (
                             <motion.div
+                                key="tours"
+                                role="tabpanel"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.5 }}
-                                className="grid md:grid-cols-2 gap-8"
+                                transition={{ duration: 0.3 }}
+                                className="mt-0"
                             >
-                                {tourServices.map((service) => (
-                                    <ServiceCard key={service.id} item={service} type="tour" />
-                                ))}
+                                <div className="grid md:grid-cols-2 gap-8">
+                                    {tourServices.map((service) => (
+                                        <ServiceCard key={service.id} item={service} type="tour" />
+                                    ))}
+                                </div>
                             </motion.div>
-                        </TabsContent>
-
-                        <TabsContent value="taxi" className="mt-0">
+                        ) : (
                             <motion.div
+                                key="taxi"
+                                role="tabpanel"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.5 }}
-                                className="grid md:grid-cols-2 gap-8"
+                                transition={{ duration: 0.3 }}
+                                className="mt-0"
                             >
-                                {taxiServices.map((service) => (
-                                    <ServiceCard key={service.id} item={service} type="taxi" />
-                                ))}
-                            </motion.div>
+                                <div className="grid md:grid-cols-2 gap-8">
+                                    {taxiServices.map((service) => (
+                                        <ServiceCard key={service.id} item={service} type="taxi" />
+                                    ))}
+                                </div>
 
-                            <div className="mt-12 flex flex-col md:flex-row justify-center gap-6 items-center text-white/60 text-sm font-light">
-                                <span className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
-                                    <UserCheck className="w-4 h-4 text-primary" />
-                                    Driver Mandatory
-                                </span>
-                                <span className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
-                                    <ShieldCheck className="w-4 h-4 text-primary" />
-                                    No Self-Drive Rentals
-                                </span>
-                            </div>
-                        </TabsContent>
+                                <div className="mt-12 flex flex-col md:flex-row justify-center gap-6 items-center text-white/60 text-sm font-light">
+                                    <span className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
+                                        <UserCheck className="w-4 h-4 text-primary" />
+                                        Driver Mandatory
+                                    </span>
+                                    <span className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
+                                        <ShieldCheck className="w-4 h-4 text-primary" />
+                                        No Self-Drive Rentals
+                                    </span>
+                                </div>
+                            </motion.div>
+                        )}
                     </AnimatePresence>
                 </Tabs>
             </div>
