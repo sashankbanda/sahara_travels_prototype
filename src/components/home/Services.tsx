@@ -46,7 +46,7 @@ const taxiServices = [
 export const Services = () => {
     const [activeTab, setActiveTab] = useState("tours");
     return (
-        <section className="py-24 bg-[#050505] text-white relative overflow-hidden">
+        <section className="py-24 bg-black text-white relative overflow-hidden">
             {/* Background Texture */}
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10" />
 

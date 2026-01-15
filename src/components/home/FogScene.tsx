@@ -26,7 +26,7 @@ function FogContent() {
                     seed={10}
                     bounds={[20, 6, 12]}
                     volume={15}
-                    color="#fffaf0"
+                    color="#e7e6f0"
                     fade={60}
                     opacity={0.35}
                     position={[0, -3, -5]}
@@ -36,7 +36,7 @@ function FogContent() {
                     seed={20}
                     bounds={[20, 6, 12]}
                     volume={12}
-                    color="#f5f5f5"
+                    color="#e7e6f0"
                     fade={60}
                     opacity={0.25}
                     position={[15, 3, -10]}

@@ -198,6 +198,20 @@ export default function PublicPackageDetails() {
             </div>
 
             <Footer />
+
+            {/* Sticky Mobile Booking Bar */}
+            <div className="fixed bottom-0 left-0 right-0 p-4 bg-zinc-900 border-t border-white/10 lg:hidden flex items-center justify-between z-50 pb-8">
+                <div>
+                    <p className="text-xs text-white/50 uppercase tracking-widest">Starting from</p>
+                    <div className="flex items-center gap-1 text-xl font-serif text-primary">
+                        <IndianRupee className="w-4 h-4" />
+                        {pkg.price.toLocaleString()}
+                    </div>
+                </div>
+                <Button size="lg" className="px-8 bg-primary text-black font-bold" onClick={handlePayment}>
+                    Book Now
+                </Button>
+            </div>
         </div>
     );
 }

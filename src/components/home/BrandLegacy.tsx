@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export const BrandLegacy = () => {
     return (
-        <section className="py-40 bg-[#080808] text-white overflow-hidden">
+        <section className="py-40 bg-black text-white overflow-hidden">
             <div className="container mx-auto px-6 max-w-6xl relative">
 
                 <div className="flex flex-col md:flex-row gap-16 md:gap-32 items-start">

@@ -76,6 +76,8 @@ export default {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        black: "#171717",
+        white: "#e7e6f0",
       },
       borderRadius: {
         lg: "var(--radius)",

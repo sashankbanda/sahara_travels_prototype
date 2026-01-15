@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
-import { ShieldCheck, UserCheck, MapPin, Car, IndianRupee } from "lucide-react";
+import { ShieldCheck, UserCheck, MapPin, Car, IndianRupee, ArrowRight } from "lucide-react";
 import { InquiryDialog } from "@/components/shared/InquiryDialog";
 import { Button } from "@/components/ui/button";
 
@@ -86,18 +86,96 @@ export default function Transfers() {
                 </div>
             </section>
 
-            {/* Services Grid */}
-            <section className="py-24 px-6">
+            {/* Route Selector & Booking Section */}
+            <section className="py-24 px-6 relative z-20 -mt-20">
                 <div className="container mx-auto">
-                    <div className="text-center mb-16">
+                    <div className="bg-zinc-900 border border-white/10 rounded-xl p-8 md:p-12 shadow-2xl">
+                        <div className="text-center mb-10">
+                            <h2 className="font-serif text-3xl mb-4">Book Your Transfer</h2>
+                            <p className="text-white/60">Select a popular route or request a custom quote.</p>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-12">
+                            {/* Popular Routes */}
+                            <div>
+                                <h3 className="text-primary text-xs uppercase tracking-[0.2em] mb-6">Popular Routes</h3>
+                                <div className="space-y-4">
+                                    {[
+                                        { from: "Vijayawada", to: "Hyderabad Airport", price: "5,500", time: "5-6 hrs" },
+                                        { from: "Kakinada", to: "Vijayawada Airport", price: "3,200", time: "3-4 hrs" },
+                                        { from: "Rajahmundry", to: "Visakhapatnam", price: "4,000", time: "4-5 hrs" }
+                                    ].map((route, i) => (
+                                        <div key={i} className="flex items-center justify-between p-4 rounded-lg bg-black/40 border border-white/5 hover:border-primary/30 transition-all cursor-pointer group">
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 group-hover:text-primary transition-colors">
+                                                    <MapPin className="w-4 h-4" />
+                                                </div>
+                                                <div>
+                                                    <div className="flex items-center gap-2 text-sm font-medium text-white/90">
+                                                        {route.from} <ArrowRight className="w-3 h-3 text-white/30" /> {route.to}
+                                                    </div>
+                                                    <div className="text-xs text-white/50 mt-1">{route.time} • Sedan/SUV</div>
+                                                </div>
+                                            </div>
+                                            <div className="text-right">
+                                                <div className="text-lg font-serif text-white group-hover:text-primary transition-colors">₹{route.price}</div>
+                                                <InquiryDialog>
+                                                    <button className="text-[10px] uppercase tracking-wider text-white/40 hover:text-white underline decoration-white/20">
+                                                        Book
+                                                    </button>
+                                                </InquiryDialog>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Custom Booking */}
+                            <div className="bg-white/5 rounded-lg p-6 border border-white/5">
+                                <h3 className="text-white text-lg font-serif mb-6 flex items-center gap-2">
+                                    <Car className="w-5 h-5 text-primary" />
+                                    Custom Inquiry
+                                </h3>
+                                <div className="space-y-4">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <span className="text-xs text-white/50 uppercase">Pickup City</span>
+                                            <input type="text" placeholder="e.g. Guntur" className="w-full bg-black/50 border border-white/10 rounded px-4 py-3 text-sm focus:border-primary focus:outline-none" />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <span className="text-xs text-white/50 uppercase">Drop City</span>
+                                            <input type="text" placeholder="e.g. Bangalore" className="w-full bg-black/50 border border-white/10 rounded px-4 py-3 text-sm focus:border-primary focus:outline-none" />
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <span className="text-xs text-white/50 uppercase">Travel Date</span>
+                                        <input type="date" className="w-full bg-black/50 border border-white/10 rounded px-4 py-3 text-sm text-white/70 focus:border-primary focus:outline-none" />
+                                    </div>
+
+                                    <InquiryDialog>
+                                        <Button className="w-full bg-primary text-black hover:bg-primary/90 h-12 mt-2 font-bold">
+                                            Check Availability & Price
+                                        </Button>
+                                    </InquiryDialog>
+
+                                    <p className="text-[10px] text-white/30 text-center leading-relaxed">
+                                        *Prices depend on vehicle type and fuel rates. <br />
+                                        We do not provide local point-to-point taxi services (e.g. within same city).
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Fleet Services Grid (Moved down) */}
+                    <div className="mt-24 text-center mb-16">
                         <h2 className="font-serif text-4xl mb-6">Our Fleet Services</h2>
                         <p className="text-white/50 max-w-2xl mx-auto">
                             We specialize in long-distance intercity transfers and premium airport pickup/drops.
-                            Note: We do not provide local point-to-point taxi services like Uber/Ola.
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8">
+                    <div className="grid md:grid-cols-3 gap-8 mb-24">
                         {transferServices.map((service, index) => (
                             <motion.div
                                 key={index}

@@ -36,7 +36,7 @@ export default function TravelShowcase() {
             </section>
 
             {/* Rest of the site connects here */}
-            <section className="relative z-20 bg-[#0a0a0a] min-h-screen py-24 px-8 md:px-20 text-center">
+            <section className="relative z-20 bg-black min-h-screen py-24 px-8 md:px-20 text-center">
                 <h2 className="text-4xl md:text-6xl font-serif text-white mb-8">
                     The Journey Continues
                 </h2>

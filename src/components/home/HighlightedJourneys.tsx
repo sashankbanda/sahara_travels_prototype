@@ -13,7 +13,7 @@ export const HighlightedJourneys = () => {
     const y = useTransform(scrollYProgress, [0, 1], [0, -30]);
 
     return (
-        <section ref={ref} className="py-24 md:py-32 bg-[#0a0a0a] text-white overflow-hidden border-t border-white/5">
+        <section ref={ref} className="py-24 md:py-32 bg-black text-white overflow-hidden border-t border-white/5">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 

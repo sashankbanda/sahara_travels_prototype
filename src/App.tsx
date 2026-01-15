@@ -23,6 +23,7 @@ import Tours from "./pages/public/Tours";
 import Sightseeing from "./pages/public/Sightseeing";
 import Transfers from "./pages/public/Transfers";
 import PublicPackageDetails from "./pages/public/PublicPackageDetails";
+import { WhatsAppButton } from "./components/home/WhatsAppButton";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
+          <WhatsAppButton />
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>

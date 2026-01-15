@@ -4,7 +4,7 @@ export const Footer = () => {
     return (
         <footer className="relative bg-black text-white pt-40 pb-12 border-t border-white/5 overflow-hidden">
             {/* Background Texture/Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] to-black pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black to-black pointer-events-none" />
             <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
 
             <div className="container mx-auto px-6 max-w-5xl text-center relative z-10">

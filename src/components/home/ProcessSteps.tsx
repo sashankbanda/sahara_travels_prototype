@@ -48,7 +48,7 @@ export const ProcessSteps = () => {
                             transition={{ delay: index * 0.2, duration: 0.6 }}
                             className="relative z-10 flex flex-col items-center text-center group"
                         >
-                            <div className="w-24 h-24 rounded-full bg-[#0a0a0a] border border-white/10 flex items-center justify-center mb-6 group-hover:border-primary/50 transition-colors duration-500 shadow-[0_0_30px_-10px_rgba(0,0,0,0.5)]">
+                            <div className="w-24 h-24 rounded-full bg-black border border-white/10 flex items-center justify-center mb-6 group-hover:border-primary/50 transition-colors duration-500 shadow-[0_0_30px_-10px_rgba(0,0,0,0.5)]">
                                 <step.icon className="w-8 h-8 text-white/80 group-hover:text-primary transition-colors duration-500" />
                             </div>
                             <h3 className="text-xl font-serif text-white mb-3">
