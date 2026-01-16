@@ -60,7 +60,7 @@ export default function Transfers() {
                         />
                         <BlurText
                             text="Taxi & Transfers"
-                            className="font-serif text-5xl md:text-7xl mb-6"
+                            className="font-serif text-3xl md:text-5xl lg:text-7xl mb-6"
                             delay={50}
                             animateBy="words"
                         />
@@ -104,11 +104,11 @@ export default function Transfers() {
             {/* Route Selector & Booking Section */}
             <section className="py-24 px-6 relative z-20 -mt-20">
                 <div className="container mx-auto">
-                    <div className="bg-zinc-900 border border-white/10 rounded-xl p-8 md:p-12 shadow-2xl">
+                    <div className="bg-zinc-900 border border-white/10 rounded-xl p-6 md:p-12 shadow-2xl">
                         <div className="text-center mb-10">
                             <BlurText
                                 text="Book Your Transfer"
-                                className="font-serif text-3xl mb-4"
+                                className="font-serif text-2xl md:text-3xl mb-4"
                                 delay={50}
                                 animateBy="words"
                             />
@@ -137,7 +137,7 @@ export default function Transfers() {
                                                     <MapPin className="w-4 h-4" />
                                                 </div>
                                                 <div>
-                                                    <div className="flex items-center gap-2 text-sm font-medium text-white/90">
+                                                    <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-white/90">
                                                         {route.from} <ArrowRight className="w-3 h-3 text-white/30" /> {route.to}
                                                     </div>
                                                     <div className="text-xs text-white/50 mt-1">{route.time} • Sedan/SUV</div>
@@ -200,7 +200,7 @@ export default function Transfers() {
                     <div className="mt-24 text-center mb-16">
                         <BlurText
                             text="Our Fleet Services"
-                            className="font-serif text-4xl mb-6"
+                            className="font-serif text-3xl md:text-4xl mb-6"
                             delay={50}
                             animateBy="words"
                         />
@@ -209,7 +209,7 @@ export default function Transfers() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8 mb-24">
+                    <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-24">
                         {transferServices.map((service, index) => (
                             <motion.div
                                 key={index}

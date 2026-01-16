@@ -40,7 +40,7 @@ export default function Tours() {
                         />
                         <BlurText
                             text="Best Tour Packages"
-                            className="font-serif text-5xl md:text-7xl mb-6"
+                            className="font-serif text-3xl md:text-5xl lg:text-7xl mb-6"
                             delay={50}
                             animateBy="words"
                         />
@@ -52,9 +52,9 @@ export default function Tours() {
             </section>
 
             {/* Tours Grid */}
-            <section className="py-24 px-6">
+            <section className="py-12 md:py-24 px-6">
                 <div className="container mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                         {tours.map((pkg, index) => (
                             <motion.div
                                 key={pkg.id}

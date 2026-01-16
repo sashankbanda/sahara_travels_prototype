@@ -48,7 +48,7 @@ const taxiServices = [
 export const Services = () => {
     const [activeTab, setActiveTab] = useState("tours");
     return (
-        <section className="py-24 relative overflow-hidden">
+        <section className="py-12 md:py-24 relative overflow-hidden">
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
@@ -65,16 +65,16 @@ export const Services = () => {
 
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-5xl mx-auto">
                     <div className="flex justify-center mb-12">
-                        <TabsList className="bg-white/5 border border-white/10 p-1 rounded-full">
+                        <TabsList className="bg-white/5 border border-white/10 p-1 rounded-full w-full md:w-auto flex h-auto">
                             <TabsTrigger
                                 value="tours"
-                                className="px-8 py-3 rounded-full text-xs uppercase tracking-widest data-[state=active]:bg-primary data-[state=active]:text-black transition-all duration-300"
+                                className="flex-1 md:flex-none px-6 py-3 rounded-full text-[10px] md:text-xs uppercase tracking-widest data-[state=active]:bg-primary data-[state=active]:text-black transition-all duration-300"
                             >
                                 Tour Packages
                             </TabsTrigger>
                             <TabsTrigger
                                 value="taxi"
-                                className="px-8 py-3 rounded-full text-xs uppercase tracking-widest data-[state=active]:bg-primary data-[state=active]:text-black transition-all duration-300"
+                                className="flex-1 md:flex-none px-6 py-3 rounded-full text-[10px] md:text-xs uppercase tracking-widest data-[state=active]:bg-primary data-[state=active]:text-black transition-all duration-300"
                             >
                                 Taxi Services
                             </TabsTrigger>
@@ -92,7 +92,7 @@ export const Services = () => {
                                 transition={{ duration: 0.3 }}
                                 className="mt-0"
                             >
-                                <div className="grid md:grid-cols-2 gap-8">
+                                <div className="grid md:grid-cols-2 gap-4 md:gap-8">
                                     {tourServices.map((service) => (
                                         <ServiceCard key={service.id} item={service} type="tour" />
                                     ))}
@@ -108,7 +108,7 @@ export const Services = () => {
                                 transition={{ duration: 0.3 }}
                                 className="mt-0"
                             >
-                                <div className="grid md:grid-cols-2 gap-8">
+                                <div className="grid md:grid-cols-2 gap-4 md:gap-8">
                                     {taxiServices.map((service) => (
                                         <ServiceCard key={service.id} item={service} type="taxi" />
                                     ))}
@@ -143,7 +143,7 @@ export const Services = () => {
                         We understand that traveling to a new region can be daunting. We are here to make it safe and simple.
                         Our drivers are verified locals who speak English, Hindi, and local dialects.
                     </p>
-                    <div className="flex flex-wrap justify-center gap-4 text-xs md:text-sm text-white/60 font-mono uppercase tracking-wider">
+                    <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-[10px] md:text-sm text-white/60 font-mono uppercase tracking-wider">
                         <span className="px-4 py-2 bg-white/5 rounded-sm border border-white/10">
                             <ShinyText text="Pay 30% Advance" disabled={false} speed={3} className="" />
                         </span>
@@ -197,7 +197,7 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
             {item.badge && (
                 <div className="absolute top-4 right-4 z-30">
                     <span className="bg-primary/90 text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-sm">
-                        <ShinyText text={item.badge} disabled={false} speed={3} check={false} className="" color="#000000" shineColor="#ffffff" />
+                        <ShinyText text={item.badge} disabled={false} speed={3} className="" color="#000000" shineColor="#ffffff" />
                     </span>
                 </div>
             )}
