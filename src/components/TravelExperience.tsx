@@ -92,14 +92,6 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                         Your Trusted Partner for Tours & Transfers in Arunachal Pradesh
                     </motion.p>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                        className="text-base md:text-lg text-white/60 max-w-2xl mx-auto font-light leading-relaxed tracking-wide"
-                    >
-                        Over 25 years of local expertise. Verified drivers, premium fleet, and unforgettable journeys.
-                    </motion.p>
 
                     {/* Trust Strip */}
                     <motion.div
