@@ -6,6 +6,7 @@ import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { HighlightedJourneys } from "@/components/home/HighlightedJourneys";
 import { Footer } from "@/components/home/Footer";
 import { ProcessSteps } from "@/components/home/ProcessSteps";
+import { Testimonials } from "@/components/home/Testimonials";
 import { motion, useScroll } from "framer-motion";
 import TravelScrollCanvas from "@/components/TravelScrollCanvas";
 import TravelExperience from "@/components/TravelExperience";
@@ -51,6 +52,7 @@ const Home = () => {
                 <ProcessSteps />
                 <Services />
                 <WhyChooseUs />
+                <Testimonials />
                 <HighlightedJourneys />
             </main>
 
