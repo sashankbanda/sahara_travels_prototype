@@ -25,10 +25,10 @@ const steps = [
 
 export const ProcessSteps = () => {
     return (
-        <section className="py-12 md:py-24 bg-black text-white relative border-t border-white/5">
+        <section className="py-12 md:py-20 lg:py-24 bg-black text-white relative border-t border-white/5 overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
                 {/* Heading */}
-                <div className="text-center mb-16">
+                <div className="text-center mb-14 md:mb-16">
                     <BlurText
                         text="How it Works"
                         className="text-primary text-[10px] uppercase tracking-[0.4em] block mb-4 opacity-70"
@@ -37,26 +37,26 @@ export const ProcessSteps = () => {
                     />
                     <BlurText
                         text="Your Journey, Simplified"
-                        className="font-serif text-3xl md:text-5xl text-white/90"
+                        className="font-serif text-3xl md:text-4xl lg:text-5xl text-white/90"
                         animateBy="words"
                         delay={50}
                     />
                 </div>
 
                 {/* Steps wrapper */}
-                <div className="relative max-w-4xl mx-auto">
-                    {/* Connecting Line – Desktop */}
-                    <div className="hidden md:block absolute top-[3rem] left-1/2 -translate-x-1/2 w-full max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
+                <div className="relative max-w-5xl mx-auto overflow-hidden">
+                    {/* Connecting Line — Desktop + Tablet */}
+                    <div className="hidden md:block absolute top-[3rem] left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
 
-                    {/* Connecting Line – Mobile */}
-                    <div className="md:hidden absolute top-[3rem] left-0 w-[1000px] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
+                    {/* Connecting Line — Mobile */}
+                    <div className="md:hidden absolute top-[3rem] left-0 w-full min-w-[900px] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
 
                     {/* Steps */}
                     <div
                         className="
               flex md:grid
               md:grid-cols-3
-              gap-4 md:gap-12
+              gap-6 md:gap-10 lg:gap-12
               overflow-x-auto md:overflow-visible
               snap-x snap-mandatory
               scrollbar-none
@@ -74,14 +74,17 @@ export const ProcessSteps = () => {
                                 transition={{ delay: index * 0.2, duration: 0.6 }}
                                 className="relative z-10 flex flex-col items-center text-center group min-w-[280px] md:min-w-0 snap-center"
                             >
-                                <div className="w-24 h-24 rounded-full bg-black border border-white/10 flex items-center justify-center mb-6 group-hover:border-primary/50 transition-colors duration-500 shadow-[0_0_30px_-10px_rgba(0,0,0,0.5)]">
+                                {/* Icon */}
+                                <div className="w-24 h-24 rounded-full bg-black border border-white/10 flex items-center justify-center mb-6 group-hover:border-primary/50 transition-colors duration-500 shadow-[0_0_30px_-10px_rgba(0,0,0,0.6)]">
                                     <step.icon className="w-8 h-8 text-white/80 group-hover:text-primary transition-colors duration-500" />
                                 </div>
 
+                                {/* Title */}
                                 <h3 className="text-xl font-serif text-white mb-3">
                                     {step.title}
                                 </h3>
 
+                                {/* Description */}
                                 <p className="text-white/50 text-sm font-light leading-relaxed max-w-[200px]">
                                     {step.description}
                                 </p>
