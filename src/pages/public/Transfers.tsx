@@ -80,7 +80,9 @@ export default function Transfers() {
                                 <UserCheck className="w-6 h-6" />
                             </div>
                             <div>
-                                <h4 className="font-medium text-lg">Driver Mandatory</h4>
+                                <h4 className="font-medium text-lg">
+                                    <ShinyText text="Driver Mandatory" disabled={false} speed={3} className="" />
+                                </h4>
                                 <p className="text-sm text-white/50">Driver comes with every car</p>
                             </div>
                         </div>
@@ -89,7 +91,9 @@ export default function Transfers() {
                                 <ShieldCheck className="w-6 h-6" />
                             </div>
                             <div>
-                                <h4 className="font-medium text-lg">Safe Travel</h4>
+                                <h4 className="font-medium text-lg">
+                                    <ShinyText text="Safe Travel" disabled={false} speed={3} className="" />
+                                </h4>
                                 <p className="text-sm text-white/50">Trusted professional drivers</p>
                             </div>
                         </div>

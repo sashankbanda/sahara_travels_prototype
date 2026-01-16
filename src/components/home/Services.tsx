@@ -118,11 +118,11 @@ export const Services = () => {
                                     <div className="flex flex-col md:flex-row justify-center gap-6">
                                         <span className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
                                             <UserCheck className="w-4 h-4 text-primary" />
-                                            Driver Mandatory
+                                            <ShinyText text="Driver Mandatory" disabled={false} speed={3} className="" />
                                         </span>
                                         <span className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
                                             <ShieldCheck className="w-4 h-4 text-primary" />
-                                            No Self-Drive Rentals
+                                            <ShinyText text="No Self-Drive Rentals" disabled={false} speed={3} className="" />
                                         </span>
                                     </div>
                                     <p className="text-white/40 text-xs text-center border-t border-white/10 pt-4 mt-2 max-w-lg">
