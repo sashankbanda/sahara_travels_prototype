@@ -40,7 +40,7 @@ const taxiServices = [
         title: "Long Distance Trips",
         description: "Safe travel for long journeys. Professional drivers for every trip.",
         image: "/images/home/privateduty.png",
-        link: "/contact",
+        link: "/transfers",
         features: ["Safe Drivers", "24/7 Support", "Zero Self-Drive"]
     }
 ];
