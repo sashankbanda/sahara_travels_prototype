@@ -161,6 +161,9 @@ export const Services = () => {
     );
 };
 
+
+import { MovingBorder } from "@/components/animate-ui/MovingBorder";
+
 const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -170,63 +173,70 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
     };
 
     return (
-        <Link
-            to={item.link}
-            onMouseMove={handleMouseMove}
-            className="group relative block aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-white/5 border border-white/10 transition-all duration-700 rounded-lg md:rounded-none"
-        >
-            {/* Spotlight Effect */}
-            {/* Image Layer (z-0) */}
-            <img
-                src={item.image}
-                alt={item.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter grayscale-[30%] group-hover:grayscale-0 z-0"
-            />
+        <div className="relative group p-[1.5px] overflow-hidden rounded-lg md:rounded-none">
+            <div className="absolute inset-0">
+                <MovingBorder duration={10000} rx="10px" ry="10px">
+                    <div className="h-20 w-20 opacity-[0.8] bg-[radial-gradient(hsl(var(--primary))_40%,transparent_60%)] blur-[8px]" />
+                </MovingBorder>
+            </div>
+            <Link
+                to={item.link}
+                onMouseMove={handleMouseMove}
+                className="relative block aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-black border border-transparent transition-all duration-700 rounded-[7px] md:rounded-[1px] h-full w-full"
+            >
+                {/* Spotlight Effect */}
+                {/* Image Layer (z-0) */}
+                <img
+                    src={item.image}
+                    alt={item.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter grayscale-[30%] group-hover:grayscale-0 z-0"
+                />
 
-            {/* Gradient Overlay (z-10) */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 md:via-black/20 to-transparent opacity-90 md:opacity-80 group-hover:opacity-60 transition-opacity duration-700 z-10" />
+                {/* Gradient Overlay (z-10) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 md:via-black/20 to-transparent opacity-90 md:opacity-80 group-hover:opacity-60 transition-opacity duration-700 z-10" />
 
-            {/* Spotlight Effect (z-20) - Needs to be ON TOP of image/gradient to be seen as a sheen */}
-            <div
-                className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 mix-blend-overlay"
-                style={{
-                    background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.15), transparent 40%)`,
-                }}
-            />
+                {/* Spotlight Effect (z-20) - Needs to be ON TOP of image/gradient to be seen as a sheen */}
+                <div
+                    className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 mix-blend-overlay"
+                    style={{
+                        background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.15), transparent 40%)`,
+                    }}
+                />
 
-            {item.badge && (
-                <div className="absolute top-4 right-4 z-30">
-                    <span className="bg-primary/90 text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-sm shadow-lg">
-                        <ShinyText text={item.badge} disabled={false} speed={3} className="" color="#000000" shineColor="#ffffff" />
-                    </span>
-                </div>
-            )}
+                {item.badge && (
+                    <div className="absolute top-4 right-4 z-30">
+                        <span className="bg-primary/90 text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-sm shadow-lg">
+                            <ShinyText text={item.badge} disabled={false} speed={3} className="" color="#000000" shineColor="#ffffff" />
+                        </span>
+                    </div>
+                )}
 
-            <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-8 z-30">
-                <div className="transform translate-y-0 md:translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="font-serif text-2xl md:text-3xl text-white mb-2 md:mb-3 group-hover:text-primary transition-colors leading-tight">
-                        {item.title}
-                    </h3>
+                <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-8 z-30">
+                    <div className="transform translate-y-0 md:translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 className="font-serif text-2xl md:text-3xl text-white mb-2 md:mb-3 group-hover:text-primary transition-colors leading-tight">
+                            {item.title}
+                        </h3>
 
-                    <p className="text-white/80 md:text-white/70 text-xs md:text-sm font-light mb-4 md:mb-6 opacity-100 md:opacity-80 group-hover:opacity-100 transition-opacity line-clamp-2 md:line-clamp-none">
-                        {item.description}
-                    </p>
+                        <p className="text-white/80 md:text-white/70 text-xs md:text-sm font-light mb-4 md:mb-6 opacity-100 md:opacity-80 group-hover:opacity-100 transition-opacity line-clamp-2 md:line-clamp-none">
+                            {item.description}
+                        </p>
 
-                    {type === 'taxi' && item.features && (
-                        <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
-                            {item.features.map((feature: string) => (
-                                <span key={feature} className="text-[10px] uppercase tracking-wider text-white/70 border border-white/20 md:border-white/10 px-2 py-1 rounded-sm bg-black/20 md:bg-transparent">
-                                    <ShinyText text={feature} disabled={false} speed={3} className="" />
-                                </span>
-                            ))}
+                        {type === 'taxi' && item.features && (
+                            <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
+                                {item.features.map((feature: string) => (
+                                    <span key={feature} className="text-[10px] uppercase tracking-wider text-white/70 border border-white/20 md:border-white/10 px-2 py-1 rounded-sm bg-black/20 md:bg-transparent">
+                                        <ShinyText text={feature} disabled={false} speed={3} className="" />
+                                    </span>
+                                ))}
+                            </div>
+                        )}
+
+                        <div className="flex items-center gap-2 text-primary text-xs uppercase tracking-[0.2em] font-medium opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 md:delay-75">
+                            View Details <ArrowRight className="w-4 h-4" />
                         </div>
-                    )}
-
-                    <div className="flex items-center gap-2 text-primary text-xs uppercase tracking-[0.2em] font-medium opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 md:delay-75">
-                        View Details <ArrowRight className="w-4 h-4" />
                     </div>
                 </div>
-            </div>
-        </Link>
+            </Link>
+        </div>
     );
 };
