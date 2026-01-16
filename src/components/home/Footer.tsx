@@ -1,22 +1,22 @@
 import { Link } from "react-router-dom";
-import { TextReveal } from "@/components/animate-ui/TextReveal";
+import BlurText from "@/components/animate-ui/BlurText";
 import { MagneticButton } from "@/components/animate-ui/MagneticButton";
 
 export const Footer = () => {
     return (
-        <footer className="relative text-white pt-40 pb-12 overflow-hidden">
+        <footer className="relative text-white pt-24 pb-12 overflow-hidden">
             {/* Background Texture/Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none z-0" />
-            <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] opacity-[0.03] pointer-events-none z-0" />
+            {/* Background Texture/Gradient Removed for cleaner look */}
 
             <div className="container mx-auto px-6 max-w-5xl text-center relative z-10">
 
                 {/* Main CTA */}
                 <div className="mb-40">
-                    <TextReveal
+                    <BlurText
                         text="Ready to begin?"
-                        className="font-serif text-5xl md:text-7xl text-white mb-6 tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] block"
-                        staggerDelay={0.05}
+                        className="font-serif text-5xl md:text-7xl text-white mb-6 tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] block justify-center"
+                        delay={50}
+                        animateBy="words"
                     />
                     <p className="text-white/40 text-sm font-light tracking-wide mb-8">
                         Your journey into the extraordinary awaits.

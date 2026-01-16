@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { TextReveal } from "@/components/animate-ui/TextReveal";
+import BlurText from "@/components/animate-ui/BlurText";
 
 export const BrandLegacy = () => {
     return (
@@ -23,10 +23,11 @@ export const BrandLegacy = () => {
 
                     {/* Asymmetric Right: Content */}
                     <div className="md:w-3/4">
-                        <TextReveal
+                        <BlurText
                             text="&quot;We don't just guide you; we welcome you home.&quot;"
                             className="font-serif text-4xl md:text-5xl lg:text-6xl text-white/90 leading-[1.2] mb-12 block"
-                            staggerDelay={0.04}
+                            delay={40}
+                            animateBy="words"
                         />
 
                         <motion.div

@@ -25,6 +25,8 @@ import Transfers from "./pages/public/Transfers";
 import PublicPackageDetails from "./pages/public/PublicPackageDetails";
 import { WhatsAppButton } from "./components/home/WhatsAppButton";
 
+import ScrollToTop from "@/components/shared/ScrollToTop";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -34,6 +36,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />

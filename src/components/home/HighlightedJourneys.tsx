@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
-import { TextReveal } from "@/components/animate-ui/TextReveal";
+import BlurText from "@/components/animate-ui/BlurText";
 
 export const HighlightedJourneys = () => {
     const ref = useRef(null);
@@ -39,18 +39,18 @@ export const HighlightedJourneys = () => {
                             transition={{ duration: 1 }}
                         >
 
-                            <TextReveal
+                            <BlurText
                                 text="Signature Experience"
                                 className="text-primary/70 text-[10px] uppercase tracking-[0.4em] mb-8 block"
-                                tag="h2"
-                                staggerDelay={0.03}
+                                delay={50}
+                                animateBy="words"
                             />
 
-                            <TextReveal
+                            <BlurText
                                 text="The Mist & The Monastery"
                                 className="font-serif text-4xl lg:text-5xl text-white mb-8 leading-[1.1] block"
-                                tag="h3"
-                                staggerDelay={0.05}
+                                delay={50}
+                                animateBy="words"
                             />
 
                             <div className="w-8 h-px bg-white/20 mb-8" />

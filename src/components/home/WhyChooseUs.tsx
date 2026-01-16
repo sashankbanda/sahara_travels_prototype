@@ -1,5 +1,5 @@
 import MagicBento from "@/components/animate-ui/MagicBento";
-import { TextReveal } from "@/components/animate-ui/TextReveal";
+import BlurText from "@/components/animate-ui/BlurText";
 
 const features = [
     {
@@ -45,17 +45,17 @@ export const WhyChooseUs = () => {
         <section className="py-24 bg-black relative overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
-                    <TextReveal
+                    <BlurText
                         text="The Sahara Advantage"
                         className="text-primary text-[10px] uppercase tracking-[0.4em] block mb-4 opacity-70"
-                        tag="span"
-                        staggerDelay={0.03}
+                        delay={50}
+                        animateBy="words"
                     />
-                    <TextReveal
+                    <BlurText
                         text="Why Travel With Us?"
                         className="font-serif text-3xl md:text-5xl text-white/90"
-                        tag="h2"
-                        staggerDelay={0.05}
+                        delay={50}
+                        animateBy="words"
                     />
                 </div>
 

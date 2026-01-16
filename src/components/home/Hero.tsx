@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { FogScene } from "./FogScene";
+import BlurText from "@/components/animate-ui/BlurText";
 
 export const Hero = () => {
     return (
@@ -31,24 +32,25 @@ export const Hero = () => {
             <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
                 <div className="max-w-4xl space-y-12">
 
-                    import {TextReveal} from "@/components/animate-ui/TextReveal";
+
 
                     // ...
                     {/* 1. Headline (First) */}
-                    <TextReveal
+                    {/* 1. Headline (First) */}
+                    <BlurText
                         text="Journey Beyond the Ordinary"
                         className="font-serif text-5xl md:text-7xl lg:text-9xl tracking-tight leading-[1.1] text-white/90 drop-shadow-2xl max-w-5xl mx-auto"
-                        tag="h1"
-                        staggerDelay={0.06}
-                        duration={0.8}
+                        delay={60}
+                        animateBy="words"
                     />
 
                     {/* 2. Subtext (Second) */}
-                    <TextReveal
+                    {/* 2. Subtext (Second) */}
+                    <BlurText
                         text="Discover the Undiscovered in the heart of Arunachal Pradesh"
                         className="max-w-md mx-auto text-white/70 text-sm md:text-base uppercase tracking-[0.3em] font-medium leading-loose"
-                        tag="p"
-                        staggerDelay={0.03}
+                        delay={30}
+                        animateBy="words"
                     />
 
                     {/* 3. CTA (Last) */}

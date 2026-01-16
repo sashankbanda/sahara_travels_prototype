@@ -4,6 +4,7 @@ import { useStore } from "@/lib/store";
 import { MapPin, Clock, IndianRupee, ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
+import BlurText from "@/components/animate-ui/BlurText";
 
 export default function Tours() {
     const { packages } = useStore();
@@ -31,10 +32,18 @@ export default function Tours() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <span className="text-primary text-xs uppercase tracking-[0.4em] mb-4 block">
-                            Our Experiences
-                        </span>
-                        <h1 className="font-serif text-5xl md:text-7xl mb-6">Best Tour Packages</h1>
+                        <BlurText
+                            text="Our Experiences"
+                            className="text-primary text-xs uppercase tracking-[0.4em] mb-4 block"
+                            delay={50}
+                            animateBy="words"
+                        />
+                        <BlurText
+                            text="Best Tour Packages"
+                            className="font-serif text-5xl md:text-7xl mb-6"
+                            delay={50}
+                            animateBy="words"
+                        />
                         <p className="text-white/70 max-w-xl mx-auto font-light text-lg">
                             Enjoy amazing trips to the beautiful valleys of Arunachal Pradesh.
                         </p>

@@ -5,6 +5,7 @@ import { ShieldCheck, UserCheck, MapPin, Car, IndianRupee, ArrowRight } from "lu
 import { InquiryDialog } from "@/components/shared/InquiryDialog";
 import { Button } from "@/components/ui/button";
 import SpotlightCard from "@/components/animate-ui/SpotlightCard";
+import BlurText from "@/components/animate-ui/BlurText";
 
 export default function Transfers() {
     const transferServices = [
@@ -50,10 +51,18 @@ export default function Transfers() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <span className="text-primary text-xs uppercase tracking-[0.4em] mb-4 block">
-                            Comfort Travel
-                        </span>
-                        <h1 className="font-serif text-5xl md:text-7xl mb-6">Taxi & Transfers</h1>
+                        <BlurText
+                            text="Comfort Travel"
+                            className="text-primary text-xs uppercase tracking-[0.4em] mb-4 block"
+                            delay={50}
+                            animateBy="words"
+                        />
+                        <BlurText
+                            text="Taxi & Transfers"
+                            className="font-serif text-5xl md:text-7xl mb-6"
+                            delay={50}
+                            animateBy="words"
+                        />
                         <p className="text-white/70 max-w-xl mx-auto font-light text-lg">
                             Safe and comfortable rides. Driver always included.
                         </p>
@@ -92,7 +101,12 @@ export default function Transfers() {
                 <div className="container mx-auto">
                     <div className="bg-zinc-900 border border-white/10 rounded-xl p-8 md:p-12 shadow-2xl">
                         <div className="text-center mb-10">
-                            <h2 className="font-serif text-3xl mb-4">Book Your Transfer</h2>
+                            <BlurText
+                                text="Book Your Transfer"
+                                className="font-serif text-3xl mb-4"
+                                delay={50}
+                                animateBy="words"
+                            />
                             <p className="text-white/60">Select a popular route or request a custom quote.</p>
                         </div>
 
@@ -177,7 +191,12 @@ export default function Transfers() {
 
                     {/* Fleet Services Grid (Moved down) */}
                     <div className="mt-24 text-center mb-16">
-                        <h2 className="font-serif text-4xl mb-6">Our Fleet Services</h2>
+                        <BlurText
+                            text="Our Fleet Services"
+                            className="font-serif text-4xl mb-6"
+                            delay={50}
+                            animateBy="words"
+                        />
                         <p className="text-white/50 max-w-2xl mx-auto">
                             We specialize in long-distance intercity transfers and premium airport pickup/drops.
                         </p>

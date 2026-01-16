@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { MessageCircle, CheckCircle2, Map } from "lucide-react";
-import { TextReveal } from "@/components/animate-ui/TextReveal";
+import BlurText from "@/components/animate-ui/BlurText";
 
 const steps = [
     {
@@ -28,17 +28,17 @@ export const ProcessSteps = () => {
         <section className="py-24 bg-black text-white relative border-t border-white/5">
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
-                    <TextReveal
+                    <BlurText
                         text="How it Works"
                         className="text-primary text-[10px] uppercase tracking-[0.4em] block mb-4 opacity-70"
-                        tag="span"
-                        staggerDelay={0.03}
+                        animateBy="words"
+                        delay={50}
                     />
-                    <TextReveal
+                    <BlurText
                         text="Your Journey, Simplified"
                         className="font-serif text-3xl md:text-5xl text-white/90"
-                        tag="h2"
-                        staggerDelay={0.05}
+                        animateBy="words"
+                        delay={50}
                     />
                 </div>
 
