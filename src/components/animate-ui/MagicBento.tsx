@@ -650,15 +650,30 @@ const MagicBento: React.FC<BentoProps> = ({
           
           @media (max-width: 599px) {
             .card-responsive {
-              grid-template-columns: 1fr;
-              width: 90%;
-              margin: 0 auto;
-              padding: 0.5rem;
+              display: flex;
+              flex-direction: row;
+              overflow-x: auto;
+              scroll-snap-type: x mandatory;
+              -webkit-overflow-scrolling: touch;
+              width: 100%;
+              max-width: 100vw;
+              margin: 0;
+              padding: 0 1.5rem 2rem 1.5rem; /* Bottom padding for scrollbar/shadow visibility */
+              gap: 1rem;
+              scrollbar-width: none; /* Firefox */
             }
             
+            .card-responsive::-webkit-scrollbar {
+              display: none; /* Chrome/Safari */
+            }
+
             .card-responsive .card {
-              width: 100%;
-              min-height: 180px;
+              flex: 0 0 auto;
+              width: 280px; /* Fixed width for consistency */
+              min-width: 280px;
+              min-height: 200px;
+              scroll-snap-align: center;
+              margin-bottom: 0;
             }
           }
         `}
@@ -703,12 +718,12 @@ const MagicBento: React.FC<BentoProps> = ({
                                     clickEffect={clickEffect}
                                     enableMagnetism={enableMagnetism}
                                 >
-                                    <div className="card__header flex justify-between gap-3 relative text-white">
+                                    <div className="card__header flex justify-center gap-3 relative text-white">
                                         <span className="card__label text-base">
                                             <ShinyText text={card.label || ''} disabled={false} speed={3} className="" />
                                         </span>
                                     </div>
-                                    <div className="card__content flex flex-col relative text-white">
+                                    <div className="card__content flex flex-col items-center text-center relative text-white">
                                         <h3 className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? 'text-clamp-1' : ''}`}>
                                             {card.title}
                                         </h3>
@@ -837,12 +852,12 @@ const MagicBento: React.FC<BentoProps> = ({
                                     el.addEventListener('click', handleClick);
                                 }}
                             >
-                                <div className="card__header flex justify-between gap-3 relative text-white">
+                                <div className="card__header flex justify-center gap-3 relative text-white">
                                     <span className="card__label text-base">
                                         <ShinyText text={card.label || ''} disabled={false} speed={3} className="" />
                                     </span>
                                 </div>
-                                <div className="card__content flex flex-col relative text-white">
+                                <div className="card__content flex flex-col items-center text-center relative text-white">
                                     <h3 className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? 'text-clamp-1' : ''}`}>
                                         {card.title}
                                     </h3>
