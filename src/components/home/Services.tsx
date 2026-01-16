@@ -162,7 +162,7 @@ export const Services = () => {
 };
 
 
-import { MovingBorder } from "@/components/animate-ui/MovingBorder";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -173,16 +173,16 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
     };
 
     return (
-        <div className="relative group p-[1.5px] overflow-hidden rounded-lg md:rounded-none">
-            <div className="absolute inset-0">
-                <MovingBorder duration={10000} rx="10px" ry="10px">
-                    <div className="h-20 w-20 opacity-[0.8] bg-[radial-gradient(hsl(var(--primary))_40%,transparent_60%)] blur-[8px]" />
-                </MovingBorder>
-            </div>
+        <HoverBorderGradient
+            containerClassName="rounded-lg md:rounded-none p-0 w-full h-full border-0 bg-transparent"
+            className="w-full h-full p-0 bg-transparent rounded-[inherit]"
+            as="div"
+            duration={1.5}
+        >
             <Link
                 to={item.link}
                 onMouseMove={handleMouseMove}
-                className="relative block aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-black border border-transparent transition-all duration-700 rounded-[7px] md:rounded-[1px] h-full w-full"
+                className="relative block w-full h-full aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-black border border-transparent transition-all duration-700 rounded-[inherit]"
             >
                 {/* Spotlight Effect */}
                 {/* Image Layer (z-0) */}
@@ -237,6 +237,6 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
                     </div>
                 </div>
             </Link>
-        </div>
+        </HoverBorderGradient>
     );
 };

@@ -5,7 +5,7 @@ import { MapPin, Clock, IndianRupee, ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
 import BlurText from "@/components/animate-ui/BlurText";
-import { MovingBorder } from "@/components/animate-ui/MovingBorder";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 export default function Sightseeing() {
     const { packages } = useStore();
@@ -64,13 +64,13 @@ export default function Sightseeing() {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                             >
-                                <div className="group relative p-[1.5px] overflow-hidden rounded-sm">
-                                    <div className="absolute inset-0">
-                                        <MovingBorder duration={10000} rx="5px" ry="5px">
-                                            <div className="h-20 w-20 opacity-[0.8] bg-[radial-gradient(hsl(var(--primary))_40%,transparent_60%)] blur-[8px]" />
-                                        </MovingBorder>
-                                    </div>
-                                    <Link to={`/packages/${pkg.id}`} className="relative block bg-zinc-900 overflow-hidden border border-transparent hover:border-transparent transition-colors duration-500 rounded-[2px] h-full w-full">
+                                <HoverBorderGradient
+                                    containerClassName="rounded-sm p-0 w-full h-full border-0 bg-transparent"
+                                    className="w-full h-full p-0 bg-transparent rounded-[inherit]"
+                                    as="div"
+                                    duration={1.5}
+                                >
+                                    <Link to={`/packages/${pkg.id}`} className="relative block bg-zinc-900 overflow-hidden border border-transparent hover:border-transparent transition-colors duration-500 rounded-[inherit] h-full w-full">
                                         <div className="relative h-[300px] overflow-hidden">
                                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500 z-10" />
                                             <img
@@ -104,7 +104,7 @@ export default function Sightseeing() {
                                             </div>
                                         </div>
                                     </Link>
-                                </div>
+                                </HoverBorderGradient>
                             </motion.div>
                         ))}
                     </div>
