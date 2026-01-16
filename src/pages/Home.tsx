@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Navbar } from "@/components/home/Navbar";
 import { BrandLegacy } from "@/components/home/BrandLegacy";
 import { Services } from "@/components/home/Services";
+import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { HighlightedJourneys } from "@/components/home/HighlightedJourneys";
 import { Footer } from "@/components/home/Footer";
 import { ProcessSteps } from "@/components/home/ProcessSteps";
@@ -49,6 +50,7 @@ const Home = () => {
                 <BrandLegacy />
                 <ProcessSteps />
                 <Services />
+                <WhyChooseUs />
                 <HighlightedJourneys />
             </main>
 
