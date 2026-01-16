@@ -25,6 +25,8 @@ import Transfers from "./pages/public/Transfers";
 import PublicPackageDetails from "./pages/public/PublicPackageDetails";
 import { WhatsAppButton } from "./components/home/WhatsAppButton";
 
+import { BackgroundBeams } from "@/components/ui/background-beams";
+
 import ScrollToTop from "@/components/shared/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -36,30 +38,35 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/tours" element={<Tours />} />
-            <Route path="/sightseeing" element={<Sightseeing />} />
-            <Route path="/transfers" element={<Transfers />} />
-            <Route path="/packages/:id" element={<PublicPackageDetails />} />
-            <Route path="/showcase" element={<TravelShowcase />} />
+          <div className="relative min-h-screen w-full">
+            <BackgroundBeams className="fixed inset-0 z-0 pointer-events-none" />
+            <div className="relative z-10">
+              <ScrollToTop />
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/tours" element={<Tours />} />
+                <Route path="/sightseeing" element={<Sightseeing />} />
+                <Route path="/transfers" element={<Transfers />} />
+                <Route path="/packages/:id" element={<PublicPackageDetails />} />
+                <Route path="/showcase" element={<TravelShowcase />} />
 
-            <Route element={<ProtectedRoute />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/packages" element={<Packages />} />
-              <Route path="/packages/new" element={<AddPackage />} />
-              <Route path="/packages/:id" element={<PackageDetails />} />
-              <Route path="/packages/:id/edit" element={<EditPackage />} />
-              <Route path="/enquiries" element={<Enquiries />} />
-              <Route path="/payments" element={<Payments />} />
-              <Route path="/users" element={<Users />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-          <WhatsAppButton />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/packages" element={<Packages />} />
+                  <Route path="/packages/new" element={<AddPackage />} />
+                  <Route path="/packages/:id" element={<PackageDetails />} />
+                  <Route path="/packages/:id/edit" element={<EditPackage />} />
+                  <Route path="/enquiries" element={<Enquiries />} />
+                  <Route path="/payments" element={<Payments />} />
+                  <Route path="/users" element={<Users />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="*" element={<NotFound />} />
+                </Route>
+              </Routes>
+              <WhatsAppButton />
+            </div>
+          </div>
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>

@@ -23,7 +23,7 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-black min-h-screen relative selection:bg-primary selection:text-black"
+            className="min-h-screen relative selection:bg-primary selection:text-black"
         >
             {/* Global Grain Overlay */}
             <div className="grain-overlay" />
