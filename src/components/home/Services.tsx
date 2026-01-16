@@ -51,21 +51,21 @@ export const Services = () => {
         <section className="py-12 md:py-24 relative overflow-hidden">
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="text-center mb-16">
-                    <span className="text-primary text-[10px] uppercase tracking-[0.4em] block mb-4 opacity-70">
+                <div className="text-center mb-8 md:mb-16">
+                    <span className="text-primary text-[10px] uppercase tracking-[0.4em] block mb-3 md:mb-4 opacity-70">
                         Our Services
                     </span>
-                    <h2 className="font-serif text-4xl md:text-5xl text-white/90 mb-6">
+                    <h2 className="font-serif text-3xl md:text-5xl text-white/90 mb-4 md:mb-6">
                         Choose Your Journey
                     </h2>
-                    <p className="text-white/50 max-w-2xl mx-auto font-light">
+                    <p className="text-white/50 max-w-2xl mx-auto font-light text-sm md:text-base">
                         We offer the best tour packages and taxi services for your travel needs.
                     </p>
                 </div>
 
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-5xl mx-auto">
-                    <div className="flex justify-center mb-12">
-                        <TabsList className="bg-white/5 border border-white/10 p-1 rounded-full w-full md:w-auto flex h-auto">
+                    <div className="flex justify-center mb-8 md:mb-12">
+                        <TabsList className="bg-white/5 border border-white/10 p-1 rounded-full w-full md:w-auto grid grid-cols-2 md:flex h-auto">
                             <TabsTrigger
                                 value="tours"
                                 className="flex-1 md:flex-none px-6 py-3 rounded-full text-[10px] md:text-xs uppercase tracking-widest data-[state=active]:bg-primary data-[state=active]:text-black transition-all duration-300"
@@ -135,15 +135,15 @@ export const Services = () => {
                 </Tabs>
 
                 {/* Inclusive / Foreign Traveler Reassurance Block */}
-                <div className="mt-24 max-w-4xl mx-auto text-center border-t border-white/5 pt-12">
-                    <h3 className="font-serif text-2xl mb-4">
+                <div className="mt-16 md:mt-24 max-w-4xl mx-auto text-center border-t border-white/5 pt-8 md:pt-12">
+                    <h3 className="font-serif text-lg md:text-2xl mb-3 md:mb-4">
                         <ShinyText text="First time in Northeast India?" disabled={false} speed={3} className="" />
                     </h3>
-                    <p className="text-white/50 mb-8 font-light leading-relaxed">
+                    <p className="text-white/50 mb-6 md:mb-8 font-light leading-relaxed text-sm md:text-base">
                         We understand that traveling to a new region can be daunting. We are here to make it safe and simple.
                         Our drivers are verified locals who speak English, Hindi, and local dialects.
                     </p>
-                    <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-[10px] md:text-sm text-white/60 font-mono uppercase tracking-wider">
+                    <div className="flex flex-wrap justify-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/60 font-mono uppercase tracking-wider">
                         <span className="px-4 py-2 bg-white/5 rounded-sm border border-white/10">
                             <ShinyText text="Pay 30% Advance" disabled={false} speed={3} className="" />
                         </span>
@@ -173,7 +173,7 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
         <Link
             to={item.link}
             onMouseMove={handleMouseMove}
-            className="group relative block aspect-[16/10] overflow-hidden bg-white/5 border border-white/10 transition-all duration-700"
+            className="group relative block aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-white/5 border border-white/10 transition-all duration-700 rounded-lg md:rounded-none"
         >
             {/* Spotlight Effect */}
             {/* Image Layer (z-0) */}
@@ -184,7 +184,7 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
             />
 
             {/* Gradient Overlay (z-10) */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 md:via-black/20 to-transparent opacity-90 md:opacity-80 group-hover:opacity-60 transition-opacity duration-700 z-10" />
 
             {/* Spotlight Effect (z-20) - Needs to be ON TOP of image/gradient to be seen as a sheen */}
             <div
@@ -196,33 +196,33 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
 
             {item.badge && (
                 <div className="absolute top-4 right-4 z-30">
-                    <span className="bg-primary/90 text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-sm">
+                    <span className="bg-primary/90 text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-sm shadow-lg">
                         <ShinyText text={item.badge} disabled={false} speed={3} className="" color="#000000" shineColor="#ffffff" />
                     </span>
                 </div>
             )}
 
-            <div className="absolute inset-0 flex flex-col justify-end p-8 z-30">
-                <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="font-serif text-3xl text-white mb-3 group-hover:text-primary transition-colors">
+            <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-8 z-30">
+                <div className="transform translate-y-0 md:translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 className="font-serif text-2xl md:text-3xl text-white mb-2 md:mb-3 group-hover:text-primary transition-colors leading-tight">
                         {item.title}
                     </h3>
 
-                    <p className="text-white/70 text-sm font-light mb-6 opacity-80 group-hover:opacity-100 transition-opacity">
+                    <p className="text-white/80 md:text-white/70 text-xs md:text-sm font-light mb-4 md:mb-6 opacity-100 md:opacity-80 group-hover:opacity-100 transition-opacity line-clamp-2 md:line-clamp-none">
                         {item.description}
                     </p>
 
                     {type === 'taxi' && item.features && (
-                        <div className="flex flex-wrap gap-2 mb-6">
+                        <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
                             {item.features.map((feature: string) => (
-                                <span key={feature} className="text-[10px] uppercase tracking-wider text-white/60 border border-white/10 px-2 py-1 rounded-sm">
+                                <span key={feature} className="text-[10px] uppercase tracking-wider text-white/70 border border-white/20 md:border-white/10 px-2 py-1 rounded-sm bg-black/20 md:bg-transparent">
                                     <ShinyText text={feature} disabled={false} speed={3} className="" />
                                 </span>
                             ))}
                         </div>
                     )}
 
-                    <div className="flex items-center gap-2 text-primary text-xs uppercase tracking-[0.2em] font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">
+                    <div className="flex items-center gap-2 text-primary text-xs uppercase tracking-[0.2em] font-medium opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 md:delay-75">
                         View Details <ArrowRight className="w-4 h-4" />
                     </div>
                 </div>

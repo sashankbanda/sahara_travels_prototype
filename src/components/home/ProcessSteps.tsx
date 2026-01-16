@@ -25,7 +25,7 @@ const steps = [
 
 export const ProcessSteps = () => {
     return (
-        <section className="py-24 bg-black text-white relative border-t border-white/5">
+        <section className="py-12 md:py-24 bg-black text-white relative border-t border-white/5">
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
                     <BlurText
@@ -42,7 +42,7 @@ export const ProcessSteps = () => {
                     />
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto relative">
+                <div className="grid md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto relative">
                     {/* Connecting Line (Desktop) */}
                     <div className="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
 

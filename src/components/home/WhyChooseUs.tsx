@@ -42,7 +42,7 @@ const features = [
 
 export const WhyChooseUs = () => {
     return (
-        <section className="py-24 bg-black relative overflow-hidden">
+        <section className="py-12 md:py-24 bg-black relative overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
                     <BlurText
@@ -59,7 +59,7 @@ export const WhyChooseUs = () => {
                     />
                 </div>
 
-                <div className="flex justify-center">
+                <div className="flex justify-center -mx-4 md:mx-0">
                     <MagicBento
                         cards={features}
                         enableStars={true}

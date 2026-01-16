@@ -3,7 +3,7 @@ import BlurText from "@/components/animate-ui/BlurText";
 
 export const BrandLegacy = () => {
     return (
-        <section className="py-40 text-white overflow-hidden relative">
+        <section className="py-20 md:py-40 text-white overflow-hidden relative">
             <div className="container mx-auto px-6 max-w-6xl relative">
 
                 <div className="flex flex-col md:flex-row gap-16 md:gap-32 items-start">
@@ -25,7 +25,7 @@ export const BrandLegacy = () => {
                     <div className="md:w-3/4">
                         <BlurText
                             text="&quot;We don't just guide you; we welcome you home.&quot;"
-                            className="font-serif text-4xl md:text-5xl lg:text-6xl text-white/90 leading-[1.2] mb-12 block"
+                            className="font-serif text-3xl md:text-5xl lg:text-6xl text-white/90 leading-[1.2] mb-8 md:mb-12 block"
                             delay={40}
                             animateBy="words"
                         />

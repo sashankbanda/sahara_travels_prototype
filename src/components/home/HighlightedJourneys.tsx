@@ -14,12 +14,12 @@ export const HighlightedJourneys = () => {
     const y = useTransform(scrollYProgress, [0, 1], [0, -30]);
 
     return (
-        <section ref={ref} className="py-24 md:py-32 text-white overflow-hidden">
+        <section ref={ref} className="py-12 md:py-32 text-white overflow-hidden">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
                     {/* Image Side - Reduced Height (~60% of viewport) */}
-                    <div className="w-full lg:w-[55%] relative h-[50vh] md:h-[60vh] overflow-hidden rounded-[2px]">
+                    <div className="w-full lg:w-[55%] relative h-[40vh] md:h-[60vh] overflow-hidden rounded-[2px] mb-8 lg:mb-0">
                         <motion.div style={{ y }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
                             <img
                                 src="/images/home/hero.png"

@@ -35,7 +35,7 @@ export default function Transfers() {
             <Navbar />
 
             {/* Hero Section */}
-            <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+            <section className="relative h-[45vh] md:h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0">
                     <img
                         src="/images/home/transfers.png"
@@ -72,18 +72,18 @@ export default function Transfers() {
             </section>
 
             {/* Important Notice Section */}
-            <section className="py-12 bg-zinc-900 border-y border-white/5">
+            <section className="py-8 md:py-12 bg-zinc-900 border-y border-white/5">
                 <div className="container mx-auto px-6">
-                    <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+                    <div className="grid grid-cols-2 gap-4 md:flex md:justify-center md:gap-16">
                         <div className="flex items-center gap-4 text-white/80">
                             <div className="p-3 rounded-full bg-primary/10 text-primary">
                                 <UserCheck className="w-6 h-6" />
                             </div>
                             <div>
-                                <h4 className="font-medium text-lg">
+                                <h4 className="font-medium text-sm md:text-lg">
                                     <ShinyText text="Driver Mandatory" disabled={false} speed={3} className="" />
                                 </h4>
-                                <p className="text-sm text-white/50">Driver comes with every car</p>
+                                <p className="text-[10px] md:text-sm text-white/50">Driver comes with every car</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-4 text-white/80">
@@ -91,10 +91,10 @@ export default function Transfers() {
                                 <ShieldCheck className="w-6 h-6" />
                             </div>
                             <div>
-                                <h4 className="font-medium text-lg">
+                                <h4 className="font-medium text-sm md:text-lg">
                                     <ShinyText text="Safe Travel" disabled={false} speed={3} className="" />
                                 </h4>
-                                <p className="text-sm text-white/50">Trusted professional drivers</p>
+                                <p className="text-[10px] md:text-sm text-white/50">Trusted professional drivers</p>
                             </div>
                         </div>
                     </div>
@@ -102,9 +102,9 @@ export default function Transfers() {
             </section>
 
             {/* Route Selector & Booking Section */}
-            <section className="py-24 px-6 relative z-20 -mt-20">
+            <section className="py-12 md:py-24 px-4 md:px-6 relative z-20 -mt-10 md:-mt-20">
                 <div className="container mx-auto">
-                    <div className="bg-zinc-900 border border-white/10 rounded-xl p-6 md:p-12 shadow-2xl">
+                    <div className="bg-zinc-900 border border-white/10 rounded-xl p-4 md:p-12 shadow-2xl">
                         <div className="text-center mb-10">
                             <BlurText
                                 text="Book Your Transfer"
@@ -132,24 +132,21 @@ export default function Transfers() {
                                             className="flex items-center justify-between p-4 rounded-lg bg-black/40 border-white/5 hover:border-primary/30 transition-all cursor-pointer group"
                                             spotlightColor="rgba(205, 163, 104, 0.15)"
                                         >
-                                            <div className="flex items-center gap-4 relative z-10">
-                                                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 group-hover:text-primary transition-colors">
-                                                    <MapPin className="w-4 h-4" />
+                                            <div className="flex items-center gap-3 relative z-10 w-full">
+                                                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/5 flex-shrink-0 flex items-center justify-center text-white/50 group-hover:text-primary transition-colors">
+                                                    <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4" />
                                                 </div>
-                                                <div>
-                                                    <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-white/90">
-                                                        {route.from} <ArrowRight className="w-3 h-3 text-white/30" /> {route.to}
+                                                <div className="flex-grow min-w-0">
+                                                    <div className="flex flex-wrap items-center gap-1.5 md:gap-2 text-xs md:text-sm font-medium text-white/90 leading-tight">
+                                                        <span>{route.from}</span>
+                                                        <ArrowRight className="w-3 h-3 text-white/30" />
+                                                        <span>{route.to}</span>
                                                     </div>
-                                                    <div className="text-xs text-white/50 mt-1">{route.time} • Sedan/SUV</div>
+                                                    <div className="text-[10px] md:text-xs text-white/50 mt-0.5">{route.time} • Sedan/SUV</div>
                                                 </div>
-                                            </div>
-                                            <div className="text-right relative z-10">
-                                                <div className="text-lg font-serif text-white group-hover:text-primary transition-colors">₹{route.price}</div>
-                                                <InquiryDialog>
-                                                    <button className="text-[10px] uppercase tracking-wider text-white/40 hover:text-white underline decoration-white/20">
-                                                        Book
-                                                    </button>
-                                                </InquiryDialog>
+                                                <div className="text-right flex-shrink-0">
+                                                    <div className="text-sm md:text-lg font-serif text-white group-hover:text-primary transition-colors">₹{route.price}</div>
+                                                </div>
                                             </div>
                                         </SpotlightCard>
                                     ))}
@@ -161,19 +158,19 @@ export default function Transfers() {
                                 className="bg-white/5 rounded-lg p-6 border-white/5"
                                 spotlightColor="rgba(205, 163, 104, 0.1)"
                             >
-                                <h3 className="text-white text-lg font-serif mb-6 flex items-center gap-2 relative z-10">
-                                    <Car className="w-5 h-5 text-primary" />
+                                <h3 className="text-white text-base md:text-lg font-serif mb-4 md:mb-6 flex items-center gap-2 relative z-10">
+                                    <Car className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                                     Custom Inquiry
                                 </h3>
-                                <div className="space-y-4 relative z-10">
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="space-y-2">
-                                            <span className="text-xs text-white/50 uppercase">Pickup City</span>
-                                            <input type="text" placeholder="e.g. Guntur" className="w-full bg-black/50 border border-white/10 rounded px-4 py-3 text-sm focus:border-primary focus:outline-none" />
+                                <div className="space-y-3 md:space-y-4 relative z-10">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                                        <div className="space-y-1.5 md:space-y-2">
+                                            <span className="text-[10px] md:text-xs text-white/50 uppercase">Pickup City</span>
+                                            <input type="text" placeholder="e.g. Guntur" className="w-full bg-black/50 border border-white/10 rounded px-3 py-2 md:px-4 md:py-3 text-sm focus:border-primary focus:outline-none" />
                                         </div>
-                                        <div className="space-y-2">
-                                            <span className="text-xs text-white/50 uppercase">Drop City</span>
-                                            <input type="text" placeholder="e.g. Bangalore" className="w-full bg-black/50 border border-white/10 rounded px-4 py-3 text-sm focus:border-primary focus:outline-none" />
+                                        <div className="space-y-1.5 md:space-y-2">
+                                            <span className="text-[10px] md:text-xs text-white/50 uppercase">Drop City</span>
+                                            <input type="text" placeholder="e.g. Bangalore" className="w-full bg-black/50 border border-white/10 rounded px-3 py-2 md:px-4 md:py-3 text-sm focus:border-primary focus:outline-none" />
                                         </div>
                                     </div>
                                     <div className="space-y-2">
@@ -197,19 +194,19 @@ export default function Transfers() {
                     </div>
 
                     {/* Fleet Services Grid (Moved down) */}
-                    <div className="mt-24 text-center mb-16">
+                    <div className="mt-16 md:mt-24 text-center mb-8 md:mb-16">
                         <BlurText
                             text="Our Fleet Services"
-                            className="font-serif text-3xl md:text-4xl mb-6"
+                            className="font-serif text-2xl md:text-4xl mb-3 md:mb-6"
                             delay={50}
                             animateBy="words"
                         />
-                        <p className="text-white/50 max-w-2xl mx-auto">
+                        <p className="text-white/50 max-w-2xl mx-auto text-sm md:text-base">
                             We specialize in long-distance intercity transfers and premium airport pickup/drops.
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-24">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-16 md:mb-24">
                         {transferServices.map((service, index) => (
                             <motion.div
                                 key={index}
@@ -218,11 +215,14 @@ export default function Transfers() {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                             >
-                                <SpotlightCard className="bg-zinc-900/50 border-white/5 hover:border-primary/30 h-full" spotlightColor="rgba(205, 163, 104, 0.2)">
-                                    <div className="mb-6 inline-block p-4 rounded-full bg-zinc-800 text-white group-hover:bg-primary group-hover:text-black transition-colors">
-                                        <service.icon className="w-6 h-6" />
+                                <SpotlightCard className="bg-zinc-900/50 border-white/5 hover:border-primary/30 h-full p-6 md:p-8" spotlightColor="rgba(205, 163, 104, 0.2)">
+                                    <div className="flex items-center gap-4 mb-4 md:block md:mb-6">
+                                        <div className="inline-block p-3 md:p-4 rounded-full bg-zinc-800 text-white group-hover:bg-primary group-hover:text-black transition-colors">
+                                            <service.icon className="w-5 h-5 md:w-6 md:h-6" />
+                                        </div>
+                                        <h3 className="font-serif text-xl md:text-2xl md:hidden">{service.title}</h3>
                                     </div>
-                                    <h3 className="font-serif text-2xl mb-4">{service.title}</h3>
+                                    <h3 className="hidden md:block font-serif text-2xl mb-4">{service.title}</h3>
                                     <p className="text-white/60 mb-8 leading-relaxed">
                                         {service.description}
                                     </p>
