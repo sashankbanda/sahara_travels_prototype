@@ -4,6 +4,7 @@ import { Footer } from "@/components/home/Footer";
 import { ShieldCheck, UserCheck, MapPin, Car, IndianRupee, ArrowRight } from "lucide-react";
 import { InquiryDialog } from "@/components/shared/InquiryDialog";
 import { Button } from "@/components/ui/button";
+import SpotlightCard from "@/components/animate-ui/SpotlightCard";
 
 export default function Transfers() {
     const transferServices = [
@@ -183,23 +184,24 @@ export default function Transfers() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="bg-zinc-900/50 border border-white/5 p-8 hover:border-primary/30 transition-colors group"
                             >
-                                <div className="mb-6 inline-block p-4 rounded-full bg-zinc-800 text-white group-hover:bg-primary group-hover:text-black transition-colors">
-                                    <service.icon className="w-6 h-6" />
-                                </div>
-                                <h3 className="font-serif text-2xl mb-4">{service.title}</h3>
-                                <p className="text-white/60 mb-8 leading-relaxed">
-                                    {service.description}
-                                </p>
-                                <div className="text-primary text-sm font-medium uppercase tracking-wider flex items-center justify-between gap-2">
-                                    <span>Starts at <span className="text-white">{service.price}</span></span>
-                                    <InquiryDialog>
-                                        <Button variant="outline" size="sm" className="border-white/20 hover:bg-white hover:text-black">
-                                            Book Now
-                                        </Button>
-                                    </InquiryDialog>
-                                </div>
+                                <SpotlightCard className="bg-zinc-900/50 border-white/5 hover:border-primary/30 h-full" spotlightColor="rgba(205, 163, 104, 0.2)">
+                                    <div className="mb-6 inline-block p-4 rounded-full bg-zinc-800 text-white group-hover:bg-primary group-hover:text-black transition-colors">
+                                        <service.icon className="w-6 h-6" />
+                                    </div>
+                                    <h3 className="font-serif text-2xl mb-4">{service.title}</h3>
+                                    <p className="text-white/60 mb-8 leading-relaxed">
+                                        {service.description}
+                                    </p>
+                                    <div className="text-primary text-sm font-medium uppercase tracking-wider flex items-center justify-between gap-2">
+                                        <span>Starts at <span className="text-white">{service.price}</span></span>
+                                        <InquiryDialog>
+                                            <Button variant="outline" size="sm" className="border-white/20 hover:bg-white hover:text-black">
+                                                Book Now
+                                            </Button>
+                                        </InquiryDialog>
+                                    </div>
+                                </SpotlightCard>
                             </motion.div>
                         ))}
                     </div>
