@@ -74,10 +74,12 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                                 <Link
                                     to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                                     onClick={onClose}
-                                    className="text-4xl md:text-5xl font-serif text-white/80 hover:text-white transition-colors tracking-wide flex items-center gap-4 group"
+                                    className="relative text-4xl md:text-5xl font-serif text-white/80 hover:text-white transition-colors tracking-wide group"
                                 >
                                     {item}
-                                    <ArrowRight className="w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary" />
+                                    <span className="absolute left-full top-1/2 -translate-y-1/2 ml-4">
+                                        <ArrowRight className="w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary" />
+                                    </span>
                                 </Link>
                             </motion.div>
                         ))}
@@ -92,11 +94,11 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                         </button>
                     </motion.div>
 
-                    <div className="absolute bottom-12 text-white/20 text-xs tracking-[0.3em] font-mono">
+                    <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-white/20 text-xs tracking-[0.3em] font-mono whitespace-nowrap">
                         SAHARA TRAVELS © 2026
                     </div>
-                </motion.div>
+                </motion.div >
             )}
-        </AnimatePresence>
+        </AnimatePresence >
     );
 };
