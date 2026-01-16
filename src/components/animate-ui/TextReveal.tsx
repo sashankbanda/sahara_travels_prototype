@@ -1,5 +1,5 @@
 "use client";
-import { motion, useInView, useAnimation, Variant } from "framer-motion";
+import { motion, useInView, useAnimation, Variants } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
@@ -18,7 +18,7 @@ export const TextReveal = ({
     tag = "h2",
     staggerDelay = 0.02,
     duration = 0.5,
-    once = true,
+    once = false,
 }: TextRevealProps) => {
     const controls = useAnimation();
     const ref = useRef(null);
@@ -34,7 +34,7 @@ export const TextReveal = ({
 
     const words = text.split(" ");
 
-    const container: Variant = {
+    const container: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -44,7 +44,7 @@ export const TextReveal = ({
         },
     };
 
-    const child: Variant = {
+    const child: Variants = {
         hidden: {
             opacity: 0,
             y: 20,
