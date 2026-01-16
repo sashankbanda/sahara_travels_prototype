@@ -106,8 +106,12 @@ export default function Transfers() {
                                         { from: "Kakinada", to: "Vijayawada Airport", price: "3,200", time: "3-4 hrs" },
                                         { from: "Rajahmundry", to: "Visakhapatnam", price: "4,000", time: "4-5 hrs" }
                                     ].map((route, i) => (
-                                        <div key={i} className="flex items-center justify-between p-4 rounded-lg bg-black/40 border border-white/5 hover:border-primary/30 transition-all cursor-pointer group">
-                                            <div className="flex items-center gap-4">
+                                        <SpotlightCard
+                                            key={i}
+                                            className="flex items-center justify-between p-4 rounded-lg bg-black/40 border-white/5 hover:border-primary/30 transition-all cursor-pointer group"
+                                            spotlightColor="rgba(205, 163, 104, 0.15)"
+                                        >
+                                            <div className="flex items-center gap-4 relative z-10">
                                                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 group-hover:text-primary transition-colors">
                                                     <MapPin className="w-4 h-4" />
                                                 </div>
@@ -118,7 +122,7 @@ export default function Transfers() {
                                                     <div className="text-xs text-white/50 mt-1">{route.time} • Sedan/SUV</div>
                                                 </div>
                                             </div>
-                                            <div className="text-right">
+                                            <div className="text-right relative z-10">
                                                 <div className="text-lg font-serif text-white group-hover:text-primary transition-colors">₹{route.price}</div>
                                                 <InquiryDialog>
                                                     <button className="text-[10px] uppercase tracking-wider text-white/40 hover:text-white underline decoration-white/20">
@@ -126,18 +130,21 @@ export default function Transfers() {
                                                     </button>
                                                 </InquiryDialog>
                                             </div>
-                                        </div>
+                                        </SpotlightCard>
                                     ))}
                                 </div>
                             </div>
 
                             {/* Custom Booking */}
-                            <div className="bg-white/5 rounded-lg p-6 border border-white/5">
-                                <h3 className="text-white text-lg font-serif mb-6 flex items-center gap-2">
+                            <SpotlightCard
+                                className="bg-white/5 rounded-lg p-6 border-white/5"
+                                spotlightColor="rgba(205, 163, 104, 0.1)"
+                            >
+                                <h3 className="text-white text-lg font-serif mb-6 flex items-center gap-2 relative z-10">
                                     <Car className="w-5 h-5 text-primary" />
                                     Custom Inquiry
                                 </h3>
-                                <div className="space-y-4">
+                                <div className="space-y-4 relative z-10">
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="space-y-2">
                                             <span className="text-xs text-white/50 uppercase">Pickup City</span>
@@ -164,7 +171,7 @@ export default function Transfers() {
                                         We do not provide local point-to-point taxi services (e.g. within same city).
                                     </p>
                                 </div>
-                            </div>
+                            </SpotlightCard>
                         </div>
                     </div>
 
