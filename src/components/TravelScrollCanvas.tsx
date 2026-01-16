@@ -23,7 +23,7 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
             const loadPromises = Array.from({ length: FRAME_COUNT }, (_, i) => {
                 return new Promise<HTMLImageElement>((resolve, reject) => {
                     const img = new Image();
-                    // Pad index with zeros (001, 002, ... 240)
+                    // Filename format: ezgif-frame-001.jpg
                     const frameIndex = (i + 1).toString().padStart(3, '0');
                     img.src = `${IMAGES_FOLDER}/ezgif-frame-${frameIndex}.jpg`;
 
