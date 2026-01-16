@@ -42,9 +42,9 @@ const features = [
 
 export const WhyChooseUs = () => {
     return (
-        <section className="py-12 md:py-24 bg-black relative overflow-hidden">
+        <section className="py-8 md:py-24 bg-black relative overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
-                <div className="text-center mb-16">
+                <div className="text-center mb-10 md:mb-16">
                     <BlurText
                         text="The Sahara Advantage"
                         className="text-primary text-[10px] uppercase tracking-[0.4em] block mb-4 opacity-70"
@@ -53,7 +53,7 @@ export const WhyChooseUs = () => {
                     />
                     <BlurText
                         text="Why Travel With Us?"
-                        className="font-serif text-3xl md:text-5xl text-white/90"
+                        className="font-serif text-2xl md:text-5xl text-white/90"
                         delay={50}
                         animateBy="words"
                     />

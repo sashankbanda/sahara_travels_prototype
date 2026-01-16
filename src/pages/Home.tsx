@@ -35,7 +35,7 @@ const Home = () => {
 
             <main>
                 {/* Scrollytelling Hero Section */}
-                <section ref={containerRef} className="h-[600vh] relative">
+                <section ref={containerRef} className="h-[350vh] md:h-[600vh] relative">
                     <div className="sticky top-0 h-screen w-full overflow-hidden">
                         <div className="absolute inset-0 z-0">
                             <TravelScrollCanvas scrollYProgress={scrollYProgress} />

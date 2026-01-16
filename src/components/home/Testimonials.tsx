@@ -5,15 +5,15 @@ import BlurText from "@/components/animate-ui/BlurText";
 
 export function Testimonials() {
     return (
-        <section className="py-20 relative overflow-hidden">
-            <div className="container mx-auto px-6 mb-12 text-center">
+        <section className="py-12 md:py-20 relative overflow-hidden">
+            <div className="container mx-auto px-6 mb-8 md:mb-12 text-center">
                 <BlurText
                     text="What Travelers Say"
-                    className="font-serif text-3xl md:text-5xl text-white mb-4"
+                    className="font-serif text-2xl md:text-5xl text-white mb-4"
                     delay={50}
                     animateBy="words"
                 />
-                <p className="text-white/60 max-w-2xl mx-auto">
+                <p className="text-white/60 max-w-2xl mx-auto text-sm md:text-base">
                     Stories from those who have experienced the magic of Sahara Journeys.
                 </p>
             </div>

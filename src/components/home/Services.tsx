@@ -48,14 +48,14 @@ const taxiServices = [
 export const Services = () => {
     const [activeTab, setActiveTab] = useState("tours");
     return (
-        <section className="py-12 md:py-24 relative overflow-hidden">
+        <section className="py-8 md:py-24 relative overflow-hidden">
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-8 md:mb-16">
                     <span className="text-primary text-[10px] uppercase tracking-[0.4em] block mb-3 md:mb-4 opacity-70">
                         Our Services
                     </span>
-                    <h2 className="font-serif text-3xl md:text-5xl text-white/90 mb-4 md:mb-6">
+                    <h2 className="font-serif text-2xl md:text-5xl text-white/90 mb-4 md:mb-6">
                         Choose Your Journey
                     </h2>
                     <p className="text-white/50 max-w-2xl mx-auto font-light text-sm md:text-base">
@@ -182,7 +182,7 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
             <Link
                 to={item.link}
                 onMouseMove={handleMouseMove}
-                className="relative block w-full h-full aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-black border border-transparent transition-all duration-700 rounded-[inherit]"
+                className="relative block w-full h-full aspect-[3/2] md:aspect-[16/10] overflow-hidden bg-black border border-transparent transition-all duration-700 rounded-[inherit]"
             >
                 {/* Spotlight Effect */}
                 {/* Image Layer (z-0) */}
@@ -211,7 +211,7 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
                     </div>
                 )}
 
-                <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-8 z-30">
+                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-8 z-30">
                     <div className="transform translate-y-0 md:translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                         <h3 className="font-serif text-2xl md:text-3xl text-white mb-2 md:mb-3 group-hover:text-primary transition-colors leading-tight">
                             {item.title}
