@@ -14,6 +14,8 @@ export const InfiniteMovingCards = ({
         quote: string;
         name: string;
         title: string;
+        image: string;
+        rating: number;
     }[];
     direction?: "left" | "right";
     speed?: "fast" | "normal" | "slow";
@@ -92,10 +94,10 @@ export const InfiniteMovingCards = ({
             >
                 {items.map((item, idx) => (
                     <li
-                        className="w-[350px] max-w-full relative rounded-2xl border border-white/10 flex-shrink-0 bg-black/20 backdrop-blur-md px-8 py-6 md:w-[450px]"
+                        className="w-[350px] max-w-full relative rounded-2xl border border-white/20 flex-shrink-0 bg-black/10 backdrop-blur-xl px-8 py-6 md:w-[450px] shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]"
                         style={{
-                            // Removed hardcoded gradient to allow glass effect to shine
-                            background: "rgba(255, 255, 255, 0.05)",
+                            // Stronger glass effect
+                            background: "rgba(255, 255, 255, 0.08)",
                         }}
                         key={item.name}
                     >
@@ -104,19 +106,38 @@ export const InfiniteMovingCards = ({
                                 aria-hidden="true"
                                 className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
                             ></div>
-                            <span className=" relative z-20 text-sm leading-[1.6] text-white font-normal">
-                                "{item.quote}"
-                            </span>
-                            <div className="relative z-20 mt-6 flex flex-row items-center">
-                                <span className="flex flex-col gap-1">
+
+                            <div className="relative z-20 mb-6 flex flex-row items-center gap-4">
+                                <div className="h-10 w-10 rounded-full overflow-hidden border border-white/20">
+                                    <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+                                </div>
+                                <div className="flex flex-col gap-1">
                                     <span className="text-sm leading-[1.6] text-white font-bold">
                                         {item.name}
                                     </span>
-                                    <span className="text-sm leading-[1.6] text-white/50 font-normal">
+                                    <span className="text-xs leading-[1.6] text-white/50 font-normal">
                                         {item.title}
                                     </span>
-                                </span>
+                                    <div className="flex items-center gap-0.5 mt-1">
+                                        {Array.from({ length: 5 }).map((_, i) => (
+                                            <svg
+                                                key={i}
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24"
+                                                fill={i < item.rating ? "#FDB931" : "none"}
+                                                stroke={i < item.rating ? "none" : "#666"}
+                                                className="w-3.5 h-3.5"
+                                            >
+                                                <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
+                                            </svg>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
+
+                            <span className=" relative z-20 text-sm leading-[1.6] text-white font-normal block">
+                                "{item.quote}"
+                            </span>
                         </blockquote>
                     </li>
                 ))}
