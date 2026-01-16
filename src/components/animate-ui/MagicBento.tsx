@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
+import ShinyText from "@/components/animate-ui/ShinyText";
 
 export interface BentoCardProps {
     color?: string;
@@ -169,7 +170,7 @@ const ParticleCard: React.FC<{
             }
 
             memoizedParticles.current.forEach((particle, index) => {
-                const timeoutId = setTimeout(() => {
+                const timeoutId = window.setTimeout(() => {
                     if (!isHoveredRef.current || !cardRef.current) return;
 
                     const clone = particle.cloneNode(true) as HTMLDivElement;
@@ -703,7 +704,9 @@ const MagicBento: React.FC<BentoProps> = ({
                                     enableMagnetism={enableMagnetism}
                                 >
                                     <div className="card__header flex justify-between gap-3 relative text-white">
-                                        <span className="card__label text-base">{card.label}</span>
+                                        <span className="card__label text-base">
+                                            <ShinyText text={card.label || ''} disabled={false} speed={3} className="" />
+                                        </span>
                                     </div>
                                     <div className="card__content flex flex-col relative text-white">
                                         <h3 className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? 'text-clamp-1' : ''}`}>
@@ -835,7 +838,9 @@ const MagicBento: React.FC<BentoProps> = ({
                                 }}
                             >
                                 <div className="card__header flex justify-between gap-3 relative text-white">
-                                    <span className="card__label text-base">{card.label}</span>
+                                    <span className="card__label text-base">
+                                        <ShinyText text={card.label || ''} disabled={false} speed={3} className="" />
+                                    </span>
                                 </div>
                                 <div className="card__content flex flex-col relative text-white">
                                     <h3 className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? 'text-clamp-1' : ''}`}>

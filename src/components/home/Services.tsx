@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowRight, MapPin, ShieldCheck, UserCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { StarsBackground } from "@/components/animate-ui/components/backgrounds/stars";
+import ShinyText from "@/components/animate-ui/ShinyText";
 
 const tourServices = [
     {
@@ -135,15 +136,23 @@ export const Services = () => {
 
                 {/* Inclusive / Foreign Traveler Reassurance Block */}
                 <div className="mt-24 max-w-4xl mx-auto text-center border-t border-white/5 pt-12">
-                    <h3 className="text-white/80 font-serif text-2xl mb-4">First time in Northeast India?</h3>
+                    <h3 className="font-serif text-2xl mb-4">
+                        <ShinyText text="First time in Northeast India?" disabled={false} speed={3} className="" />
+                    </h3>
                     <p className="text-white/50 mb-8 font-light leading-relaxed">
                         We understand that traveling to a new region can be daunting. We are here to make it safe and simple.
                         Our drivers are verified locals who speak English, Hindi, and local dialects.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4 text-xs md:text-sm text-white/60 font-mono uppercase tracking-wider">
-                        <span className="px-4 py-2 bg-white/5 rounded-sm border border-white/10">Pay 30% Advance</span>
-                        <span className="px-4 py-2 bg-white/5 rounded-sm border border-white/10">English Support</span>
-                        <span className="px-4 py-2 bg-white/5 rounded-sm border border-white/10">Local Drivers</span>
+                        <span className="px-4 py-2 bg-white/5 rounded-sm border border-white/10">
+                            <ShinyText text="Pay 30% Advance" disabled={false} speed={3} className="" />
+                        </span>
+                        <span className="px-4 py-2 bg-white/5 rounded-sm border border-white/10">
+                            <ShinyText text="English Support" disabled={false} speed={3} className="" />
+                        </span>
+                        <span className="px-4 py-2 bg-white/5 rounded-sm border border-white/10">
+                            <ShinyText text="Local Drivers" disabled={false} speed={3} className="" />
+                        </span>
                     </div>
                 </div>
 
@@ -188,7 +197,7 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
             {item.badge && (
                 <div className="absolute top-4 right-4 z-30">
                     <span className="bg-primary/90 text-black text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-sm">
-                        {item.badge}
+                        <ShinyText text={item.badge} disabled={false} speed={3} check={false} className="" color="#000000" shineColor="#ffffff" />
                     </span>
                 </div>
             )}
@@ -207,7 +216,7 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
                         <div className="flex flex-wrap gap-2 mb-6">
                             {item.features.map((feature: string) => (
                                 <span key={feature} className="text-[10px] uppercase tracking-wider text-white/60 border border-white/10 px-2 py-1 rounded-sm">
-                                    {feature}
+                                    <ShinyText text={feature} disabled={false} speed={3} className="" />
                                 </span>
                             ))}
                         </div>

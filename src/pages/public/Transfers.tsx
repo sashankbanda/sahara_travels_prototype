@@ -6,6 +6,7 @@ import { InquiryDialog } from "@/components/shared/InquiryDialog";
 import { Button } from "@/components/ui/button";
 import SpotlightCard from "@/components/animate-ui/SpotlightCard";
 import BlurText from "@/components/animate-ui/BlurText";
+import ShinyText from "@/components/animate-ui/ShinyText";
 
 export default function Transfers() {
     const transferServices = [
@@ -113,7 +114,9 @@ export default function Transfers() {
                         <div className="grid md:grid-cols-2 gap-12">
                             {/* Popular Routes */}
                             <div>
-                                <h3 className="text-primary text-xs uppercase tracking-[0.2em] mb-6">Popular Routes</h3>
+                                <h3 className="text-primary text-xs uppercase tracking-[0.2em] mb-6">
+                                    <ShinyText text="Popular Routes" disabled={false} speed={3} className="" />
+                                </h3>
                                 <div className="space-y-4">
                                     {[
                                         { from: "Vijayawada", to: "Hyderabad Airport", price: "5,500", time: "5-6 hrs" },
