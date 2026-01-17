@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowRight, MapPin, ShieldCheck, UserCheck } from "lucide-react";
@@ -180,7 +180,7 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
             duration={1.5}
         >
             <Link
-                to={item.link}
+                href={item.link}
                 onMouseMove={handleMouseMove}
                 className="relative block w-full h-full aspect-[3/2] md:aspect-[16/10] overflow-hidden bg-black border border-transparent transition-all duration-700 rounded-[inherit]"
             >

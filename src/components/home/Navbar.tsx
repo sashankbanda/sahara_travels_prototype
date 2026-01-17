@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -49,7 +49,7 @@ export const Navbar = () => {
                 >
                     {/* Brand */}
                     <Link
-                        to="/"
+                        href="/"
                         className="text-lg md:text-xl font-serif text-white tracking-widest uppercase relative z-10 flex items-center gap-3"
                     >
                         <img
@@ -72,7 +72,7 @@ export const Navbar = () => {
                         ].map((item) => (
                             <Link
                                 key={item.label}
-                                to={item.path}
+                                href={item.path}
                                 className="text-[10px] uppercase tracking-[0.2em] text-white/90 hover:text-white transition-all duration-500 font-medium relative overflow-hidden group/link"
                             >
                                 <span className="relative z-10">{item.label}</span>

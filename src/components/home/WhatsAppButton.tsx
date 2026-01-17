@@ -1,10 +1,11 @@
+"use client";
 
 import { MessageCircle } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 
 export const WhatsAppButton = () => {
-    const location = useLocation();
-    const isDashboard = location.pathname.includes("/dashboard");
+    const pathname = usePathname();
+    const isDashboard = pathname?.includes("/dashboard");
 
     // Don't show on dashboard pages
     if (isDashboard) return null;

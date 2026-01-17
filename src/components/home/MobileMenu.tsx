@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { X, ArrowRight } from "lucide-react";
 import { useEffect } from "react";
 
@@ -72,7 +72,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                         {links.map((item) => (
                             <motion.div key={item} variants={linkVariants}>
                                 <Link
-                                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                                    href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                                     onClick={onClose}
                                     className="relative text-4xl md:text-5xl font-serif text-white/80 hover:text-white transition-colors tracking-wide group"
                                 >

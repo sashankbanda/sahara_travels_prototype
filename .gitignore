@@ -6,6 +6,10 @@ node_modules
 # Testing
 coverage
 
+# Next.js
+/.next/
+/out/
+
 # Production
 dist
 build
@@ -36,5 +40,5 @@ Thumbs.db
 *.sln
 *.sw?
 
-# Vite
+# Vite (Legacy)
 *.local

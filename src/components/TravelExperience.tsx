@@ -1,3 +1,4 @@
+"use client";
 import { MotionValue, motion, useTransform, useScroll } from 'framer-motion';
 import { ArrowRight, MapPin, Compass, PlayCircle, Plane, Phone, Calendar } from 'lucide-react';
 import { cn } from '@/lib/utils';
