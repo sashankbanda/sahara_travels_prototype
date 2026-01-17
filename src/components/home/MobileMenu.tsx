@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { X, ArrowRight } from "lucide-react";
+import { X, ArrowRight, ChevronDown } from "lucide-react";
 import { useEffect } from "react";
 
 interface MobileMenuProps {
@@ -87,10 +87,16 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
 
                     <motion.div
                         variants={linkVariants}
-                        className="mt-16"
+                        className="mt-16 flex flex-col items-center gap-6"
                     >
-                        <button className="text-black bg-white hover:bg-white/90 px-10 py-4 rounded-full transition-all duration-500 text-sm uppercase tracking-[0.25em] font-bold hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                            Enquire Now
+                        {/* Language Dropdown */}
+                        <div className="flex items-center gap-2 text-white/70 hover:text-white cursor-pointer transition-colors text-sm uppercase font-medium tracking-widest">
+                            <span>EN</span>
+                            <ChevronDown className="w-3 h-3" />
+                        </div>
+
+                        <button className="text-black bg-white hover:bg-primary transition-all duration-500 px-10 py-3 rounded-full text-xs uppercase tracking-[0.25em] font-bold shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(253,186,49,0.4)]">
+                            Plan Trip
                         </button>
                     </motion.div>
 
