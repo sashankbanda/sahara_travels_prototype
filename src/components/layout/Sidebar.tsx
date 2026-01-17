@@ -17,9 +17,10 @@ interface SidebarProps {
     className?: string;
     collapsed?: boolean;
     toggleCollapse?: () => void;
+    showBrand?: boolean;
 }
 
-export const Sidebar = memo(({ className, collapsed = false, toggleCollapse }: SidebarProps) => {
+export const Sidebar = memo(({ className, collapsed = false, toggleCollapse, showBrand = true }: SidebarProps) => {
     const pathname = usePathname();
     const { logout } = useAuth();
 
@@ -37,18 +38,20 @@ export const Sidebar = memo(({ className, collapsed = false, toggleCollapse }: S
             className={`bg-zinc-900 border-r border-white/10 flex flex-col transition-all duration-300 ${collapsed ? 'w-[80px]' : 'w-72'
                 } ${className}`}
         >
-            <div className={`h-24 flex items-center border-b border-white/5 ${collapsed ? 'justify-center p-0' : 'px-4 gap-2 md:px-6 md:gap-3'}`}>
-                <img
-                    src="/images/home/header_logo.png"
-                    alt="Sahara Logo"
-                    className="h-6 w-auto object-contain md:h-8"
-                />
-                {!collapsed && (
-                    <span className="font-serif text-xs md:text-base text-white tracking-widest uppercase flex items-center gap-1 md:gap-1.5 whitespace-nowrap overflow-hidden">
-                        <span className="font-bold">Sahara</span> <span className="font-light opacity-90">Journeys</span><span className="text-primary">.</span>
-                    </span>
-                )}
-            </div>
+            {showBrand && (
+                <div className={`h-24 flex items-center border-b border-white/5 ${collapsed ? 'justify-center p-0' : 'px-4 gap-2 md:px-6 md:gap-3'}`}>
+                    <img
+                        src="/images/home/header_logo.png"
+                        alt="Sahara Logo"
+                        className="h-6 w-auto object-contain md:h-8"
+                    />
+                    {!collapsed && (
+                        <span className="font-serif text-xs md:text-base text-white tracking-widest uppercase flex items-center gap-1 md:gap-1.5 whitespace-nowrap overflow-hidden">
+                            <span className="font-bold">Sahara</span> <span className="font-light opacity-90">Journeys</span><span className="text-primary">.</span>
+                        </span>
+                    )}
+                </div>
+            )}
 
             {/* Toggle Button (Desktop Only) */}
             {toggleCollapse && (
