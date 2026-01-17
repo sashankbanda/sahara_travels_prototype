@@ -353,7 +353,7 @@ const ParticleCard: React.FC<{
     };
 
 const GlobalSpotlight: React.FC<{
-    gridRef: React.RefObject<HTMLDivElement | null> | React.MutableRefObject<HTMLDivElement | null>;
+    gridRef: React.RefObject<HTMLDivElement>;
     disableAnimations?: boolean;
     enabled?: boolean;
     spotlightRadius?: number;
@@ -492,7 +492,7 @@ const GlobalSpotlight: React.FC<{
 
 const BentoCardGrid: React.FC<{
     children: React.ReactNode;
-    gridRef?: React.RefObject<HTMLDivElement | null> | React.MutableRefObject<HTMLDivElement | null>;
+    gridRef?: React.RefObject<HTMLDivElement>;
 }> = ({ children, gridRef }) => (
     <div
         className="bento-section grid gap-2 p-3 max-w-[54rem] select-none relative"
