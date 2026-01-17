@@ -52,61 +52,70 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
         loadImages();
     }, []);
 
-    // Update canvas on scroll
-    useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        if (!canvasRef.current || !isLoaded || images.length === 0) return;
-
+    // Draw a specific frame
+    const renderFrame = (index: number) => {
         const canvas = canvasRef.current;
+        if (!canvas || !images[index]) return;
+
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
-        // Calculate current frame index (0 to 239)
-        // Clamp to ensure we don't exceed bounds
-        const frameIndex = Math.min(
-            FRAME_COUNT - 1,
-            Math.floor(latest * FRAME_COUNT)
-        );
+        const img = images[index];
 
-        const img = images[frameIndex];
-        if (!img) return;
-
-        // Canvas sizing logic to cover the screen while maintaining aspect ratio
-        // We want the image to behave like 'object-fit: cover'
+        // Canvas sizing logic (same as before)
         const canvasWidth = canvas.width / window.devicePixelRatio;
         const canvasHeight = canvas.height / window.devicePixelRatio;
 
         // Clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Calculate aspect ratios
+        // Aspect ratios
         const imgRatio = img.width / img.height;
         const canvasRatio = canvasWidth / canvasHeight;
 
         let drawWidth, drawHeight, offsetX, offsetY;
 
         if (canvasRatio > imgRatio) {
-            // Canvas is wider than image (crop top/bottom)
             drawWidth = canvasWidth;
             drawHeight = canvasWidth / imgRatio;
             offsetX = 0;
             offsetY = (canvasHeight - drawHeight) / 2;
         } else {
-            // Canvas is taller than image (crop sides)
             drawWidth = canvasHeight * imgRatio;
             drawHeight = canvasHeight;
             offsetX = (canvasWidth - drawWidth) / 2;
             offsetY = 0;
         }
 
-        // Draw image with high DPI support
-        // The context is already scaled by devicePixelRatio in the resize handler/init
-        ctx.filter = 'brightness(0.9) contrast(1.1)'; // Slight cinematic touch
+        ctx.filter = 'brightness(0.9) contrast(1.1)';
         ctx.drawImage(
             img,
-            0, 0, img.width, img.height, // Source rectangle
-            offsetX, offsetY, drawWidth, drawHeight // Destination rectangle
+            0, 0, img.width, img.height,
+            offsetX, offsetY, drawWidth, drawHeight
         );
+    };
+
+    // Update canvas on scroll
+    useMotionValueEvent(scrollYProgress, "change", (latest) => {
+        if (!isLoaded || images.length === 0) return;
+        const frameIndex = Math.min(
+            FRAME_COUNT - 1,
+            Math.floor(latest * FRAME_COUNT)
+        );
+        renderFrame(frameIndex);
     });
+
+    // Draw initial frame when loaded
+    useEffect(() => {
+        if (isLoaded && images.length > 0) {
+            const currentProgress = scrollYProgress.get();
+            const frameIndex = Math.min(
+                FRAME_COUNT - 1,
+                Math.floor(currentProgress * FRAME_COUNT)
+            );
+            renderFrame(frameIndex);
+        }
+    }, [isLoaded, images, scrollYProgress]);
 
     // Handle Resize & Retina Displays
     useEffect(() => {
@@ -115,25 +124,28 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
             const canvas = canvasRef.current;
             const dpr = window.devicePixelRatio || 1;
 
-            // Set actual size in memory (scaled to account for extra pixel density)
             canvas.width = window.innerWidth * dpr;
             canvas.height = window.innerHeight * dpr;
 
-            // Normalize coordinate system to use css pixels
             const ctx = canvas.getContext('2d');
             if (ctx) ctx.scale(dpr, dpr);
 
-            // Force a redraw of the current frame if we have progress
-            // We can't easily access the *current* MotionValue here without reading it, 
-            // but the next scroll event will fix it instantly. 
-            // For initial load, we might want to draw frame 0.
+            // Redraw current frame after resize
+            if (isLoaded && images.length > 0) {
+                const currentProgress = scrollYProgress.get();
+                const frameIndex = Math.min(
+                    FRAME_COUNT - 1,
+                    Math.floor(currentProgress * FRAME_COUNT)
+                );
+                renderFrame(frameIndex);
+            }
         };
 
         window.addEventListener('resize', handleResize);
-        handleResize(); // Init
+        handleResize();
 
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [isLoaded, images, scrollYProgress]);
 
     return (
         <canvas
