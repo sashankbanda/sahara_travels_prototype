@@ -9,10 +9,14 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-        // Check localStorage on initial load
-        return localStorage.getItem("isAuthenticated") === "true";
-    });
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+    useEffect(() => {
+        const stored = localStorage.getItem("isAuthenticated");
+        if (stored === "true") {
+            setIsAuthenticated(true);
+        }
+    }, []);
 
     const login = () => {
         localStorage.setItem("isAuthenticated", "true");
