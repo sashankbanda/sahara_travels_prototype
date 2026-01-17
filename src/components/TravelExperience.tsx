@@ -24,9 +24,40 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
     const engineOpacity = useTransform(scrollYProgress, [0.6, 0.7, 1], [0, 1, 1]);
     const engineY = useTransform(scrollYProgress, [0.6, 0.7], [50, 0]);
 
+    // --- Scroll Indicator (Dots) ---
+    const dot1Color = useTransform(scrollYProgress, [0, 0.28, 0.3], ["#FFFFFF", "#FFFFFF", "rgba(255, 255, 255, 0.2)"]);
+    const dot1Scale = useTransform(scrollYProgress, [0, 0.28, 0.3], [1.3, 1.3, 0.8]);
+
+    const dot2Color = useTransform(scrollYProgress, [0.28, 0.3, 0.6, 0.62], ["rgba(255, 255, 255, 0.2)", "#FFFFFF", "#FFFFFF", "rgba(255, 255, 255, 0.2)"]);
+    const dot2Scale = useTransform(scrollYProgress, [0.28, 0.3, 0.6, 0.62], [0.8, 1.3, 1.3, 0.8]);
+
+    const dot3Color = useTransform(scrollYProgress, [0.6, 0.62, 1], ["rgba(255, 255, 255, 0.2)", "#FFFFFF", "#FFFFFF"]);
+    const dot3Scale = useTransform(scrollYProgress, [0.6, 0.62, 1], [0.8, 1.3, 1.3]);
+
     return (
         <div className={cn("absolute inset-0 pointer-events-none z-10 flex flex-col justify-between p-8 md:p-12 lg:p-20 overflow-hidden text-white", className)}>
             {/* --- Global HUD Elements (Always visible or persistent) --- */}
+
+            {/* Scroll Indicator Dots */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 1 }}
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4"
+            >
+                <motion.div
+                    style={{ backgroundColor: dot1Color, scale: dot1Scale }}
+                    className="w-1.5 h-1.5 rounded-full backdrop-blur-sm transition-all duration-500"
+                />
+                <motion.div
+                    style={{ backgroundColor: dot2Color, scale: dot2Scale }}
+                    className="w-1.5 h-1.5 rounded-full backdrop-blur-sm transition-all duration-500"
+                />
+                <motion.div
+                    style={{ backgroundColor: dot3Color, scale: dot3Scale }}
+                    className="w-1.5 h-1.5 rounded-full backdrop-blur-sm transition-all duration-500"
+                />
+            </motion.div>
 
             <motion.div
                 initial={{ opacity: 0 }}
