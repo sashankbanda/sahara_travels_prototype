@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 
@@ -38,10 +39,27 @@ export default function AdminLayout({
                     <span className="font-serif text-xl font-bold text-white">Sahara<span className="text-primary">.</span></span>
                 </div>
                 <nav className="flex-1 p-4 space-y-1">
-                    <div className="px-3 py-2 text-primary bg-primary/10 rounded-md text-sm font-medium">Dashboard</div>
-                    <div className="px-3 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-md text-sm transition-colors cursor-pointer">Tours</div>
-                    <div className="px-3 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-md text-sm transition-colors cursor-pointer">Users</div>
-                    <div className="px-3 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-md text-sm transition-colors cursor-pointer">Settings</div>
+                    {[
+                        { name: 'Dashboard', href: '/admin' },
+                        { name: 'Enquiries', href: '/admin/enquiries' },
+                        { name: 'Tours', href: '/admin/tours' },
+                        { name: 'Users', href: '/admin/users' },
+                        { name: 'Settings', href: '/admin/settings' },
+                    ].map((item) => {
+                        const isActive = pathname === item.href;
+                        return (
+                            <Link
+                                key={item.name}
+                                href={item.href}
+                                className={`px-3 py-2 rounded-md text-sm transition-colors block ${isActive
+                                    ? 'bg-primary/10 text-primary font-medium'
+                                    : 'text-white/60 hover:text-white hover:bg-white/5'
+                                    }`}
+                            >
+                                {item.name}
+                            </Link>
+                        );
+                    })}
                 </nav>
                 <div className="p-4 border-t border-white/5">
                     <div className="flex items-center gap-3 px-3 py-2">
