@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import {
   AreaChart,
   Area,
@@ -23,8 +23,9 @@ const data = [
   { month: "Jul", revenue: 72000, bookings: 28 },
 ];
 
-export function RevenueChart() {
+export const RevenueChart = memo(function RevenueChart() {
   const [isMobile, setIsMobile] = useState(false);
+  // ... existing code ...
   const [activeSeries, setActiveSeries] = useState<string[]>(["revenue", "bookings"]);
   const { theme } = useTheme();
   const [resolvedTheme, setResolvedTheme] = useState(theme);
@@ -181,4 +182,4 @@ export function RevenueChart() {
       </div>
     </motion.div>
   );
-}
+});

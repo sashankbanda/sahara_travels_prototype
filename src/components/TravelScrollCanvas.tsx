@@ -95,14 +95,23 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
         );
     };
 
+    // RAF Scheduler for drawing
+    const rafId = useRef<number | null>(null);
+
     // Update canvas on scroll
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
         if (!isLoaded || images.length === 0) return;
-        const frameIndex = Math.min(
-            FRAME_COUNT - 1,
-            Math.floor(latest * FRAME_COUNT)
-        );
-        renderFrame(frameIndex);
+
+        if (rafId.current !== null) return; // Drop frame if one is already scheduled
+
+        rafId.current = requestAnimationFrame(() => {
+            const frameIndex = Math.min(
+                FRAME_COUNT - 1,
+                Math.floor(latest * FRAME_COUNT)
+            );
+            renderFrame(frameIndex);
+            rafId.current = null;
+        });
     });
 
     // Draw initial frame when loaded

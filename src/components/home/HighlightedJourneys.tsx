@@ -29,6 +29,7 @@ export const HighlightedJourneys = () => {
                                 className="object-cover filter grayscale-[10%] opacity-80"
                                 priority
                                 quality={90}
+                                sizes="(max-width: 768px) 100vw, 55vw"
                             />
                             <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
                         </motion.div>

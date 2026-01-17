@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, memo } from "react";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -8,6 +8,72 @@ import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
+const LoginBranding = memo(() => (
+    <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        className="hidden lg:flex lg:w-1/2 bg-zinc-900 relative overflow-hidden"
+    >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+        <div className="relative z-10 flex flex-col justify-center items-center w-full p-12">
+            {/* Logo */}
+            <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="mb-8"
+            >
+                <img
+                    src="/logo.jpeg"
+                    alt="Sahara Journeys Logo"
+                    className="w-48 h-48 rounded-2xl object-cover shadow-2xl shadow-primary/5"
+                />
+            </motion.div>
+
+            <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="text-4xl font-serif font-bold text-white mb-4 text-center"
+            >
+                Sahara Journeys
+            </motion.h1>
+            <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="text-lg text-white/50 text-center max-w-md"
+            >
+                Premium travel experiences curated for the discerning explorer.
+                Manage your tours, bookings, and customers with ease.
+            </motion.p>
+
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="mt-12 grid grid-cols-3 gap-8 text-center"
+            >
+                <div>
+                    <p className="text-3xl font-bold text-primary">500+</p>
+                    <p className="text-sm text-white/40">Tours Completed</p>
+                </div>
+                <div>
+                    <p className="text-3xl font-bold text-primary">10K+</p>
+                    <p className="text-sm text-white/40">Happy Travelers</p>
+                </div>
+                <div>
+                    <p className="text-3xl font-bold text-primary">50+</p>
+                    <p className="text-sm text-white/40">Destinations</p>
+                </div>
+            </motion.div>
+        </div>
+    </motion.div>
+));
+
+LoginBranding.displayName = "LoginBranding";
 
 export default function AdminLogin() {
     const [email, setEmail] = useState("");
@@ -30,69 +96,7 @@ export default function AdminLogin() {
 
     return (
         <div className="min-h-screen bg-black flex text-white font-sans selection:bg-primary/30">
-            {/* Left side - Branding */}
-            <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                className="hidden lg:flex lg:w-1/2 bg-zinc-900 relative overflow-hidden"
-            >
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
-                <div className="relative z-10 flex flex-col justify-center items-center w-full p-12">
-                    {/* Logo Placeholder - using text/colors since asset import might vary */}
-                    {/* Logo */}
-                    <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="mb-8"
-                    >
-                        <img
-                            src="/logo.jpeg"
-                            alt="Sahara Journeys Logo"
-                            className="w-48 h-48 rounded-2xl object-cover shadow-2xl shadow-primary/5"
-                        />
-                    </motion.div>
-
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                        className="text-4xl font-serif font-bold text-white mb-4 text-center"
-                    >
-                        Sahara Journeys
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
-                        className="text-lg text-white/50 text-center max-w-md"
-                    >
-                        Premium travel experiences curated for the discerning explorer.
-                        Manage your tours, bookings, and customers with ease.
-                    </motion.p>
-
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.6 }}
-                        className="mt-12 grid grid-cols-3 gap-8 text-center"
-                    >
-                        <div>
-                            <p className="text-3xl font-bold text-primary">500+</p>
-                            <p className="text-sm text-white/40">Tours Completed</p>
-                        </div>
-                        <div>
-                            <p className="text-3xl font-bold text-primary">10K+</p>
-                            <p className="text-sm text-white/40">Happy Travelers</p>
-                        </div>
-                        <div>
-                            <p className="text-3xl font-bold text-primary">50+</p>
-                            <p className="text-sm text-white/40">Destinations</p>
-                        </div>
-                    </motion.div>
-                </div>
-            </motion.div>
+            <LoginBranding />
 
             {/* Right side - Login Form */}
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-black">

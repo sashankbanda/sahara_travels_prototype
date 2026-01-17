@@ -20,6 +20,7 @@ export const Hero = () => {
                     src="/images/home/hero.png"
                     alt="Sahara Journeys Hero"
                     className="h-full w-full object-cover opacity-60"
+                    decoding="async"
                 />
                 {/* Reduces contrast naturally */}
                 <div className="absolute inset-0 bg-black/40" />
