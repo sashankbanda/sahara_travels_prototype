@@ -33,20 +33,6 @@ export const FocusViewingZone = () => {
                 }}
             />
 
-            {/* Bottom Blur Overlay */}
-            <div
-                className="fixed bottom-0 left-0 w-full z-40 pointer-events-none
-                   h-[20vh] md:h-[25vh]
-                   backdrop-blur-sm md:backdrop-blur-md
-                   bg-gradient-to-t from-black/40 via-black/20 to-transparent
-                   [mask-image:linear-gradient(to_top,black_0%,transparent_100%)]
-                   [-webkit-mask-image:linear-gradient(to_top,black_0%,transparent_100%)]
-                   motion-reduce:hidden"
-                aria-hidden="true"
-                style={{
-                    WebkitBackdropFilter: "blur(12px)",
-                }}
-            />
         </>
     );
 };
