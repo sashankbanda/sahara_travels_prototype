@@ -68,7 +68,7 @@ export default function Transfers() {
                         animateBy="words"
                     />
                     <p className="text-white/70 max-w-lg mx-auto text-sm md:text-lg leading-relaxed font-light">
-                        Experience credible, safe, and luxurious travel across Andhra Pradesh & Telangana.
+                        Experience credible, safe, and luxurious travel across India.
                     </p>
                 </div>
 

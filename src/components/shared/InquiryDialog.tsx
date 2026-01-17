@@ -1,17 +1,18 @@
-"use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Phone, Mail, MessageCircle } from "lucide-react";
+import { Phone, Mail, MessageCircle, MapPin, Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 export function InquiryDialog({ children }: { children: React.ReactNode }) {
     const [open, setOpen] = useState(false);
     const { toast } = useToast();
     const [loading, setLoading] = useState(false);
+    const [locating, setLocating] = useState(false);
+    const locationRef = useRef<HTMLInputElement>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -32,6 +33,41 @@ export function InquiryDialog({ children }: { children: React.ReactNode }) {
 
     const handleCall = () => {
         window.location.href = "tel:+919876543210";
+    };
+
+    const handleLocation = () => {
+        if (!navigator.geolocation) {
+            toast({
+                title: "Error",
+                description: "Geolocation is not supported by your browser",
+                variant: "destructive"
+            });
+            return;
+        }
+
+        setLocating(true);
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                const mapsLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                if (locationRef.current) {
+                    locationRef.current.value = mapsLink;
+                }
+                setLocating(false);
+                toast({
+                    title: "Location Fetched",
+                    description: "Coordinates added to the form.",
+                });
+            },
+            (error) => {
+                setLocating(false);
+                toast({
+                    title: "Location Failed",
+                    description: "Could not fetch your location. Please enter manually.",
+                    variant: "destructive"
+                });
+            }
+        );
     };
 
     return (
@@ -76,6 +112,28 @@ export function InquiryDialog({ children }: { children: React.ReactNode }) {
                             <Label htmlFor="phone">Phone</Label>
                             <Input id="phone" type="tel" placeholder="+91..." className="bg-zinc-900 border-white/10" required />
                         </div>
+
+                        <div className="grid gap-2">
+                            <Label htmlFor="location">Exact Location (Optional)</Label>
+                            <div className="relative">
+                                <Input
+                                    ref={locationRef}
+                                    id="location"
+                                    placeholder="Paste Google Maps link or Address"
+                                    className="bg-zinc-900 border-white/10 pr-10"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={handleLocation}
+                                    disabled={locating}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-primary transition-colors disabled:opacity-50"
+                                    title="Connect to GPS"
+                                >
+                                    {locating ? <Loader2 className="w-4 h-4 animate-spin" /> : <MapPin className="w-4 h-4" />}
+                                </button>
+                            </div>
+                        </div>
+
                         <div className="grid gap-2">
                             <Label htmlFor="message">Message</Label>
                             <Textarea id="message" placeholder="Tell us about your travel plans..." className="bg-zinc-900 border-white/10" />
