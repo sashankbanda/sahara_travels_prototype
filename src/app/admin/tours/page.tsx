@@ -115,7 +115,7 @@ export default function ToursPage() {
                         className="h-full"
                     >
                         <HoverBorderGradient
-                            containerClassName="rounded-xl md:rounded-2xl w-full h-[350px] p-[1px] border-0"
+                            containerClassName="rounded-xl md:rounded-2xl w-full h-[260px] md:h-[350px] p-[1px] border-0"
                             className="w-full h-full p-0 bg-transparent rounded-[inherit]"
                             as="div"
                             duration={2}
@@ -137,25 +137,25 @@ export default function ToursPage() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 z-0" />
 
                                 {/* Admin Controls - Top Layer */}
-                                <div className="absolute top-4 left-4 z-20">
+                                <div className="absolute top-3 left-3 md:top-4 md:left-4 z-20">
                                     <Badge
-                                        className={`badge-premium backdrop-blur-md shadow-lg ${statusColors[pkg.status as keyof typeof statusColors]
+                                        className={`badge-premium backdrop-blur-md shadow-lg text-[10px] md:text-sm px-2 py-0.5 md:px-3 md:py-1 ${statusColors[pkg.status as keyof typeof statusColors]
                                             }`}
                                     >
                                         {pkg.status.charAt(0).toUpperCase() + pkg.status.slice(1)}
                                     </Badge>
                                 </div>
 
-                                <div className="absolute top-4 right-4 z-20">
+                                <div className="absolute top-3 right-3 md:top-4 md:right-4 z-20">
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
                                             <Button
                                                 variant="ghost"
                                                 size="icon"
-                                                className="bg-black/40 backdrop-blur-md hover:bg-black/60 text-white border border-white/10 rounded-full w-10 h-10 shadow-lg"
+                                                className="bg-black/40 backdrop-blur-md hover:bg-black/60 text-white border border-white/10 rounded-full w-8 h-8 md:w-10 md:h-10 shadow-lg"
                                                 onClick={(e) => e.stopPropagation()}
                                             >
-                                                <MoreVertical className="w-5 h-5" />
+                                                <MoreVertical className="w-4 h-4 md:w-5 md:h-5" />
                                             </Button>
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent align="end" className="w-40 bg-zinc-900/95 backdrop-blur-xl border-white/10 text-white">
@@ -182,35 +182,35 @@ export default function ToursPage() {
                                 </div>
 
                                 {/* Content - Bottom Layer */}
-                                <div className="absolute inset-0 flex flex-col justify-end p-6 z-10">
+                                <div className="absolute inset-0 flex flex-col justify-end p-3 md:p-6 z-10">
                                     <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                                        <h3 className="font-serif text-2xl lg:text-3xl text-white mb-2 leading-tight drop-shadow-xl line-clamp-2 mix-blend-plus-lighter">
+                                        <h3 className="font-serif text-lg md:text-2xl lg:text-3xl text-white mb-1 md:mb-2 leading-tight drop-shadow-xl line-clamp-1 md:line-clamp-2 mix-blend-plus-lighter">
                                             {pkg.title}
                                         </h3>
 
-                                        <div className="flex flex-wrap items-center gap-2 text-white/90 text-xs font-light mb-4">
-                                            <span className="flex items-center gap-1 bg-white/10 backdrop-blur-md py-1 px-2.5 rounded-full border border-white/10 shadow-sm">
-                                                <MapPin className="w-3 h-3 text-primary" />
-                                                <span className="tracking-wide">{pkg.destination}</span>
+                                        <div className="flex flex-wrap items-center gap-1.5 md:gap-2 text-white/90 text-[10px] md:text-xs font-light mb-2 md:mb-4">
+                                            <span className="flex items-center gap-1 bg-white/10 backdrop-blur-md py-0.5 px-2 md:py-1 md:px-2.5 rounded-full border border-white/10 shadow-sm">
+                                                <MapPin className="w-2.5 h-2.5 md:w-3 md:h-3 text-primary shrink-0" />
+                                                <span className="tracking-wide truncate max-w-[100px] md:max-w-none">{pkg.destination}</span>
                                             </span>
-                                            <span className="flex items-center gap-1 bg-white/10 backdrop-blur-md py-1 px-2.5 rounded-full border border-white/10 shadow-sm">
-                                                <Clock className="w-3 h-3 text-primary" />
+                                            <span className="flex items-center gap-1 bg-white/10 backdrop-blur-md py-0.5 px-2 md:py-1 md:px-2.5 rounded-full border border-white/10 shadow-sm">
+                                                <Clock className="w-2.5 h-2.5 md:w-3 md:h-3 text-primary shrink-0" />
                                                 <span className="tracking-wide">{pkg.duration}</span>
                                             </span>
                                         </div>
 
-                                        <div className="flex items-center justify-between border-t border-white/20 pt-4 mt-2">
+                                        <div className="flex items-center justify-between border-t border-white/20 pt-2 md:pt-4 mt-1 md:mt-2">
                                             <div className="flex flex-col">
-                                                <span className="text-white/60 text-[10px] uppercase tracking-widest font-medium mb-0.5">
+                                                <span className="text-white/60 text-[8px] md:text-[10px] uppercase tracking-widest font-medium mb-0.5">
                                                     Starting From
                                                 </span>
-                                                <span className="text-xl font-medium text-primary tracking-tight shadow-black drop-shadow-md">
+                                                <span className="text-sm md:text-xl font-medium text-primary tracking-tight shadow-black drop-shadow-md">
                                                     ₹{pkg.price.toLocaleString()}
                                                 </span>
                                             </div>
 
-                                            <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-primary group-hover:text-black group-hover:border-primary transition-all duration-300 shadow-lg">
-                                                <ArrowRight className="w-4 h-4" />
+                                            <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-primary group-hover:text-black group-hover:border-primary transition-all duration-300 shadow-lg">
+                                                <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
                                             </div>
                                         </div>
                                     </div>
