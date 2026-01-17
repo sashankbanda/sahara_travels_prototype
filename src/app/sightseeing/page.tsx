@@ -56,9 +56,9 @@ export default function Sightseeing() {
             </section>
 
             {/* Grid */}
-            <section className="py-24 px-6">
+            <section className="py-24 px-3 md:px-6">
                 <div className="container mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
                         {sightseeing.map((pkg, index) => (
                             <motion.div
                                 key={pkg.id}
@@ -74,7 +74,7 @@ export default function Sightseeing() {
                                     duration={1.5}
                                 >
                                     <Link href={`/packages/${pkg.id}`} className="relative block bg-zinc-900 overflow-hidden border border-transparent hover:border-transparent transition-colors duration-500 rounded-[inherit] h-full w-full">
-                                        <div className="relative h-[300px] overflow-hidden">
+                                        <div className="relative h-[200px] md:h-[300px] overflow-hidden">
                                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500 z-10" />
                                             <div className="relative w-full h-full transition-transform duration-700 group-hover:scale-110">
                                                 <Image
@@ -82,33 +82,35 @@ export default function Sightseeing() {
                                                     alt={pkg.title}
                                                     fill
                                                     className="object-cover"
-                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 50vw, 33vw"
                                                     priority={index < 4}
                                                 />
                                             </div>
-                                            <div className="absolute bottom-0 left-0 right-0 p-6 z-20 bg-gradient-to-t from-black/80 to-transparent">
-                                                <h3 className="font-serif text-2xl text-white mb-2">{pkg.title}</h3>
-                                                <div className="flex items-center gap-4 text-sm text-white/70">
-                                                    <span className="flex items-center gap-1.5">
-                                                        <MapPin className="w-3.5 h-3.5 text-primary" />
-                                                        {pkg.destination}
+                                            <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6 z-20 bg-gradient-to-t from-black/90 to-transparent">
+                                                <h3 className="font-serif text-sm md:text-2xl text-white mb-1 md:mb-2 line-clamp-1">{pkg.title}</h3>
+                                                <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-4 text-[10px] md:text-sm text-white/70">
+                                                    <span className="flex items-center gap-1 md:gap-1.5">
+                                                        <MapPin className="w-3 h-3 md:w-3.5 md:h-3.5 text-primary" />
+                                                        <span className="truncate max-w-[100px] md:max-w-none">{pkg.destination}</span>
                                                     </span>
-                                                    <span className="flex items-center gap-1.5">
-                                                        <Clock className="w-3.5 h-3.5 text-primary" />
+                                                    <span className="flex items-center gap-1 md:gap-1.5">
+                                                        <Clock className="w-3 h-3 md:w-3.5 md:h-3.5 text-primary" />
                                                         {pkg.duration}
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="p-6 flex justify-between items-center border-t border-white/5 bg-zinc-900 group-hover:bg-zinc-800/50 transition-colors">
-                                            <div className="text-lg font-medium text-primary flex items-center gap-1">
-                                                <span className="text-xs text-white/40 font-normal uppercase tracking-wider mr-2">Per Person</span>
-                                                <IndianRupee className="w-4 h-4" />
-                                                {pkg.price.toLocaleString()}
+                                        <div className="p-3 md:p-6 flex justify-between items-center border-t border-white/5 bg-zinc-900 group-hover:bg-zinc-800/50 transition-colors">
+                                            <div className="text-sm md:text-lg font-medium text-primary flex flex-col md:flex-row md:items-center gap-0 md:gap-1">
+                                                <span className="text-[10px] md:text-xs text-white/40 font-normal uppercase tracking-wider mr-0 md:mr-2 line-clamp-1">Per Person</span>
+                                                <div className="flex items-center">
+                                                    <IndianRupee className="w-3 h-3 md:w-4 md:h-4" />
+                                                    {pkg.price.toLocaleString()}
+                                                </div>
                                             </div>
-                                            <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-primary group-hover:text-black group-hover:border-primary transition-all duration-300">
-                                                <ArrowRight className="w-4 h-4" />
+                                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-primary group-hover:text-black group-hover:border-primary transition-all duration-300 shrink-0">
+                                                <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
                                             </div>
                                         </div>
                                     </Link>
