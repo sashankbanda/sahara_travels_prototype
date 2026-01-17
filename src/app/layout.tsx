@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import ScrollToTop from "@/components/shared/ScrollToTop"; // Assuming this is client component
 import { FocusViewingZone } from "@/components/ui/focus-viewing-zone";
+import ClickSpark from "@/components/ClickSpark";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,16 +24,24 @@ export default function RootLayout({
             <body className="antialiased min-h-screen bg-black text-white">
                 <Providers>
                     <div className="relative min-h-screen w-full">
-                        <BackgroundBeams className="fixed inset-0 z-0 pointer-events-none" />
-                        <div className="relative z-10">
-                            {children}
-                            <FocusViewingZone />
-                        </div>
-                        {/* These interactive elements should handle their own 'use client' directives or be safe */}
-                        <ScrollToTop />
-                        <WhatsAppButton />
-                        <Toaster />
-                        <Sonner />
+                        <ClickSpark
+                            sparkColor='#fff'
+                            sparkSize={10}
+                            sparkRadius={15}
+                            sparkCount={8}
+                            duration={400}
+                        >
+                            <BackgroundBeams className="fixed inset-0 z-0 pointer-events-none" />
+                            <div className="relative z-10">
+                                {children}
+                                <FocusViewingZone />
+                            </div>
+                            {/* These interactive elements should handle their own 'use client' directives or be safe */}
+                            <ScrollToTop />
+                            <WhatsAppButton />
+                            <Toaster />
+                            <Sonner />
+                        </ClickSpark>
                     </div>
                 </Providers>
             </body>
