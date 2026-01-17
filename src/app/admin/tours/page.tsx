@@ -69,7 +69,7 @@ export default function ToursPage() {
                 </div>
                 <Button
                     className="gap-2 bg-gradient-gold text-primary-foreground hover:opacity-90 shadow-lg hover:shadow-primary/20 transition-all duration-300"
-                    onClick={() => router.push("/admin/packages/new")}
+                    onClick={() => router.push("/admin/tours/new")}
                 >
                     <Plus className="w-5 h-5 sm:w-4 sm:h-4" />
                     <span className="hidden sm:inline">Add Package</span>
@@ -111,7 +111,7 @@ export default function ToursPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.1 * index }}
                         className="premium-card group cursor-pointer"
-                        onClick={() => router.push(`/admin/packages/${pkg.id}`)}
+                        onClick={() => router.push(`/admin/tours/${pkg.id}`)}
                     >
                         <div className="relative h-48 overflow-hidden">
                             <img
@@ -140,14 +140,14 @@ export default function ToursPage() {
                                 <DropdownMenuContent align="end" className="w-40 bg-card/90 backdrop-blur-xl border-white/10">
                                     <DropdownMenuItem className="gap-2 focus:bg-primary/10 focus:text-primary" onClick={(e) => {
                                         e.stopPropagation();
-                                        router.push(`/admin/packages/${pkg.id}`);
+                                        router.push(`/admin/tours/${pkg.id}`);
                                     }}>
                                         <Eye className="w-4 h-4" />
                                         View Details
                                     </DropdownMenuItem>
                                     <DropdownMenuItem className="gap-2 focus:bg-primary/10 focus:text-primary" onClick={(e) => {
                                         e.stopPropagation();
-                                        router.push(`/admin/packages/${pkg.id}/edit`);
+                                        router.push(`/admin/tours/${pkg.id}/edit`);
                                     }}>
                                         <Edit className="w-4 h-4" />
                                         Edit Package

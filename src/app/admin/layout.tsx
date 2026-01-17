@@ -43,6 +43,7 @@ export default function AdminLayout({
                         { name: 'Dashboard', href: '/admin' },
                         { name: 'Enquiries', href: '/admin/enquiries' },
                         { name: 'Tours', href: '/admin/tours' },
+                        { name: 'Payments', href: '/admin/payments' },
                         { name: 'Users', href: '/admin/users' },
                         { name: 'Settings', href: '/admin/settings' },
                     ].map((item) => {
