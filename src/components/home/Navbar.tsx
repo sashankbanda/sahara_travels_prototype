@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { Menu } from "lucide-react";
@@ -8,6 +9,7 @@ import { MobileMenu } from "./MobileMenu";
 import { InquiryDialog } from "@/components/shared/InquiryDialog";
 
 export const Navbar = () => {
+    const pathname = usePathname();
     const { scrollY } = useScroll();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -73,11 +75,20 @@ export const Navbar = () => {
                             <Link
                                 key={item.label}
                                 href={item.path}
-                                className="text-[10px] uppercase tracking-[0.2em] text-white/90 hover:text-white transition-all duration-500 font-medium relative overflow-hidden group/link"
+                                className={cn(
+                                    "text-[10px] uppercase tracking-[0.2em] transition-all duration-500 font-medium relative overflow-hidden group/link",
+                                    pathname === item.path ? "text-white" : "text-white/90 hover:text-white"
+                                )}
                             >
                                 <span className="relative z-10">{item.label}</span>
                                 <motion.span
-                                    className="absolute bottom-0 left-0 w-full h-[1px] bg-primary origin-left scale-x-0 group-hover/link:scale-x-100 transition-transform duration-500 ease-out"
+                                    initial={false}
+                                    animate={{ scaleX: pathname === item.path ? 1 : 0 }}
+                                    whileHover={{ scaleX: 1 }}
+                                    className={cn(
+                                        "absolute bottom-0 left-0 w-full h-[1px] bg-primary origin-left transition-transform duration-500 ease-out",
+                                        pathname === item.path ? "scale-x-100" : "scale-x-0 group-hover/link:scale-x-100"
+                                    )}
                                 />
                             </Link>
                         ))}
