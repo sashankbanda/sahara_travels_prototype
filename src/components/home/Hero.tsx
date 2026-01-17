@@ -1,10 +1,10 @@
-import { Suspense } from "react";
+
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import BlurText from "@/components/animate-ui/BlurText";
 
-const FogScene = dynamic(() => import("./FogScene").then(mod => mod.FogScene), { ssr: false });
+
 
 export const Hero = () => {
     return (
@@ -27,9 +27,7 @@ export const Hero = () => {
             </motion.div>
 
             {/* 3D Fog Environment - React Three Fiber */}
-            <Suspense fallback={null}>
-                <FogScene />
-            </Suspense>
+
 
             {/* Content - NO PARALLAX on Text, Pure Fade + Rise */}
             <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
