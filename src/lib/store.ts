@@ -137,7 +137,7 @@ export const useStore = create<AppState>((set) => ({
       price: 35000,
       status: "active",
       bookings: 8,
-      image: "https://images.unsplash.com/photo-1589136777351-943288250ce1?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=300&fit=crop",
       description: "A spiritual journey to the largest monastery in India in the high Himalayas.",
     },
     {
@@ -149,7 +149,7 @@ export const useStore = create<AppState>((set) => ({
       price: 24000,
       status: "active",
       bookings: 15,
-      image: "https://images.unsplash.com/photo-1626621341139-e3271a942b9e?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=400&h=300&fit=crop",
       description: "Discover the unique Apatani culture and the rolling green hills of Ziro.",
     },
     {
@@ -161,7 +161,7 @@ export const useStore = create<AppState>((set) => ({
       price: 42000,
       status: "active",
       bookings: 5,
-      image: "https://images.unsplash.com/photo-1587595431973-160fa1107297?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=400&h=300&fit=crop",
       description: "Travel to the forbidden valley near the Tibetan border, a surreal landscape.",
     },
     {
@@ -173,7 +173,7 @@ export const useStore = create<AppState>((set) => ({
       price: 15000,
       status: "active",
       bookings: 10,
-      image: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&h=300&fit=crop",
       description: "Relax by the river valleys and ancient dzongs of Dirang.",
     },
     {
@@ -185,7 +185,7 @@ export const useStore = create<AppState>((set) => ({
       price: 28000,
       status: "active",
       bookings: 7,
-      image: "https://images.unsplash.com/photo-1595842858546-630d9526e0be?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400&h=300&fit=crop",
       description: "Explore the Buddhist heritage and apple orchards of Bomdila.",
     },
     {
@@ -197,7 +197,7 @@ export const useStore = create<AppState>((set) => ({
       price: 38000,
       status: "active",
       bookings: 3,
-      image: "https://images.unsplash.com/photo-1549366021-9f761d450615?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=300&fit=crop",
       description: "Deep jungle safari in one of the most biodiverse parks in the world.",
     },
     {
@@ -209,7 +209,7 @@ export const useStore = create<AppState>((set) => ({
       price: 85000,
       status: "active",
       bookings: 2,
-      image: "https://images.unsplash.com/photo-1624552184280-9f50cb55866a?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=400&h=300&fit=crop",
       description: "The ultimate expedition covering the best of Northeast India.",
     },
     // New Sightseeing (7)
@@ -222,7 +222,7 @@ export const useStore = create<AppState>((set) => ({
       price: 5000,
       status: "active",
       bookings: 30,
-      image: "https://images.unsplash.com/photo-1518091043644-c28264942bc1?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=400&h=300&fit=crop",
       description: "Visit the high-altitude Sela Lake and Pass at 13,700 feet.",
     },
     {
@@ -234,7 +234,7 @@ export const useStore = create<AppState>((set) => ({
       price: 4500,
       status: "active",
       bookings: 25,
-      image: "https://images.unsplash.com/photo-1618083707368-b3823daa2726?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&h=300&fit=crop",
       description: "Day trip to the stunning Sangetsar Lake, famously known as Madhuri Lake.",
     },
     {
@@ -246,7 +246,7 @@ export const useStore = create<AppState>((set) => ({
       price: 6000,
       status: "active",
       bookings: 20,
-      image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400&h=300&fit=crop",
       description: "Visit the Indo-China border for a patriotic and scenic experience.",
     },
     {
@@ -258,7 +258,7 @@ export const useStore = create<AppState>((set) => ({
       price: 2000,
       status: "active",
       bookings: 40,
-      image: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=300&fit=crop",
       description: "Witness the spectacular 100-meter high waterfall in Jang.",
     },
     {
@@ -270,7 +270,7 @@ export const useStore = create<AppState>((set) => ({
       price: 1500,
       status: "active",
       bookings: 15,
-      image: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=400&h=300&fit=crop",
       description: "A peaceful walk through the tall pine trees of Ziro valley.",
     },
     {
@@ -282,7 +282,7 @@ export const useStore = create<AppState>((set) => ({
       price: 1000,
       status: "active",
       bookings: 10,
-      image: "https://images.unsplash.com/photo-1544979188-725f778619da?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=400&h=300&fit=crop",
       description: "Cross the traditional cane and bamboo hanging bridges over Yargyap Chhu.",
     },
     {
@@ -294,7 +294,7 @@ export const useStore = create<AppState>((set) => ({
       price: 3000,
       status: "active",
       bookings: 5,
-      image: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&h=300&fit=crop",
       description: "Short trek into the biodiversity hotspot of Talley Valley Sanctuary.",
     }
   ],

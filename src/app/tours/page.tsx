@@ -83,6 +83,7 @@ export default function Tours() {
                                                     fill
                                                     className="object-cover"
                                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                    priority={index < 4}
                                                 />
                                             </div>
                                             <div className="absolute bottom-0 left-0 right-0 p-6 z-20 bg-gradient-to-t from-black/80 to-transparent">
