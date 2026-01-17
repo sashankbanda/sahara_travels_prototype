@@ -44,7 +44,7 @@ export default function AdminDashboard() {
                     <Button
                         size="icon"
                         className="sm:w-auto sm:px-4 sm:py-2 gap-2 bg-primary text-black hover:bg-primary/90 shadow-lg hover:shadow-primary/20 transition-all duration-300 font-semibold"
-                        onClick={() => router.push('/admin/packages/new')}
+                        onClick={() => router.push('/admin/tours/new')}
                     >
                         <Plus className="w-5 h-5 sm:w-4 sm:h-4" />
                         <span className="hidden sm:inline">New Package</span>
