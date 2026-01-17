@@ -11,7 +11,9 @@ import {
     MapPin,
     Clock,
     IndianRupee,
+    ArrowRight,
 } from "lucide-react";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -62,7 +64,7 @@ export default function ToursPage() {
                 className="flex flex-row items-center justify-between gap-4 mb-6 sm:mb-8"
             >
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-gradient-gold mb-1 sm:mb-2">Tour Packages</h1>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-1 sm:mb-2">Tour Packages</h1>
                     <p className="text-muted-foreground hidden sm:block">
                         Manage your tour packages and offerings
                     </p>
@@ -103,86 +105,118 @@ export default function ToursPage() {
             </motion.div>
 
             {/* Packages Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {packages.map((pkg: any, index: number) => (
                     <motion.div
                         key={pkg.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.1 * index }}
-                        className="premium-card group cursor-pointer"
-                        onClick={() => router.push(`/admin/tours/${pkg.id}`)}
+                        className="h-full"
                     >
-                        <div className="relative h-48 overflow-hidden">
-                            <img
-                                src={pkg.image}
-                                alt={pkg.title}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80" />
-                            <Badge
-                                className={`absolute top-4 left-4 badge-premium ${statusColors[pkg.status as keyof typeof statusColors]
-                                    }`}
+                        <HoverBorderGradient
+                            containerClassName="rounded-xl md:rounded-2xl w-full h-[350px] p-[1px] border-0"
+                            className="w-full h-full p-0 bg-transparent rounded-[inherit]"
+                            as="div"
+                            duration={2}
+                        >
+                            <div
+                                className="relative w-full h-full overflow-hidden rounded-[inherit] group cursor-pointer"
+                                onClick={() => router.push(`/admin/tours/${pkg.id}`)}
                             >
-                                {pkg.status.charAt(0).toUpperCase() + pkg.status.slice(1)}
-                            </Badge>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        className="absolute top-4 right-4 bg-black/40 backdrop-blur-md hover:bg-black/60 text-white border border-white/10"
-                                        onClick={(e) => e.stopPropagation()}
+                                {/* Hero Image - Full Background */}
+                                <div className="absolute inset-0 w-full h-full">
+                                    <img
+                                        src={pkg.image}
+                                        alt={pkg.title}
+                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                    />
+                                </div>
+
+                                {/* Overlays */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 z-0" />
+
+                                {/* Admin Controls - Top Layer */}
+                                <div className="absolute top-4 left-4 z-20">
+                                    <Badge
+                                        className={`badge-premium backdrop-blur-md shadow-lg ${statusColors[pkg.status as keyof typeof statusColors]
+                                            }`}
                                     >
-                                        <MoreVertical className="w-4 h-4" />
-                                    </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end" className="w-40 bg-card/90 backdrop-blur-xl border-white/10">
-                                    <DropdownMenuItem className="gap-2 focus:bg-primary/10 focus:text-primary" onClick={(e) => {
-                                        e.stopPropagation();
-                                        router.push(`/admin/tours/${pkg.id}`);
-                                    }}>
-                                        <Eye className="w-4 h-4" />
-                                        View Details
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem className="gap-2 focus:bg-primary/10 focus:text-primary" onClick={(e) => {
-                                        e.stopPropagation();
-                                        router.push(`/admin/tours/${pkg.id}/edit`);
-                                    }}>
-                                        <Edit className="w-4 h-4" />
-                                        Edit Package
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem className="gap-2 text-destructive focus:bg-destructive/10" onClick={(e) => handleDelete(pkg.id, e)}>
-                                        <Trash2 className="w-4 h-4" />
-                                        Delete
-                                    </DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </div>
-                        <div className="p-6">
-                            <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-                                {pkg.title}
-                            </h3>
-                            <div className="space-y-2 mb-4">
-                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                    <MapPin className="w-4 h-4 text-primary" />
-                                    {pkg.destination}
+                                        {pkg.status.charAt(0).toUpperCase() + pkg.status.slice(1)}
+                                    </Badge>
                                 </div>
-                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                    <Clock className="w-4 h-4 text-primary" />
-                                    {pkg.duration}
+
+                                <div className="absolute top-4 right-4 z-20">
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className="bg-black/40 backdrop-blur-md hover:bg-black/60 text-white border border-white/10 rounded-full w-10 h-10 shadow-lg"
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
+                                                <MoreVertical className="w-5 h-5" />
+                                            </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end" className="w-40 bg-zinc-900/95 backdrop-blur-xl border-white/10 text-white">
+                                            <DropdownMenuItem className="gap-2 focus:bg-primary/10 focus:text-primary" onClick={(e) => {
+                                                e.stopPropagation();
+                                                router.push(`/admin/tours/${pkg.id}`);
+                                            }}>
+                                                <Eye className="w-4 h-4" />
+                                                View Details
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem className="gap-2 focus:bg-primary/10 focus:text-primary" onClick={(e) => {
+                                                e.stopPropagation();
+                                                router.push(`/admin/tours/${pkg.id}/edit`);
+                                            }}>
+                                                <Edit className="w-4 h-4" />
+                                                Edit Package
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem className="gap-2 text-red-400 focus:text-red-400 focus:bg-red-400/10" onClick={(e) => handleDelete(pkg.id, e)}>
+                                                <Trash2 className="w-4 h-4" />
+                                                Delete
+                                            </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+
+                                {/* Content - Bottom Layer */}
+                                <div className="absolute inset-0 flex flex-col justify-end p-6 z-10">
+                                    <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                                        <h3 className="font-serif text-2xl lg:text-3xl text-white mb-2 leading-tight drop-shadow-xl line-clamp-2 mix-blend-plus-lighter">
+                                            {pkg.title}
+                                        </h3>
+
+                                        <div className="flex flex-wrap items-center gap-2 text-white/90 text-xs font-light mb-4">
+                                            <span className="flex items-center gap-1 bg-white/10 backdrop-blur-md py-1 px-2.5 rounded-full border border-white/10 shadow-sm">
+                                                <MapPin className="w-3 h-3 text-primary" />
+                                                <span className="tracking-wide">{pkg.destination}</span>
+                                            </span>
+                                            <span className="flex items-center gap-1 bg-white/10 backdrop-blur-md py-1 px-2.5 rounded-full border border-white/10 shadow-sm">
+                                                <Clock className="w-3 h-3 text-primary" />
+                                                <span className="tracking-wide">{pkg.duration}</span>
+                                            </span>
+                                        </div>
+
+                                        <div className="flex items-center justify-between border-t border-white/20 pt-4 mt-2">
+                                            <div className="flex flex-col">
+                                                <span className="text-white/60 text-[10px] uppercase tracking-widest font-medium mb-0.5">
+                                                    Starting From
+                                                </span>
+                                                <span className="text-xl font-medium text-primary tracking-tight shadow-black drop-shadow-md">
+                                                    ₹{pkg.price.toLocaleString()}
+                                                </span>
+                                            </div>
+
+                                            <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-primary group-hover:text-black group-hover:border-primary transition-all duration-300 shadow-lg">
+                                                <ArrowRight className="w-4 h-4" />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                                <div className="flex items-center gap-1 text-lg font-bold text-gradient-gold">
-                                    <IndianRupee className="w-4 h-4 text-primary" />
-                                    {pkg.price.toLocaleString()}
-                                </div>
-                                <span className="text-sm text-muted-foreground">
-                                    {pkg.bookings} bookings
-                                </span>
-                            </div>
-                        </div>
+                        </HoverBorderGradient>
                     </motion.div>
                 ))}
             </div>

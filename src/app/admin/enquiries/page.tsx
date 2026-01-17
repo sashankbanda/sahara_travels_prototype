@@ -92,19 +92,17 @@ export default function EnquiriesPage() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8"
+                className="flex flex-row items-center justify-between gap-4 mb-6 sm:mb-8"
             >
-                <div>
+                <div className="flex items-center gap-3">
                     <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Enquiries</h1>
-                    <p className="text-muted-foreground hidden sm:block">
-                        Manage customer inquiries and follow-ups
-                    </p>
-                </div>
-                <div className="flex gap-2">
-                    <Badge variant="outline" className="gap-2 py-2 px-4 whitespace-nowrap">
+                    <Badge variant="outline" className="gap-2 py-1.5 px-3 h-fit whitespace-nowrap bg-background/50">
                         <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                         3 New
                     </Badge>
+                </div>
+                <div className="hidden sm:block">
+                    {/* Placeholder for desktop-only actions or existing logic if any was intended */}
                 </div>
             </motion.div>
 
