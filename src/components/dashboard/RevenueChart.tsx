@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import {
@@ -9,7 +11,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { useTheme } from "@/components/theme-provider";
+import { useTheme } from "next-themes";
 
 const data = [
   { month: "Jan", revenue: 45000, bookings: 12 },
