@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import BlurText from "@/components/animate-ui/BlurText";
 
@@ -21,10 +22,13 @@ export const HighlightedJourneys = () => {
                     {/* Image Side - Reduced Height (~60% of viewport) */}
                     <div className="w-full lg:w-[55%] relative h-[35vh] md:h-[60vh] overflow-hidden rounded-[2px] mb-6 lg:mb-0">
                         <motion.div style={{ y }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
-                            <img
+                            <Image
                                 src="/images/home/hero.png"
                                 alt="Signature Journey"
-                                className="w-full h-full object-cover filter grayscale-[10%] opacity-80"
+                                fill
+                                className="object-cover filter grayscale-[10%] opacity-80"
+                                priority
+                                quality={90}
                             />
                             <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
                         </motion.div>

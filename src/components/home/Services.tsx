@@ -163,8 +163,19 @@ export const Services = () => {
 
 
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import Image from "next/image";
 
-const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
+interface ServiceItem {
+    id: string;
+    title: string;
+    description: string;
+    image: string;
+    link: string;
+    badge?: string;
+    features?: string[];
+}
+
+const ServiceCard = ({ item, type }: { item: ServiceItem, type: 'tour' | 'taxi' }) => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -186,11 +197,16 @@ const ServiceCard = ({ item, type }: { item: any, type: 'tour' | 'taxi' }) => {
             >
                 {/* Spotlight Effect */}
                 {/* Image Layer (z-0) */}
-                <img
-                    src={item.image}
-                    alt={item.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter grayscale-[30%] group-hover:grayscale-0 z-0"
-                />
+                <div className="absolute inset-0 w-full h-full z-0 transition-transform duration-1000 group-hover:scale-105 filter grayscale-[30%] group-hover:grayscale-0">
+                    <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        priority
+                    />
+                </div>
 
                 {/* Gradient Overlay (z-10) */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 md:via-black/20 to-transparent opacity-90 md:opacity-80 group-hover:opacity-60 transition-opacity duration-700 z-10" />

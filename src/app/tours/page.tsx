@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { useStore } from "@/lib/store";
 import { MapPin, Clock, IndianRupee, ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/home/Navbar";
@@ -75,11 +76,15 @@ export default function Tours() {
                                     <Link href={`/packages/${pkg.id}`} className="relative block bg-zinc-900 overflow-hidden border border-transparent hover:border-transparent transition-colors duration-500 rounded-[inherit] h-full w-full">
                                         <div className="relative h-[300px] overflow-hidden">
                                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500 z-10" />
-                                            <img
-                                                src={pkg.image}
-                                                alt={pkg.title}
-                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                            />
+                                            <div className="relative w-full h-full transition-transform duration-700 group-hover:scale-110">
+                                                <Image
+                                                    src={pkg.image}
+                                                    alt={pkg.title}
+                                                    fill
+                                                    className="object-cover"
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                />
+                                            </div>
                                             <div className="absolute bottom-0 left-0 right-0 p-6 z-20 bg-gradient-to-t from-black/80 to-transparent">
                                                 <h3 className="font-serif text-2xl text-white mb-2">{pkg.title}</h3>
                                                 <div className="flex items-center gap-4 text-sm text-white/70">
