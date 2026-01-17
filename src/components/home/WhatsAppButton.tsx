@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 export const WhatsAppButton = () => {
     const pathname = usePathname();
-    const isDashboard = pathname?.includes("/dashboard");
+    const isDashboard = pathname?.includes("/dashboard") || pathname?.includes("/admin");
 
     // Don't show on dashboard pages
     if (isDashboard) return null;
