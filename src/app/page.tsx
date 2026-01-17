@@ -31,6 +31,8 @@ const Home = () => {
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             className="min-h-screen relative selection:bg-primary selection:text-black"
         >
+            {/* Global Grain Overlay */}
+            <div className="grain-overlay" />
 
 
             <Navbar />
