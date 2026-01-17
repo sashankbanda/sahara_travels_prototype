@@ -210,7 +210,7 @@ export default function SettingsPage() {
                                         <span className="text-sm font-medium">Dark</span>
                                     </button>
                                     <button
-                                        onClick={() => setTheme("light")}
+                                        onClick={() => toast.info("Developer is building this, it will be in production.")}
                                         className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${theme === "light"
                                             ? "border-primary bg-primary/10"
                                             : "border-transparent bg-muted/50 hover:bg-muted"
