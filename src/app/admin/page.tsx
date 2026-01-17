@@ -53,7 +53,7 @@ export default function AdminDashboard() {
             </motion.div>
 
             {/* Stats Grid */}
-            <div className="flex overflow-x-auto pb-4 gap-4 snap-x snap-mandatory -mx-6 px-6 sm:grid sm:mx-0 sm:px-0 sm:pb-0 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
+            <div className="flex overflow-x-auto pb-4 gap-4 snap-x snap-mandatory -mx-6 px-6 sm:grid sm:mx-0 sm:px-0 sm:pb-0 sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
                 <StatCard
                     title="Total Bookings"
                     value="124"

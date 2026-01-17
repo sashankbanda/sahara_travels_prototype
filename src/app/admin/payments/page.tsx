@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Filter, Plus, IndianRupee, CheckCircle, Clock, XCircle } from "lucide-react";
+import { Search, Filter, Plus, IndianRupee, CheckCircle, Clock, XCircle, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -32,7 +32,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 
-const payments = [
+const initialPayments = [
     {
         id: "PAY-001",
         customer: "Rajesh Kumar",
@@ -87,6 +87,88 @@ const payments = [
         status: "pending",
         date: "2024-01-11",
     },
+    // Duplicate data for scrolling
+    {
+        id: "PAY-007",
+        customer: "Rajesh Kumar",
+        package: "Desert Safari Adventure",
+        amount: 45000,
+        method: "UPI",
+        status: "completed",
+        date: "2024-01-15",
+    },
+    {
+        id: "PAY-008",
+        customer: "John Smith",
+        package: "Night Sky Experience",
+        amount: 36000,
+        method: "Credit Card",
+        status: "completed",
+        date: "2024-01-14",
+    },
+    {
+        id: "PAY-009",
+        customer: "Ahmed Hassan",
+        package: "Desert Safari Adventure",
+        amount: 180000,
+        method: "Bank Transfer",
+        status: "pending",
+        date: "2024-01-15",
+    },
+    {
+        id: "PAY-010",
+        customer: "Lisa Chen",
+        package: "Camel Trek Expedition",
+        amount: 56000,
+        method: "Credit Card",
+        status: "failed",
+        date: "2024-01-13",
+    },
+    {
+        id: "PAY-011",
+        customer: "Priya Sharma",
+        package: "Oasis Retreat Tour",
+        amount: 124000,
+        method: "UPI",
+        status: "completed",
+        date: "2024-01-12",
+    },
+    {
+        id: "PAY-012",
+        customer: "Maria Garcia",
+        package: "Cultural Heritage Tour",
+        amount: 85000,
+        method: "PayPal",
+        status: "pending",
+        date: "2024-01-11",
+    },
+    {
+        id: "PAY-013",
+        customer: "Rajesh Kumar",
+        package: "Desert Safari Adventure",
+        amount: 45000,
+        method: "UPI",
+        status: "completed",
+        date: "2024-01-15",
+    },
+    {
+        id: "PAY-014",
+        customer: "John Smith",
+        package: "Night Sky Experience",
+        amount: 36000,
+        method: "Credit Card",
+        status: "completed",
+        date: "2024-01-14",
+    },
+    {
+        id: "PAY-015",
+        customer: "Ahmed Hassan",
+        package: "Desert Safari Adventure",
+        amount: 180000,
+        method: "Bank Transfer",
+        status: "pending",
+        date: "2024-01-15",
+    },
 ];
 
 const statusConfig = {
@@ -96,7 +178,9 @@ const statusConfig = {
 };
 
 export default function PaymentsPage() {
+    const [payments, setPayments] = useState(initialPayments);
     const [isRecordOpen, setIsRecordOpen] = useState(false);
+    const [editingPayment, setEditingPayment] = useState<any>(null);
     const [formData, setFormData] = useState({
         customer: "",
         package: "",
@@ -119,9 +203,48 @@ export default function PaymentsPage() {
             return;
         }
 
-        // In a real app, this would add to the store/backend
-        toast.success("Payment recorded successfully");
+        if (editingPayment) {
+            setPayments(prev => prev.map(p =>
+                p.id === editingPayment.id
+                    ? { ...p, ...formData, amount: Number(formData.amount) }
+                    : p
+            ));
+            toast.success("Payment updated successfully");
+        } else {
+            const newPayment = {
+                id: `PAY-${String(payments.length + 1).padStart(3, '0')}`,
+                ...formData,
+                amount: Number(formData.amount),
+            };
+            setPayments([newPayment, ...payments]);
+            toast.success("Payment recorded successfully");
+        }
+
         setIsRecordOpen(false);
+        setEditingPayment(null);
+        resetForm();
+    };
+
+    const handleEditClick = (payment: any) => {
+        setEditingPayment(payment);
+        setFormData({
+            customer: payment.customer,
+            package: payment.package,
+            amount: String(payment.amount),
+            method: payment.method,
+            status: payment.status,
+            date: payment.date,
+        });
+        setIsRecordOpen(true);
+    };
+
+    const handleAddNew = () => {
+        setEditingPayment(null);
+        resetForm();
+        setIsRecordOpen(true);
+    };
+
+    const resetForm = () => {
         setFormData({
             customer: "",
             package: "",
@@ -150,14 +273,14 @@ export default function PaymentsPage() {
 
                 <Dialog open={isRecordOpen} onOpenChange={setIsRecordOpen}>
                     <DialogTrigger asChild>
-                        <Button className="gap-2 bg-gradient-gold text-primary-foreground hover:opacity-90 w-full sm:w-auto">
+                        <Button onClick={handleAddNew} className="gap-2 bg-gradient-gold text-primary-foreground hover:opacity-90 w-full sm:w-auto">
                             <Plus className="w-4 h-4" />
                             Record Payment
                         </Button>
                     </DialogTrigger>
                     <DialogContent className="premium-panel border-white/10 text-foreground">
                         <DialogHeader>
-                            <DialogTitle>Record New Payment</DialogTitle>
+                            <DialogTitle>{editingPayment ? 'Edit Payment' : 'Record New Payment'}</DialogTitle>
                         </DialogHeader>
                         <div className="space-y-4 py-4">
                             <div className="space-y-2">
@@ -239,7 +362,7 @@ export default function PaymentsPage() {
                         <DialogFooter>
                             <Button variant="outline" onClick={() => setIsRecordOpen(false)}>Cancel</Button>
                             <Button onClick={handleRecordPayment} className="bg-gradient-gold text-primary-foreground">
-                                Record Payment
+                                {editingPayment ? 'Update Payment' : 'Record Payment'}
                             </Button>
                         </DialogFooter>
                     </DialogContent>
@@ -318,6 +441,14 @@ export default function PaymentsPage() {
                                 <div className="flex items-center gap-1 font-bold text-foreground">
                                     <IndianRupee className="w-4 h-4" />
                                     {payment.amount.toLocaleString()}
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-8 w-8 text-neutral-400 hover:text-white hover:bg-white/10"
+                                        onClick={() => handleEditClick(payment)}
+                                    >
+                                        <Pencil className="w-4 h-4" />
+                                    </Button>
                                 </div>
                             </div>
 
@@ -340,60 +471,73 @@ export default function PaymentsPage() {
                 transition={{ duration: 0.4, delay: 0.3 }}
                 className="premium-card rounded-xl overflow-hidden hidden lg:block"
             >
-                <Table>
-                    <TableHeader>
-                        <TableRow className="border-border/50 hover:bg-transparent">
-                            <TableHead className="text-muted-foreground">Payment ID</TableHead>
-                            <TableHead className="text-muted-foreground">Customer</TableHead>
-                            <TableHead className="text-muted-foreground">Package</TableHead>
-                            <TableHead className="text-muted-foreground">Amount</TableHead>
-                            <TableHead className="text-muted-foreground">Method</TableHead>
-                            <TableHead className="text-muted-foreground">Status</TableHead>
-                            <TableHead className="text-muted-foreground">Date</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {payments.map((payment, index) => {
-                            const config = statusConfig[payment.status as keyof typeof statusConfig];
-                            const StatusIcon = config.icon;
-                            return (
-                                <motion.tr
-                                    key={payment.id}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.3, delay: 0.05 * index }}
-                                    className="table-row"
-                                >
-                                    <TableCell className="font-mono text-sm text-foreground">
-                                        {payment.id}
-                                    </TableCell>
-                                    <TableCell className="text-foreground">{payment.customer}</TableCell>
-                                    <TableCell className="text-muted-foreground">
-                                        {payment.package}
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-1 font-semibold text-foreground">
-                                            <IndianRupee className="w-4 h-4" />
-                                            {payment.amount.toLocaleString()}
-                                        </div>
-                                    </TableCell>
-                                    <TableCell className="text-muted-foreground">
-                                        {payment.method}
-                                    </TableCell>
-                                    <TableCell>
-                                        <Badge className={`gap-1.5 ${config.color}`}>
-                                            <StatusIcon className="w-3.5 h-3.5" />
-                                            {config.label}
-                                        </Badge>
-                                    </TableCell>
-                                    <TableCell className="text-muted-foreground">
-                                        {payment.date}
-                                    </TableCell>
-                                </motion.tr>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
+                <div className="max-h-[600px] overflow-y-auto custom-scrollbar">
+                    <Table>
+                        <TableHeader className="sticky top-0 z-10 bg-zinc-900/95 backdrop-blur-sm shadow-sm">
+                            <TableRow className="border-border/50 hover:bg-transparent">
+                                <TableHead className="text-muted-foreground">Payment ID</TableHead>
+                                <TableHead className="text-muted-foreground">Customer</TableHead>
+                                <TableHead className="text-muted-foreground">Package</TableHead>
+                                <TableHead className="text-muted-foreground">Amount</TableHead>
+                                <TableHead className="text-muted-foreground">Method</TableHead>
+                                <TableHead className="text-muted-foreground">Status</TableHead>
+                                <TableHead className="text-muted-foreground">Date</TableHead>
+                                <TableHead className="text-muted-foreground text-right">Actions</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {payments.map((payment, index) => {
+                                const config = statusConfig[payment.status as keyof typeof statusConfig];
+                                const StatusIcon = config.icon;
+                                return (
+                                    <motion.tr
+                                        key={payment.id}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.3, delay: 0.05 * index }}
+                                        className="table-row"
+                                    >
+                                        <TableCell className="font-mono text-sm text-foreground">
+                                            {payment.id}
+                                        </TableCell>
+                                        <TableCell className="text-foreground">{payment.customer}</TableCell>
+                                        <TableCell className="text-muted-foreground">
+                                            {payment.package}
+                                        </TableCell>
+                                        <TableCell>
+                                            <div className="flex items-center gap-1 font-semibold text-foreground">
+                                                <IndianRupee className="w-4 h-4" />
+                                                {payment.amount.toLocaleString()}
+                                            </div>
+                                        </TableCell>
+                                        <TableCell className="text-muted-foreground">
+                                            {payment.method}
+                                        </TableCell>
+                                        <TableCell>
+                                            <Badge className={`gap-1.5 ${config.color}`}>
+                                                <StatusIcon className="w-3.5 h-3.5" />
+                                                {config.label}
+                                            </Badge>
+                                        </TableCell>
+                                        <TableCell className="text-muted-foreground">
+                                            {payment.date}
+                                        </TableCell>
+                                        <TableCell className="text-right">
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className="h-8 w-8 text-neutral-400 hover:text-white hover:bg-white/10"
+                                                onClick={() => handleEditClick(payment)}
+                                            >
+                                                <Pencil className="w-4 h-4" />
+                                            </Button>
+                                        </TableCell>
+                                    </motion.tr>
+                                );
+                            })}
+                        </TableBody>
+                    </Table>
+                </div>
             </motion.div>
         </div>
     );
