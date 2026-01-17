@@ -1,8 +1,10 @@
 import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import { FogScene } from "./FogScene";
 import BlurText from "@/components/animate-ui/BlurText";
+
+const FogScene = dynamic(() => import("./FogScene").then(mod => mod.FogScene), { ssr: false });
 
 export const Hero = () => {
     return (

@@ -128,15 +128,15 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                 style={{ opacity: designOpacity, y: designY }}
                 className="absolute inset-0 flex items-center justify-start pl-8 md:pl-20 lg:pl-40"
             >
-                <div className="max-w-xl space-y-8 glass-card p-8 md:p-12 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl">
+                <div className="max-w-xl space-y-8 p-8 md:p-12 rounded-2xl bg-gradient-to-br from-black/60 to-black/30 backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_40px_80px_-20px_rgba(0,0,0,0.7),0_0_50px_rgba(253,186,49,0.15)]">
                     <div className="space-y-2">
                         <div className="flex items-center gap-3 text-primary mb-2">
                             <MapPin className="w-5 h-5" />
                             <span className="text-sm font-bold tracking-widest uppercase">Destinations</span>
                         </div>
-                        <h3 className="text-4xl md:text-6xl font-serif text-white drop-shadow-2xl">
+                        <h3 className="text-4xl md:text-6xl font-serif text-white drop-shadow-lg">
                             Beyond <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] bg-[length:200%_auto] animate-gradient-x drop-shadow-[0_0_15px_rgba(253,186,49,0.3)]">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] bg-[length:200%_auto] animate-gradient-x text-glow">
                                 The Map
                             </span>
                         </h3>
@@ -160,11 +160,11 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
 
                         <div className="grid grid-cols-2 gap-6 pt-4">
                             <div className="space-y-1">
-                                <h4 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] animate-gradient-x">100%</h4>
+                                <h4 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] animate-gradient-x text-glow">100%</h4>
                                 <p className="text-xs text-white/60 uppercase tracking-wider">Safety Record</p>
                             </div>
                             <div className="space-y-1">
-                                <h4 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] animate-gradient-x">4.9/5</h4>
+                                <h4 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] animate-gradient-x text-glow">4.9/5</h4>
                                 <p className="text-xs text-white/60 uppercase tracking-wider">Customer Rating</p>
                             </div>
                         </div>
@@ -179,9 +179,9 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
             >
                 <div className="max-w-lg space-y-8 text-right">
                     <div className="space-y-4">
-                        <h3 className="text-5xl md:text-7xl font-serif text-white leading-none drop-shadow-2xl">
+                        <h3 className="text-5xl md:text-7xl font-serif text-white leading-none drop-shadow-lg">
                             Start Your <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] bg-[length:200%_auto] animate-gradient-x italic drop-shadow-[0_0_15px_rgba(253,186,49,0.3)]">Journey</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] bg-[length:200%_auto] animate-gradient-x italic text-glow">Journey</span>
                         </h3>
                         <p className="text-xl text-white/70 font-light">
                             Reliable transfers. Unforgettable tours.
@@ -189,7 +189,7 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                     </div>
 
                     <div className="flex flex-col items-end gap-4 pointer-events-auto">
-                        <div className="premium-panel p-6 rounded-xl border border-primary/30 bg-black/60 backdrop-blur-xl w-full max-w-md">
+                        <div className="relative overflow-hidden w-full max-w-md p-6 rounded-xl bg-gradient-to-br from-black/60 to-black/30 backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_40px_80px_-20px_rgba(0,0,0,0.7),0_0_50px_rgba(253,186,49,0.15)]">
                             <div className="flex justify-between items-center mb-6">
                                 <div className="text-left">
                                     <p className="text-xs text-white/50 uppercase tracking-widest">Sahara Journeys</p>

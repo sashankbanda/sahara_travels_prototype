@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import dynamic from "next/dynamic";
 import { Navbar } from "@/components/home/Navbar";
 import { BrandLegacy } from "@/components/home/BrandLegacy";
 import { Services } from "@/components/home/Services";
@@ -10,8 +11,9 @@ import { Footer } from "@/components/home/Footer";
 import { ProcessSteps } from "@/components/home/ProcessSteps";
 import { Testimonials } from "@/components/home/Testimonials";
 import { motion, useScroll } from "framer-motion";
-import TravelScrollCanvas from "@/components/TravelScrollCanvas";
-import TravelExperience from "@/components/TravelExperience";
+
+const TravelScrollCanvas = dynamic(() => import("@/components/TravelScrollCanvas"), { ssr: false });
+const TravelExperience = dynamic(() => import("@/components/TravelExperience"), { ssr: false });
 
 const Home = () => {
     const containerRef = useRef<HTMLDivElement>(null);
