@@ -1,7 +1,15 @@
 import { motion } from "framer-motion";
 import BlurText from "@/components/animate-ui/BlurText";
+import CircularText from "@/components/CircularText";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 export const BrandLegacy = () => {
+    const isMobile = useMediaQuery("(max-width: 768px)");
+    const isTablet = useMediaQuery("(max-width: 1024px)");
+
+    // Radius values: Mobile ~50px, Tablet ~60px, Desktop ~70px
+    const radius = isMobile ? 50 : (isTablet ? 60 : 70);
+
     return (
         <section className="py-20 md:py-40 text-white overflow-hidden relative">
             <div className="container mx-auto px-6 max-w-6xl relative">
@@ -13,12 +21,15 @@ export const BrandLegacy = () => {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.5 }}
-                        className="md:w-1/4 pt-4"
+                        className="md:w-1/4 pt-4 flex justify-center md:justify-start"
                     >
-                        <span className="block text-primary/40 text-[9px] uppercase tracking-[0.4em] mb-4">
-                            Since 1998
-                        </span>
-                        <div className="h-[1px] w-12 bg-white/10" />
+                        <CircularText
+                            text="SINCE 1998 * SAHARA JOURNEYS *"
+                            spinDuration={20}
+                            radius={radius}
+                            onHover="speedUp"
+                            className="text-[10px] md:text-xs text-primary/80"
+                        />
                     </motion.div>
 
                     {/* Asymmetric Right: Content */}
