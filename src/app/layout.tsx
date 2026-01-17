@@ -5,7 +5,7 @@ import { WhatsAppButton } from "@/components/home/WhatsAppButton";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import ScrollToTop from "@/components/shared/ScrollToTop"; // Assuming this is client component
-import GradualBlur from "@/components/GradualBlur";
+import { GlobalBlur } from "@/components/layout/GlobalBlur";
 import ClickSpark from "@/components/ClickSpark";
 import "./globals.css";
 
@@ -34,20 +34,7 @@ export default function RootLayout({
                             <BackgroundBeams className="fixed inset-0 z-0 pointer-events-none" />
                             <div className="relative z-10">
                                 {children}
-                                <GradualBlur
-                                    target="page"
-                                    position="top"
-                                    zIndex={-60}
-                                    responsive={true}
-                                    mobileHeight="5rem"
-                                    tabletHeight="6rem"
-                                    desktopHeight="8rem"
-                                    strength={1}
-                                    divCount={10}
-                                    curve="bezier"
-                                    exponential={true}
-                                    opacity={1}
-                                />
+                                <GlobalBlur />
                             </div>
                             {/* These interactive elements should handle their own 'use client' directives or be safe */}
                             <ScrollToTop />
