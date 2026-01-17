@@ -53,7 +53,7 @@ export default function AdminDashboard() {
             </motion.div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div className="flex overflow-x-auto pb-4 gap-4 snap-x snap-mandatory -mx-6 px-6 sm:grid sm:mx-0 sm:px-0 sm:pb-0 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
                 <StatCard
                     title="Total Bookings"
                     value="124"
@@ -61,7 +61,7 @@ export default function AdminDashboard() {
                     changeType="positive"
                     icon={Package}
                     delay={0}
-                    className="bg-zinc-900/50 border-white/5"
+                    className="bg-zinc-900/50 border-white/5 min-w-[280px] snap-center"
                 />
                 <StatCard
                     title="New Enquiries"
@@ -70,7 +70,7 @@ export default function AdminDashboard() {
                     changeType="positive"
                     icon={MessageSquare}
                     delay={0.1}
-                    className="bg-zinc-900/50 border-white/5"
+                    className="bg-zinc-900/50 border-white/5 min-w-[280px] snap-center"
                 />
                 <StatCard
                     title="Revenue (This Month)"
@@ -79,7 +79,7 @@ export default function AdminDashboard() {
                     changeType="positive"
                     icon={CreditCard}
                     delay={0.2}
-                    className="bg-zinc-900/50 border-white/5"
+                    className="bg-zinc-900/50 border-white/5 min-w-[280px] snap-center"
                 />
                 <StatCard
                     title="Conversion Rate"
@@ -88,7 +88,7 @@ export default function AdminDashboard() {
                     changeType="negative"
                     icon={TrendingUp}
                     delay={0.3}
-                    className="bg-zinc-900/50 border-white/5"
+                    className="bg-zinc-900/50 border-white/5 min-w-[280px] snap-center"
                 />
             </div>
 
