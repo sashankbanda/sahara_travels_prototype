@@ -46,10 +46,10 @@ export const ProcessSteps = () => {
                 {/* Steps wrapper */}
                 <div className="relative max-w-5xl mx-auto overflow-hidden">
                     {/* Connecting Line — Desktop + Tablet */}
-                    <div className="hidden md:block absolute top-[3rem] left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
+                    <div className="hidden md:block absolute top-[3rem] left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent z-0 shadow-[0_0_20px_rgba(253,186,49,0.4)]" />
 
                     {/* Connecting Line — Mobile */}
-                    <div className="md:hidden absolute top-[3rem] left-0 w-full min-w-[900px] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
+                    <div className="md:hidden absolute top-[3rem] left-0 w-full min-w-[900px] h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent z-0 shadow-[0_0_20px_rgba(253,186,49,0.4)]" />
 
                     {/* Steps */}
                     <div
