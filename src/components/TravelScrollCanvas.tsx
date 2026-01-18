@@ -7,7 +7,8 @@ interface TravelScrollCanvasProps {
 }
 
 const FRAME_COUNT = 192;
-const IMAGES_FOLDER = '/travel_sequence_webp';
+const IMAGES_FOLDER_DESKTOP = '/travel_sequence_webp';
+const IMAGES_FOLDER_MOBILE = '/travel_sequence_mobile';
 
 export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanvasProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -18,11 +19,11 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
     useEffect(() => {
         let isMounted = true;
 
-        const loadFrame = (index: number): Promise<HTMLImageElement> => {
+        const loadFrame = (index: number, folder: string): Promise<HTMLImageElement> => {
             return new Promise((resolve) => {
                 const img = new Image();
                 const frameIndex = (index + 1).toString().padStart(3, '0');
-                img.src = `${IMAGES_FOLDER}/frame-${frameIndex}.webp`;
+                img.src = `${folder}/frame-${frameIndex}.webp`;
                 img.decoding = 'async'; // Non-blocking decoding
 
                 img.onload = () => resolve(img);
@@ -39,7 +40,11 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
             const promises: Promise<{ index: number, img: HTMLImageElement }>[] = [];
 
             for (let i = start; i < end; i++) {
-                promises.push(loadFrame(i).then(img => ({ index: i, img })));
+                // Determine folder based on width (check every chunk or once? Once is better, pass as arg)
+                // Actually, best to determine once at start. Let's modify initLoad.
+                // For now, let's access the variable from wider scope or check window here.
+                const folder = window.innerWidth < 768 ? IMAGES_FOLDER_MOBILE : IMAGES_FOLDER_DESKTOP;
+                promises.push(loadFrame(i, folder).then(img => ({ index: i, img })));
             }
 
             const results = await Promise.all(promises);
@@ -179,16 +184,19 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
 
     return (
         <>
-            {/* Poster Image for Instant Load (LCP) */}
+            {/* Poster Image for Instant Load (LCP) - Adaptive */}
             <div
                 className={`absolute inset-0 z-0 transition-opacity duration-700 ${isReady ? 'opacity-0' : 'opacity-100'}`}
                 aria-hidden="true"
             >
-                <img
-                    src={`${IMAGES_FOLDER}/frame-001.webp`}
-                    alt=""
-                    className="w-full h-full object-cover"
-                />
+                <picture>
+                    <source media="(max-width: 767px)" srcSet={`${IMAGES_FOLDER_MOBILE}/frame-001.webp`} />
+                    <img
+                        src={`${IMAGES_FOLDER_DESKTOP}/frame-001.webp`}
+                        alt=""
+                        className="w-full h-full object-cover"
+                    />
+                </picture>
             </div>
 
             <canvas
