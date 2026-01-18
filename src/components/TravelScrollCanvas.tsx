@@ -56,13 +56,13 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
         };
 
         const initLoad = async () => {
-            // 1. Priority Load: First 30 frames (enough for initial scroll)
-            await loadChunk(0, 30);
-            if (isMounted) setIsReady(true); // Enable rendering quickly
+            // 1. Priority Load: First 60 frames (Increased buffer to prevent initial lag)
+            await loadChunk(0, 60);
+            if (isMounted) setIsReady(true); // Enable rendering 
 
             // 2. Background Load: Rest of the frames in chunks
             // Use slightly delayed chunks to not freeze the thread immediately after initial load
-            for (let i = 30; i < FRAME_COUNT; i += 50) {
+            for (let i = 60; i < FRAME_COUNT; i += 50) {
                 if (!isMounted) break;
                 // Small delay between chunks to yield to main thread
                 await new Promise(r => setTimeout(r, 100));
@@ -178,10 +178,24 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
     }, [isReady]);
 
     return (
-        <canvas
-            ref={canvasRef}
-            className="block w-full h-full object-cover"
-            style={{ width: '100%', height: '100%' }}
-        />
+        <>
+            {/* Poster Image for Instant Load (LCP) */}
+            <div
+                className={`absolute inset-0 z-0 transition-opacity duration-700 ${isReady ? 'opacity-0' : 'opacity-100'}`}
+                aria-hidden="true"
+            >
+                <img
+                    src={`${IMAGES_FOLDER}/frame-001.webp`}
+                    alt=""
+                    className="w-full h-full object-cover"
+                />
+            </div>
+
+            <canvas
+                ref={canvasRef}
+                className={`block w-full h-full object-cover relative z-10 transition-opacity duration-500 ${isReady ? 'opacity-100' : 'opacity-0'}`}
+                style={{ width: '100%', height: '100%' }}
+            />
+        </>
     );
 }
