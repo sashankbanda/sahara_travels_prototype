@@ -6,8 +6,8 @@ interface TravelScrollCanvasProps {
     scrollYProgress: MotionValue<number>;
 }
 
-const FRAME_COUNT = 240;
-const IMAGES_FOLDER = '/travel_sequence';
+const FRAME_COUNT = 192;
+const IMAGES_FOLDER = '/travel_sequence_webp';
 
 export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanvasProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -22,7 +22,7 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
             return new Promise((resolve) => {
                 const img = new Image();
                 const frameIndex = (index + 1).toString().padStart(3, '0');
-                img.src = `${IMAGES_FOLDER}/ezgif-frame-${frameIndex}.jpg`;
+                img.src = `${IMAGES_FOLDER}/frame-${frameIndex}.webp`;
                 img.decoding = 'async'; // Non-blocking decoding
 
                 img.onload = () => resolve(img);
