@@ -34,6 +34,9 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
     const dot3Color = useTransform(scrollYProgress, [0.6, 0.62, 1], ["rgba(255, 255, 255, 0.2)", "#FFFFFF", "#FFFFFF"]);
     const dot3Scale = useTransform(scrollYProgress, [0.6, 0.62, 1], [0.8, 1.3, 1.3]);
 
+    // --- Scroll Indicator Text Opacity (Fade out quickly) ---
+    const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
+
     return (
         <div className={cn("absolute inset-0 pointer-events-none z-10 flex flex-col justify-between p-8 md:p-12 lg:p-20 overflow-hidden text-white", className)}>
             {/* --- Global HUD Elements (Always visible or persistent) --- */}
@@ -62,8 +65,9 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
+                style={{ opacity: scrollIndicatorOpacity }}
                 transition={{ duration: 1, delay: 0.8 }}
-                className="fixed bottom-12 right-12 z-50 flex flex-col items-end gap-2 mix-blend-difference"
+                className="fixed bottom-12 left-12 z-50 flex flex-col items-start gap-2 mix-blend-difference"
             >
                 <div className="flex items-center gap-2 text-white/80 font-mono text-xs">
                     <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
