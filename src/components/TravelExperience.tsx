@@ -90,7 +90,7 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                        className="inline-block px-5 py-2 rounded-full border border-white/10 bg-black/20 backdrop-blur-md text-[10px] font-bold tracking-[0.2em] text-primary uppercase shadow-[0_0_15px_rgba(255,165,0,0.2)]"
+                        className="inline-block px-5 py-2 rounded-full border border-white/10 bg-black/40 backdrop-blur-3xl text-[10px] font-bold tracking-[0.2em] text-primary uppercase shadow-[0_0_15px_rgba(255,165,0,0.1)]"
                     >
                         Since 1998
                     </motion.div>
@@ -108,7 +108,7 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                             initial={{ opacity: 0, y: 40 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-                            className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] bg-[length:200%_auto] animate-gradient-x pb-4 drop-shadow-[0_0_15px_rgba(253,186,49,0.3)]"
+                            className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#eec170] to-primary bg-[length:200%_auto] animate-gradient-x pb-4 drop-shadow-[0_0_15px_hsl(var(--primary)/0.3)]"
                         >
                             Northeast India
                         </motion.span>
@@ -119,7 +119,7 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
-                        className="text-white/80 text-lg md:text-xl font-medium tracking-wide"
+                        className="text-white text-lg md:text-xl font-semibold tracking-wide drop-shadow-md"
                     >
                         Your Trusted Partner for Tours & Transfers in Arunachal Pradesh
                     </motion.p>
@@ -130,7 +130,7 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.65, ease: "easeOut" }}
-                        className="flex flex-wrap justify-center gap-4 text-xs md:text-sm text-white/70 font-mono uppercase tracking-wider"
+                        className="flex flex-wrap justify-center gap-4 text-xs md:text-sm text-white font-semibold font-mono uppercase tracking-wider drop-shadow-md"
                     >
                         <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary/70" /> 25+ Years Legacy</span>
                         <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary/70" /> 10k+ Happy Travelers</span>
@@ -144,9 +144,10 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                         className="pt-4 pointer-events-auto"
                     >
                         <InquiryDialog>
-                            <Button size="lg" className="rounded-full px-10 py-7 text-lg bg-primary hover:bg-primary/90 text-black font-bold tracking-wide gap-3 group transition-all duration-500 ease-out shadow-[0_0_20px_-5px_hsl(41_52%_60%/_0.5)] hover:shadow-[0_0_40px_-10px_hsl(41_52%_60%/_0.7)] hover:scale-105">
+                            <Button size="lg" className="rounded-full px-8 py-6 text-base bg-primary hover:bg-primary/90 text-black font-bold tracking-wide gap-3 group relative overflow-hidden transition-all duration-500 ease-out shadow-[0_0_20px_-5px_hsl(41_52%_60%/_0.5)] hover:shadow-[0_0_30px_-5px_hsl(41_52%_60%/_0.8)] hover:scale-105">
+                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[200%] group-hover:animate-shimmer" />
                                 Plan Your Trip
-                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 text-black/70" />
+                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300 text-black/70" />
                             </Button>
                         </InquiryDialog>
                     </motion.div>
@@ -167,7 +168,7 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                         </div>
                         <h3 className="text-4xl md:text-6xl font-serif text-white drop-shadow-lg">
                             Beyond <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] bg-[length:200%_auto] animate-gradient-x text-glow">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#eec170] to-primary bg-[length:200%_auto] animate-gradient-x text-glow">
                                 The Map
                             </span>
                         </h3>
@@ -191,11 +192,11 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
 
                         <div className="grid grid-cols-2 gap-6 pt-4">
                             <div className="space-y-1">
-                                <h4 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] animate-gradient-x text-glow">100%</h4>
+                                <h4 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#eec170] to-primary animate-gradient-x text-glow">100%</h4>
                                 <p className="text-xs text-white/60 uppercase tracking-wider">Safety Record</p>
                             </div>
                             <div className="space-y-1">
-                                <h4 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] animate-gradient-x text-glow">4.9/5</h4>
+                                <h4 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#eec170] to-primary animate-gradient-x text-glow">4.9/5</h4>
                                 <p className="text-xs text-white/60 uppercase tracking-wider">Customer Rating</p>
                             </div>
                         </div>
@@ -212,7 +213,7 @@ export default function TravelExperience({ scrollYProgress, className }: TravelE
                     <div className="space-y-4">
                         <h3 className="text-5xl md:text-7xl font-serif text-white leading-none drop-shadow-lg">
                             Start Your <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FDCC5C] to-[#FFD700] bg-[length:200%_auto] animate-gradient-x italic text-glow">Journey</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#eec170] to-primary bg-[length:200%_auto] animate-gradient-x italic text-glow">Journey</span>
                         </h3>
                         <p className="text-xl text-white/70 font-light">
                             Reliable transfers. Unforgettable tours.

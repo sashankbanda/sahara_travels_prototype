@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, useMemo } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MotionValue, useMotionValueEvent } from 'framer-motion';
 
 interface TravelScrollCanvasProps {
@@ -11,58 +11,85 @@ const IMAGES_FOLDER = '/travel_sequence';
 
 export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanvasProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [images, setImages] = useState<HTMLImageElement[]>([]);
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [images, setImages] = useState<(HTMLImageElement | null)[]>(new Array(FRAME_COUNT).fill(null));
+    const [isReady, setIsReady] = useState(false);
 
-    // Preload images
+    // Optimized Image Loading
     useEffect(() => {
-        let loadedCount = 0;
-        const loadedImages: HTMLImageElement[] = [];
+        let isMounted = true;
 
-        const loadImages = async () => {
-            // Create array of promises for image loading
-            const loadPromises = Array.from({ length: FRAME_COUNT }, (_, i) => {
-                return new Promise<HTMLImageElement>((resolve, reject) => {
-                    const img = new Image();
-                    // Filename format: ezgif-frame-001.jpg
-                    const frameIndex = (i + 1).toString().padStart(3, '0');
-                    img.src = `${IMAGES_FOLDER}/ezgif-frame-${frameIndex}.jpg`;
+        const loadFrame = (index: number): Promise<HTMLImageElement> => {
+            return new Promise((resolve) => {
+                const img = new Image();
+                const frameIndex = (index + 1).toString().padStart(3, '0');
+                img.src = `${IMAGES_FOLDER}/ezgif-frame-${frameIndex}.jpg`;
+                img.decoding = 'async'; // Non-blocking decoding
 
-                    img.onload = () => {
-                        loadedCount++;
-                        resolve(img);
-                    };
-                    img.onerror = () => {
-                        console.error(`Failed to load frame ${frameIndex}`);
-                        // Resolve with a placeholder or empty image to prevent crashing
-                        resolve(new Image());
-                    };
-                });
+                img.onload = () => resolve(img);
+                img.onerror = () => {
+                    console.error(`Failed to load frame ${frameIndex}`);
+                    resolve(new Image()); // Empty fallback
+                };
             });
+        };
 
-            try {
-                const results = await Promise.all(loadPromises);
-                setImages(results);
-                setIsLoaded(true);
-            } catch (error) {
-                console.error("Error loading sequence images", error);
+        const loadChunk = async (start: number, count: number) => {
+            if (!isMounted) return;
+            const end = Math.min(start + count, FRAME_COUNT);
+            const promises: Promise<{ index: number, img: HTMLImageElement }>[] = [];
+
+            for (let i = start; i < end; i++) {
+                promises.push(loadFrame(i).then(img => ({ index: i, img })));
+            }
+
+            const results = await Promise.all(promises);
+
+            if (isMounted) {
+                setImages(prev => {
+                    const newImages = [...prev];
+                    results.forEach(({ index, img }) => {
+                        newImages[index] = img;
+                    });
+                    return newImages;
+                });
             }
         };
 
-        loadImages();
+        const initLoad = async () => {
+            // 1. Priority Load: First 30 frames (enough for initial scroll)
+            await loadChunk(0, 30);
+            if (isMounted) setIsReady(true); // Enable rendering quickly
+
+            // 2. Background Load: Rest of the frames in chunks
+            // Use slightly delayed chunks to not freeze the thread immediately after initial load
+            for (let i = 30; i < FRAME_COUNT; i += 50) {
+                if (!isMounted) break;
+                // Small delay between chunks to yield to main thread
+                await new Promise(r => setTimeout(r, 100));
+                await loadChunk(i, 50);
+            }
+        };
+
+        initLoad();
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
     // Draw a specific frame
     const renderFrame = (index: number) => {
         const canvas = canvasRef.current;
-        if (!canvas || !images[index]) return;
+        const img = images[index];
+
+        if (!canvas || !img) return; // Skip if frame not loaded yet
 
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
-        const img = images[index];
+        // Skip if image isn't fully loaded or is a fallback empty image with no width
+        if (!img.complete || img.naturalWidth === 0) return;
 
-        // Canvas sizing logic (same as before)
         const canvasWidth = canvas.width / window.devicePixelRatio;
         const canvasHeight = canvas.height / window.devicePixelRatio;
 
@@ -95,14 +122,13 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
         );
     };
 
-    // RAF Scheduler for drawing
     const rafId = useRef<number | null>(null);
 
     // Update canvas on scroll
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        if (!isLoaded || images.length === 0) return;
+        if (!isReady) return;
 
-        if (rafId.current !== null) return; // Drop frame if one is already scheduled
+        if (rafId.current !== null) return;
 
         rafId.current = requestAnimationFrame(() => {
             const frameIndex = Math.min(
@@ -114,19 +140,7 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
         });
     });
 
-    // Draw initial frame when loaded
-    useEffect(() => {
-        if (isLoaded && images.length > 0) {
-            const currentProgress = scrollYProgress.get();
-            const frameIndex = Math.min(
-                FRAME_COUNT - 1,
-                Math.floor(currentProgress * FRAME_COUNT)
-            );
-            renderFrame(frameIndex);
-        }
-    }, [isLoaded, images, scrollYProgress]);
-
-    // Handle Resize & Retina Displays
+    // Handle Resize
     useEffect(() => {
         const handleResize = () => {
             if (!canvasRef.current) return;
@@ -139,8 +153,8 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
             const ctx = canvas.getContext('2d');
             if (ctx) ctx.scale(dpr, dpr);
 
-            // Redraw current frame after resize
-            if (isLoaded && images.length > 0) {
+            // Redraw current frame
+            if (isReady) {
                 const currentProgress = scrollYProgress.get();
                 const frameIndex = Math.min(
                     FRAME_COUNT - 1,
@@ -154,7 +168,14 @@ export default function TravelScrollCanvas({ scrollYProgress }: TravelScrollCanv
         handleResize();
 
         return () => window.removeEventListener('resize', handleResize);
-    }, [isLoaded, images, scrollYProgress]);
+    }, [isReady, images, scrollYProgress]);
+
+    // Initial Render when ready
+    useEffect(() => {
+        if (isReady && images[0]) {
+            renderFrame(0);
+        }
+    }, [isReady]);
 
     return (
         <canvas
